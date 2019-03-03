@@ -3,7 +3,7 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-
+#define PI       3.14159265358979323846   // pi
 
 using namespace std;
 
@@ -223,11 +223,60 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
             x += divX;
         }
        
+        file.close();
+
     }
 
-    file.close();
+    else cout << "Não foi possível abrir o ficheiro"; 
+
 }
 
+void generateSphere(double radius, int slices, int stacks, char* fileName){
+    double deltaBeta = PI / stacks;
+    double deltaAlpha = 2 * PI / slices;
+    double angleBeta, angleAlpha;
+    double aX, aY, aZ, bX, bY, bZ, cX, cY, cZ, dX, dY, dZ;
+	ofstream file;
+	file.open(fileName,ios::app);
+
+
+	if(file.is_open()){
+        for (int i = 0; i < stacks; i++) {
+		    angleBeta = i*deltaBeta;
+            for (int j = 0; j < slices; j++) {
+                angleAlpha = j*deltaAlpha;
+                aX = radius*sin(angleBeta)*sin(angleAlpha);
+                aY = radius*cos(angleBeta);
+                aZ = radius*sin(angleBeta)*cos(angleAlpha);
+
+                bX = radius*sin(angleBeta)*sin(angleAlpha + deltaAlpha);
+                bY = radius*cos(angleBeta);
+                bZ = radius*sin(angleBeta)*cos(angleAlpha + deltaAlpha);
+
+                cX = radius*sin(angleBeta + deltaBeta)*sin(angleAlpha + deltaAlpha);
+                cY = radius*cos(angleBeta + deltaBeta);
+                cZ = radius*sin(angleBeta + deltaBeta)*cos(angleAlpha + deltaAlpha);
+
+                dX = radius*sin(angleBeta + deltaBeta)*sin(angleAlpha);
+                dY = radius*cos(angleBeta + deltaBeta);
+                dZ = radius*sin(angleBeta + deltaBeta)*cos(angleAlpha);
+
+                file << "" << aX << " " << aY << " " << aZ << "\n";
+                file << "" << bX << " " << bY << " " << bZ << "\n";
+                file << "" << cX << " " << cY << " " << cZ << "\n";
+                file << "" << bX << " " << bY << " " << bZ << "\n";
+                file << "" << cX << " " << cY << " " << cZ << "\n";
+                file << "" << dX << " " << dY << " " << dZ << "\n";
+            }
+	    }
+
+		file.close();
+
+    }
+
+	else cout << "Não foi possível abrir o ficheiro"; 
+	 		
+}
 
 int main (int argc, char** argv){
 
@@ -235,11 +284,10 @@ int main (int argc, char** argv){
 		generatePlane(argv[2],argv[3]);
 
 	if (strcmp(argv[1], "box") == 0) 
-       // if (argc == 6)
-            generateBox(argv[2], argv[3], argv[4],atoi(argv[5]),argv[6]);
-      //  if (argc == 7)
-        //    generateBox(argv[2], argv[3], argv[4], atoi(argv[5]), argv[6]);
-	
+        generateBox(argv[2], argv[3], argv[4],atoi(argv[5]),argv[6]);
+
+    if (strcmp(argv[1], "sphere") == 0) 
+        generateSphere(atof(argv[2]), atoi(argv[3]), atoi(argv[4]), argv[5]);
 
 
 	return 0;
