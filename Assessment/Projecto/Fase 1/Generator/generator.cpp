@@ -11,134 +11,87 @@ using namespace std;
 
 
 /* Gerador de um plano:
-	char* l : Corresponde ao tamanho, convertido posteriormente para um double.
-	char* filename : Corresponde a figura geométrica a ser gerada.
-*/
+ * @param l : Corresponde ao tamanho, convertido posteriormente para um double.
+ * @param filename : Corresponde a figura geométrica a ser gerada.
+ * Método que cálcula todos as coordenadas de todos os pontos de um plano.
+ */
 
 
-void generatePlane(char* l,char* fileName){
+void generatePlane(char* l, char* fileName){
 	 
-	 double tamanho= atof(l);
-	 ofstream ficheiro;
-	 ficheiro.open(fileName,ios::app);
+	 double lenght = atof(l);
+     double dim = lenght/2;
+	 ofstream file;
+	 file.open(fileName,ios::app);
 
 /* To check if a file stream was successful opening a file, you can do it by calling to member is_open. This member function returns a bool value of true in the case that indeed the stream object is associated with an open file, or false otherwise: */
 
-	 	if(ficheiro.is_open()){
+	if(file.is_open()){
 
 	 	/* Corresponde as coordenadas do primeiro triângulo definido a custa de 3 pontos */
-        ficheiro << "" << (-tamanho/2) << " 0 " << (-tamanho/2) << "\n";
-        ficheiro << "" << (-tamanho/2) << " 0 " << (tamanho/2) << "\n";
-        ficheiro << "" << (tamanho/2) << " 0 " << (tamanho/2) << "\n";
+        file << "" << (-dim) << " 0 " << (-dim) << "\n";
+        file << "" << (-dim) << " 0 " << (dim) << "\n";
+        file << "" << (dim) << " 0 " << (dim) << "\n";
 
 	 	/* Corresponde as coordenadas do segundo triângulo definido a custa de 3 pontos */
-        ficheiro << "" << (-tamanho/2) << " 0 " << (-tamanho/2) << "\n";
-        ficheiro << "" << (tamanho/2) << " 0 " << (tamanho/2) << "\n";
-		ficheiro << "" << (tamanho/2) << " 0 " << (-tamanho/2) << "\n";
+        file << "" << (-dim) << " 0 " << (-dim) << "\n";
+        file << "" << (dim) << " 0 " << (dim) << "\n";
+		file << "" << (dim) << " 0 " << (-dim) << "\n";
 
-		ficheiro.close();
+		file.close();
 
 	 	}
 
-	 	else cout << "Não foi possível abrir o ficheiro"; 
+	else cout << "Não foi possível abrir o ficheiro"; 
 	 		
 }
 
-/*
-void generateBox(char* x,char* y,char* z,char* fileName){
-	double comprimento=atof(x)/2;
-	double altura=atof(y)/2;
-	double largura=atof(z)/2;
 
-
-	ofstream ficheiro;
-	ficheiro.open(fileName,ios::app);
-
-
-	if(ficheiro.is_open()){
-		// Base
-	ficheiro << comprimento << " " << -altura << " " << -largura << endl;
-	ficheiro << comprimento << " " << -altura << " " << largura << endl;
-	ficheiro << -comprimento << " " << -altura << " " << -largura << endl;
-
-	ficheiro << -comprimento << " " << -altura << " " << -largura << endl;
-	ficheiro << comprimento << " " << -altura << " " << largura << endl;
-	ficheiro << -comprimento << " " << -altura << " " << largura << endl;
-
-	// Topo
-	ficheiro << comprimento << " " << altura << " " << largura << endl;
-	ficheiro << comprimento << " " << altura << " " << -largura << endl;
-	ficheiro << -comprimento << " " << altura << " " << -largura << endl;
-
-	ficheiro << comprimento << " " << altura << " " << largura << endl;
-	ficheiro << -comprimento << " " << altura << " " << -largura << endl;
-	ficheiro << -comprimento << " " << altura << " " << largura << endl;
-
-	// Frente
-	ficheiro << -comprimento << " " << altura << " " << largura << endl;
-	ficheiro << -comprimento << " " << altura << " " << -largura << endl;
-	ficheiro << -comprimento << " " << -altura << " " << -largura << endl;
-
-	ficheiro << -comprimento << " " << altura << " " << largura << endl;
-	ficheiro << -comprimento << " " << -altura << " " << -largura << endl;
-	ficheiro << -comprimento << " " << -altura << " " << largura << endl;
-
-	// Trás
-	ficheiro << comprimento << " " << altura << " " << -largura << endl;
-	ficheiro << comprimento << " " << altura << " " << largura << endl;
-	ficheiro << comprimento << " " << -altura << " " << -largura << endl;
-
-	ficheiro << comprimento << " " << altura << " " << largura << endl;
-	ficheiro << comprimento << " " << -altura << " " << largura << endl;
-	ficheiro << comprimento << " " << -altura << " " << -largura << endl;
-
-	// Lado Esquerdo
-	ficheiro << -comprimento << " " << altura << " " << -largura << endl;
-	ficheiro << comprimento << " " << altura << " " << -largura << endl;
-	ficheiro << -comprimento << " " << -altura << " " << -largura << endl;
-
-	ficheiro << comprimento << " " << altura << " " << -largura << endl;
-	ficheiro << comprimento << " " << -altura << " " << -largura << endl;
-	ficheiro << -comprimento << " " << -altura << " " << -largura << endl;
-
-	// Lado Direito
-	ficheiro << comprimento << " " << altura << " " << largura << endl;
-	ficheiro << -comprimento << " " << altura << " " << largura << endl;
-	ficheiro << -comprimento << " " << -altura << " " << largura << endl;
-
-	ficheiro << comprimento << " " << altura << " " << largura << endl;
-	ficheiro << -comprimento << " " << -altura << " " << largura << endl;
-	ficheiro << comprimento << " " << -altura << " " << largura << endl;
-
-		ficheiro.close();
-	}
-
-	else cout << "Não foi possível abrir o ficheiro"; 
-
-}
-*/
-
+/* Gerador de uma caixa:
+ * @param a : Corresponde ao comprimento da caixa, convertido posteriormente para um double.
+ * @param b : Corresponde à altura da caixa, convertido posteriormente para um double.
+ * @param c : Corresponde à largura da caixa, convertido posteriormente para um double.
+ * @param div : Corresponde ao número de divisões da caixa.
+ * @param filename : Corresponde a figura geométrica a ser gerada.
+ * Método que cálcula todos as coordenadas de todos os pontos de uma caixa.
+ */
 void generateBox(char* a, char* b, char* c, int div, char* fileName)
 {
-    double length = atof(a);
-    double height = atof(b);
-    double width = atof(c);
+    double length = atof(a); // Comprimento da caixa - dimensão da caixa no eixo dos xx
+    double height = atof(b); // Altura da caixa - dimensão da caixa no eixo dos yy
+    double width = atof(c);  // Largura da caixa - dimensão da caixa no eixo dos zz
 
     double x, y, z;
 
-    double divX = length/div;
-    double divY = height/div;
-    double divZ = width/div;
+    double divX = length/div; // Dimensão de uma divisão da caixa no eixo dos xx
+    double divY = height/div; // Dimensão de uma divisão da caixa no eixo dos xx
+    double divZ = width/div; // Dimensão de uma divisão da caixa no eixo dos xx
+
+    double dimX = length/2; // Coordenada x do centro da caixa
+    double dimY = height/2; // Coordenada y do centro da caixa
+    double dimZ = width/2;  // Coordenada z do centro da caixa
 
     ofstream file;
     file.open(fileName, ios::app);
 
     if (file.is_open()) {
 
-        // Base da caixa.
-        z = width/2;
+        /*
+         * Faces XZ.
+         * Base da caixa.
+         * Tampa superior da caixa.
+         *   v1------v3
+	     *  /       / 
+	     * v2------v4
+	     *         
+	     *   v5------v6
+	     *  /       /
+	     * v7------v8
+         */
+
+        z = dimZ;
         for (int i = 0; i < div; i++) {
-            x = -length/2;
+            x = -dimX;
             for (int j = 0; j < div; j++) {
                 file << "" << x << " 0 " << (z - divZ) << "\n";
                 file << "" << (x + divX) << " 0 " << z << "\n";
@@ -153,9 +106,40 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
             z -= divZ;
         }
 
-        // Face traseira da caixa. (Esquerda)
-        x = -length/2;
-        z = -width/2;
+        y = height;
+        z = -dimZ;
+        for (int i = 0; i < div; i++) {
+            x = -dimX;
+            for (int j = 0; j < div; j++) {
+                file << "" << (x + divX) << " " << y << " " << z << "\n";
+                file << "" << x << " " << y << " " << z << "\n";
+                file << "" << x << " " << y << " " << (z + divZ) << "\n";
+
+                file << "" << (x + divX) << " " << y << " " << z << "\n";
+                file << "" << x << " " << y << " " << (z + divZ) << "\n";
+                file << "" << (x + divX) << " " << y << " " << (z + divZ) << "\n";
+
+                x += divX;
+            }
+            z += divZ;
+        }
+
+        /*
+         * Faces XY.
+         * Face traseira da caixa.
+         * Face frontal da caixa.
+         *
+	     *   v8----- v6
+         *   |       |
+         * v4------v3|
+         * | |     | |
+         * | |v5---|-|v7
+         * |       | 
+         * v1------v2
+         */
+
+        x = -dimX;
+        z = -dimZ;
         for (int i = 0; i < div; i++) {
             y = height;
             for (int j = 0; j < div; j++) {
@@ -172,47 +156,8 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
             z += divZ;
         }
 
-        // Face esquerda da caixa.     (Frontal)
-        x = -length/2;
-        z = width/2;
-        for (int i = 0; i < div; i++) {
-            y = height;
-            for (int j = 0; j < div; j++) {
-                file << "" << x << " " << y << " " << z << "\n";
-                file << "" << x << " " << (y - divY) << " " << z << "\n";
-                file << "" << (x + divX) << " " << y << " " << z << "\n";
-
-                file << "" << x << " " << (y - divY) << " " << z << "\n";
-                file << "" << (x + divX) << " " << (y - divY) << " " << z << "\n";
-                file << "" << (x + divX) << " " << y << " " << z << "\n";
-
-                y -= divY;
-            }
-            x += divX;
-        }
-
-        // Face direita da caixa.  (Traseira)
-        x = -length/2;
-        z = -width/2;
-        for (int i = 0; i < div; i++) {
-            y = height;
-            for (int j = 0; j < div; j++) {
-                file << "" << x << " " << y << " " << z << "\n";
-                file << "" << (x + divX) << " " << y << " " << z << "\n";
-                file << "" << (x + divX) << " " << (y - divY) << " " << z << "\n";
-
-                file << "" << x << " " << y << " " << z << "\n";
-                file << "" << (x + divX) << " " << (y - divY) << " " << z << "\n";
-                file << "" << x << " " << (y - divY) << " " << z << "\n";
-
-                y -= divY;
-            }
-            x += divX;
-        }
-
-        // Face frontal da caixa.  (Direita)
-        x = length/2;
-        z = width/2;
+        x = dimX;
+        z = dimZ;
         for (int i = 0; i < div; i++) {
             y = height;
             for (int j = 0; j < div; j++) {
@@ -229,24 +174,55 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
             z -= divZ;
         }
 
-        // Tampa superior da caixa.
-        y = height;
-        z = -width/2;
+        /*
+         * Faces YZ.
+         * Face esquerda da caixa.
+         * Face direita da caixa.
+         *   v7      v2
+	     *  /|      /|
+         * v6|     v3|
+         * | |     | |
+         * | |v5   |v1
+         * |/      |/
+         * v8      v4
+         */
+
+        x = -dimX;
+        z = dimZ;
         for (int i = 0; i < div; i++) {
-            x = -length/2;
+            y = height;
             for (int j = 0; j < div; j++) {
-                file << "" << (x + divX) << " " << y << " " << z << "\n";
                 file << "" << x << " " << y << " " << z << "\n";
-                file << "" << x << " " << y << " " << (z + divZ) << "\n";
-
+                file << "" << x << " " << (y - divY) << " " << z << "\n";
                 file << "" << (x + divX) << " " << y << " " << z << "\n";
-                file << "" << x << " " << y << " " << (z + divZ) << "\n";
-                file << "" << (x + divX) << " " << y << " " << (z + divZ) << "\n";
 
-                x += divX;
+                file << "" << x << " " << (y - divY) << " " << z << "\n";
+                file << "" << (x + divX) << " " << (y - divY) << " " << z << "\n";
+                file << "" << (x + divX) << " " << y << " " << z << "\n";
+
+                y -= divY;
             }
-            z += divZ;
+            x += divX;
         }
+
+        x = -dimX;
+        z = -dimZ;
+        for (int i = 0; i < div; i++) {
+            y = height;
+            for (int j = 0; j < div; j++) {
+                file << "" << x << " " << y << " " << z << "\n";
+                file << "" << (x + divX) << " " << y << " " << z << "\n";
+                file << "" << (x + divX) << " " << (y - divY) << " " << z << "\n";
+
+                file << "" << x << " " << y << " " << z << "\n";
+                file << "" << (x + divX) << " " << (y - divY) << " " << z << "\n";
+                file << "" << x << " " << (y - divY) << " " << z << "\n";
+
+                y -= divY;
+            }
+            x += divX;
+        }
+       
     }
 
     file.close();
