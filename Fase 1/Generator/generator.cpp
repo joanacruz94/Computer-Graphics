@@ -314,7 +314,7 @@ void generateCone(char* r,char* h,int slices,int stacks,char* fileName){
 
         y = heightStack*(i + 1);
 
-        z = sin(alfa*(j + 1))*((altura - y)) / tan(beta));
+        z = sin(alfa*(j + 1))*((altura - y)) / tan(beta);
         x = cos(alfa*(j + 1))*((altura - y) / tan(beta));
 
         ficheiro << z << " " << y << " " << x << endl;
