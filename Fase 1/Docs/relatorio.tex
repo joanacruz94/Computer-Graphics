@@ -177,9 +177,44 @@ Exemplo: \textit{sphere 4 100 100}
 \centering\includegraphics[scale=0.35]{esfera3} 
 \caption{\label{fig:controller}Exemplo de uma esfera com a representação dos triângulos}
 \end{figure}
+
+
 \newpage
 \section{Cone}
-Exemplo: \textit{cone 3 5 50 50}
+
+Para a geração dos pontos que irão representar o cone, foi necessário recorrer ao 
+sistema de coordenadas polares. Tendo como base as seguintes fórmulas:
+
+\par$x = r\times\sin(\alpha)$\newline.
+
+\par$y =i\times\frac{altura}{stacks}$\newline.
+
+\par$z=r\times\cos(\alpha)$\newline.
+
+
+Para este algoritmo em concreto foi necessário optar por uma prática recorrente 
+Divide and Conquer, resolvendo inicialmente a base do nosso cone.
+Para o efeito foi usado o seguine ciclo:
+
+\begin{figure}[H]
+\centering\includegraphics[scale=0.45]{basecone} 
+\caption{\label{fig:controller}Algoritmo para a geração da base.}
+\end{figure} 
+
+
+
+Os ciclos que foram implementados posteriormente seguem a mesma base da geração de uma esfera,porém existe
+a necessidade de definir um novo raio e aumentar a respectiva altura do modelo a cada
+camada ao longo da iteração.
+
+\begin{figure}[H]
+\centering\includegraphics[scale=0.45]{conefinal} 
+\caption{\label{fig:controller}Algoritmo para a geração do cone.}
+\end{figure} 
+
+Com base nos dois ciclos acima apresentados conseguimos assim gerar o seguinte cone:
+
+Exemplo: \textit{cone 1 2 50 50}
 \begin{figure}[H]
 \centering\includegraphics[scale=0.45]{cone2} 
 \caption{\label{fig:controller}Exemplo de um cone}

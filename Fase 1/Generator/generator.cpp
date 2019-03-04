@@ -42,7 +42,7 @@ void generatePlane(char* l, char* fileName){
 
 	 	}
 
-	else cout << "Não foi possível abrir o ficheiro"; 
+	else cout << "Impossível escrever sobre ficheiro"; 
 	 		
 }
 
@@ -227,7 +227,7 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
 
     }
 
-    else cout << "Não foi possível abrir o ficheiro"; 
+    else cout << "Impossível escrever sobre ficheiro"; 
 
 }
 
@@ -275,85 +275,69 @@ void generateSphere(double radius, int slices, int stacks, char* fileName){
 
     }
 
-	else cout << "Não foi possível abrir o ficheiro"; 
+	else cout << "Impossível escrever sobre ficheiro"; 
 	 		
 }
 
-
 void generateCone(char* r,char* h,int slices,int stacks,char* fileName){
+    
     double altura=atof(h);
     double raio=atof(r);
-    double x,y,z;
+    double x,y,z,aux,incAlfa,incHeight,oldRadius,newRadius,alfa;
+    incAlfa=(2*M_PI)/slices;
+    incHeight=altura/stacks;
+    oldRadius=raio;
+    aux=raio/altura;
 
-    double alfa=(2*M_PI)/slices;
-    double beta=atan(abs(altura)/abs(raio));
-    double heightStack= altura/stacks;
+    ofstream file;
+    file.open(fileName, ios::app);
+    // Check if file open
+    if (file.is_open()) {
 
-    ofstream ficheiro;
-    ficheiro.open(fileName, ios::app);
+        
+        // Base
+        for (int i = 0; i < slices; i++) {
+            alfa = i * incAlfa;
+            x = raio * sin(alfa);
+            y = 0;
+            z = raio * cos(alfa);
 
-    if (ficheiro.is_open()) {
- 
-    for(int i=0;i<stacks;i++){
-        for(int j=0;j<slices;j++){
-
-        y=heightStack*i;
-
-        ficheiro<<"0"<<" "<< y << " " << "0" << endl;
-
-        z = sin(alfa*(j + 1))*((altura - y) / tan(beta));
-        x = cos(alfa*(j + 1))*((altura - y) / tan(beta));
-
-        ficheiro << z << " " << y << " " << x << endl;
-
-        z = sin(alfa*j)*((altura - y) / tan(beta));
-        x = cos(alfa*j)*((altura - y) / tan(beta));
-
-        ficheiro << z << " " << y << " " << x << endl;
-        ficheiro << z << " " << y << " " << x << endl;
-
-        y = heightStack*(i + 1);
-
-        z = sin(alfa*(j + 1))*((altura - y)) / tan(beta);
-        x = cos(alfa*(j + 1))*((altura - y) / tan(beta));
-
-        ficheiro << z << " " << y << " " << x << endl;
-
-        z = sin(alfa*j)*((altura - y) / tan(beta));
-        x = cos(alfa*j)*((altura - y) / tan(beta));
-
-        ficheiro << z << " " << y << " " << x << endl;
-
-        y = heightStack*i;
-
-        z = sin(alfa*j)*((altura - y) / tan(beta));
-        x = cos(alfa*j)*((altura - y) / tan(beta));
-
-        ficheiro << z << " " << y << " " << x << endl;
-
-        z = sin(alfa*(j + 1))*((altura - y) / tan(beta));
-        x = cos(alfa*(j + 1))*((altura - y) / tan(beta));
-
-        ficheiro << z << " " << y << " " << x << endl;
-
-        y = heightStack*(i + 1);
-
-        z = sin(alfa*(j + 1))*((altura - y) / tan(beta));
-        x = cos(alfa*(j + 1))*((altura - y) / tan(beta));
-
-        ficheiro << z << " " << y << " " << x << endl;
-
+            file << 0 << " " << y << " " << 0 << endl;
+            file << raio * sin(alfa + incAlfa) << " " << y << " " << raio * cos(alfa + incAlfa) << endl;
+            file << x << " " << y << " " << z << endl;
         }
+
+        // Cone
+        for (int i = 0; i < stacks; i++) {
+            y = i * incHeight;
+            // New radius
+            newRadius = aux * (altura - ((i+1) * incHeight));
+            for (int j = 0; j < slices; j++) {
+                alfa = j * incAlfa;
+
+                x = oldRadius * sin(alfa);
+                z = oldRadius * cos(alfa);
+
+                // First Triangle
+                file << x << " " << y << " " << z << endl;
+                file << oldRadius * sin(alfa + incAlfa) << " " << y << " " << oldRadius * cos(alfa + incAlfa) << endl;
+                file << newRadius * sin(alfa + incAlfa) << " " << y + incHeight << " " << newRadius * cos(alfa + incAlfa) << endl;
+
+                // Second Triangle
+                file << x << " " << y << " " << z << endl;
+                file << newRadius * sin(alfa + incAlfa) << " " << y + incHeight << " " << newRadius * cos(alfa + incAlfa) << endl;
+                file << newRadius * sin(alfa) << " " << y + incHeight << " " << newRadius * cos(alfa) << endl;
+            }
+
+            oldRadius = newRadius;
+        }
+
+        // Close File
+        file.close();
     }
-    
-    ficheiro.close();
-
-    }
-
-  else cout << "Não foi possível abrir o ficheiro"; 
-
-  }
-
+    else
+        cout << "Impossível escrever sobre ficheiro " ;
+}
 int main (int argc, char** argv){
 
 	if(strcmp(argv[1],"plane")== 0)

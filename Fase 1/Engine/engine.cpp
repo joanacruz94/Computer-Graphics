@@ -17,19 +17,28 @@
 
 using namespace std;
 
-int pmode, modeloActual, nVertices;
-GLfloat cX, cY, cZ, cPosX, cPosY, cPosZ;
-GLuint buffers[1];
-vector<string> modelos;
+int  model, nVertices;
 
-// Entre os modelos que foram carregados com o fiheiro XML, seleciona um para ser desenhado
-void alterarModelo(int direcao) {
-	if (modeloActual < (modelos.size()-1) && direcao) {
-		modeloActual++;
-	}
-	else if (modeloActual > 0 && !direcao) {
-		modeloActual--;
-	}
+GLfloat cX, cY, cZ, cPosX=5.0, cPosY=5.0, cPosZ=5.0;
+float xx=0.0f;
+float yy=0.0f;
+float zz=0.0f;
+float degree=0.0f;
+
+
+
+GLuint buffers[1];
+
+vector<string> models;
+
+// Entre os models que foram carregados com o fiheiro XML, seleciona um para ser desenhado
+
+void changeModel(int direction){
+	if(model<(models.size()-1)&&direction)
+		model++;
+	else 
+	 if(model>0 && !direction)
+	 	model--;
 }
 
 // Abre o ficheiro do modelo actual e passa-o para o Buffer 
@@ -38,7 +47,7 @@ void modelo2Buffer() {
 	vector<float> vertices;
 	ifstream ficheiro;
 
-	ficheiro.open(modelos[modeloActual], ifstream::in);
+	ficheiro.open(models[model], ifstream::in);
 
 	for (ficheiro; ficheiro >> n;) {
 		vertices.push_back(n);
@@ -55,16 +64,18 @@ void modelo2Buffer() {
 	vertices.clear();
 }
 
-// Abre um ficheiro XML e guarda o nome de todos os modelos a serem carregados no vetor modelos
+// Abre um ficheiro XML e guarda o nome de todos os models a serem carregados no vetor models
 int parseXML(char* fileXML) {
 	TiXmlDocument ficheiroXML(fileXML);
 
-	if (!ficheiroXML.LoadFile()) return 0;
+	if (!ficheiroXML.LoadFile()) 
+			return 0;
+
 	TiXmlElement* sceneElement = ficheiroXML.FirstChildElement("scene");
 	TiXmlElement* modelElement = sceneElement->FirstChildElement("model");
 
 	for (modelElement; modelElement != NULL; modelElement = modelElement->NextSiblingElement("model")) {
-		modelos.push_back(modelElement->Attribute("file"));
+		models.push_back(modelElement->Attribute("file"));
 	}
 
 	return 1;
@@ -102,112 +113,84 @@ void normalizeCamCoords() {
 	cPosZ = (cY * 4) * cos(cZ) * cos(cX);
 }
 
-void drawAxe(){
-	
-//draw coordinate system
-	glLineWidth(2.5);
-	glBegin(GL_LINES);
-	//Eixo do X.
-	glVertex3f(-3.0,0.0f,0.0f);
-	glVertex3f(3.0,0.0f,0.0f);
-	glColor3f(1.0,0.0f,0.0f);
-	glEnd();
-
-	glBegin(GL_LINES);
-	//Eixo do Y.
-	glVertex3f(0.0f,-3.0,0.0f);
-	glVertex3f(0.0f,3.0,0.0f);
-	glColor3f(.0,1.0f,0.0f);
-	glEnd();
-
-	glBegin(GL_LINES);
-	//Eixo do Z.
-	glVertex3f(0.0f,0.0f,-3.0f);
-	glVertex3f(0.0f,0.0f,3.0f);
-	glColor3f(0.0f,0.0f,1.0f);
-	glEnd();
-
-}
-
 
 void renderScene(void) {
 
 	// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(1.0f,1.0f,1.0f,0.0f);
+
 
 	// set the camera
-	/*
-	glLoadIdentity();
-	gluLookAt(5.0,5.0,5.0, 
-		      0.0,0.0,0.0,
-			  0.0f,1.0f,0.0f);
-	*/
 	glLoadIdentity();
 	gluLookAt(cPosZ,cPosY,cPosX, 
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
-	
+
+	// put the geometric transformations here
+	glPushMatrix();
+	glTranslatef(xx,yy,zz); // moves the object.
+	glRotatef(degree,0.0f,1.0f,0.0f); // rotate the object (Vertical Axis)
+
 
 	glCullFace(GL_FRONT);
 	glFrontFace(GL_CW);
-	switch (pmode) {
-	case 2:
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		break;
-	case 3:
-		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-		break;
-	default:
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		break;
-	}
+	
 
-	glColor3f(1.0f, 0.2f, 0.3f);
+	glColor3f(0.0f, 0.0f, 0.0f);
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
 	glVertexPointer(3, GL_FLOAT, 0, 0);
 	glDrawArrays(GL_TRIANGLES, 0, nVertices);
 
 
+	glPopMatrix();
 	// End of frame
 	glutSwapBuffers();
+	glFlush();
+
 }
 
 
-void processKeys(unsigned char key, int xx, int yy) {
 
-	switch (key) {
-	case 'q':
-		alterarModelo(0);
+
+
+// Write function to process keyboard events
+void keyboardAction(unsigned char key, int x,int y){
+
+	if(key=='w'){
+		yy+=1.f;
+	}else if(key=='s'){
+		yy-=1.f;
+	}else if(key=='a'){
+		xx-=1.f;
+	}else if(key=='d'){
+		xx+=1.f;
+	}else if(key=='q'){
+		degree-=10.f;
+	}else if(key=='e'){
+		degree+=10.f;
+	}else if(key=='l'){
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	}else if(key=='p'){
+		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+	}else if(key=='f'){
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}else if(key=='n'){
+		changeModel(0);
 		modelo2Buffer();
-		break;
-	case 'w':
-		alterarModelo(1);
+	}else if(key=='m'){
+		changeModel(1);
 		modelo2Buffer();
-		break;
-	case 'a':
-		pmode = 1;
-		break;
-	case 's':
-		pmode = 2;
-		break;
-	case 'd':
-		pmode = 3;
-		break;
-	case 'x':
+	}else if(key=='x'){
 		cY -= 0.1;
 		normalizeCamCoords();
-		break;
-	case 'z':
-		cY += 0.1;
+	}else if(key=='z'){
+		cY+= 0.1;
 		normalizeCamCoords();
-		break;
-	default:
-		break;
 	}
-	glutPostRedisplay();
-	
-}
 
+	glutPostRedisplay();
+}
 
 void processSpecialKeys(int key, int xx, int yy) {
 
@@ -241,7 +224,6 @@ int main(int argc, char **argv) {
 	cX = 0.0;
 	cY = 3.0;
 	cZ = -5.0;
-	pmode = 1;
 	normalizeCamCoords();
 
 // init GLUT and the window
@@ -249,14 +231,14 @@ int main(int argc, char **argv) {
 	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
 	glutInitWindowPosition(100,100);
 	glutInitWindowSize(800,800);
-	glutCreateWindow("Computação Gráfica");
+	glutCreateWindow("Computação Gráfica-Fase1");
 		
 // Required callback registry 
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(changeSize);
 	
 // Callback registration for keyboard processing
-	glutKeyboardFunc(processKeys);
+	glutKeyboardFunc(keyboardAction);
 	glutSpecialFunc(processSpecialKeys);
 
 
@@ -266,18 +248,19 @@ int main(int argc, char **argv) {
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glGenBuffers(1, buffers);
 	
-// Parsing XML e adicionar os vertices dos modelos aos buffers
+// Parsing XML e adicionar os vertices dos models aos buffers
 	if (!parseXML(argv[1])) return 1;
 	modelo2Buffer();
 
-	cout << "Teclas :" << endl;
-	cout << "Setas para rodar a camera" << endl;
-	cout << "x,z para fazer zoom in e zoom out com a camera" << endl;
-	cout << "a,s,d para trocar entre PolygonModes" << endl;
-	cout << "q,w para trocar entre modelos carregados" << endl;
+	cout << "Help Guide :" << endl;
+	cout << "Arrows to rotate the camera" << endl;
+	cout << "x,z to zoom in and zoom out" << endl;
+	cout << "p,f,l  PolygonModes" << endl;
+	cout << "n,m to change models" << endl;
 	
 // enter GLUT's main cycle
 	glutMainLoop();
 	
 	return 1;
 }
+
