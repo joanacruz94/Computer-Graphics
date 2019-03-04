@@ -1,9 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.29)  4 MAR 2019 15:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.12)  4 MAR 2019 18:23
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**relatorio.tex
-(./relatorio.tex
+**"/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex"
+(/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex
 LaTeX2e <2018-04-01> patch level 2
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/article.cls
@@ -645,6 +646,9 @@ LaTeX Warning: Label `fig:controller' multiply defined.
 
 LaTeX Warning: Label `fig:controller' multiply defined.
 
+
+LaTeX Warning: Label `fig:controller' multiply defined.
+
 )
 \openout1 = `relatorio.aux'.
 
@@ -726,33 +730,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 65--67
  []
 
 [4 <./plano.jpg>]
-<plano1.png, id=21, 567.11874pt x 362.35374pt>
-File: plano1.png Graphic file (type png)
-<use plano1.png>
-Package pdftex.def Info: plano1.png  used on input line 73.
-(pdftex.def)             Requested size: 255.20107pt x 163.05768pt.
-<plano2.png, id=23, 605.26125pt x 352.31625pt>
-File: plano2.png Graphic file (type png)
-<use plano2.png>
-Package pdftex.def Info: plano2.png  used on input line 76.
-(pdftex.def)             Requested size: 272.36504pt x 158.54083pt.
- [5 <./plano1.png> <./plano2.png>]
+<planoP.png, id=21, 538.01pt x 383.4325pt>
+File: planoP.png Graphic file (type png)
+<use planoP.png>
+Package pdftex.def Info: planoP.png  used on input line 73.
+(pdftex.def)             Requested size: 242.10226pt x 172.54303pt.
+<planoT.png, id=23, 542.025pt x 397.485pt>
+File: planoT.png Graphic file (type png)
+<use planoT.png>
+Package pdftex.def Info: planoT.png  used on input line 76.
+(pdftex.def)             Requested size: 243.90898pt x 178.8666pt.
+ [5 <./planoP.png> <./planoT.png>]
 Overfull \hbox (2.66577pt too wide) in paragraph at lines 82--84
 \T1/ptm/m/n/10 O cál-culo dos pon-tos de uma caixa pre-cisa dos se-guin-tes pa-
 râ-me-tros com-pri-mento(dimensão
  []
 
-<caixa1.png, id=30, 483.8075pt x 477.785pt>
-File: caixa1.png Graphic file (type png)
-<use caixa1.png>
-Package pdftex.def Info: caixa1.png  used on input line 98.
-(pdftex.def)             Requested size: 217.71136pt x 215.00125pt.
-<caixa.png, id=31, 499.8675pt x 559.08875pt>
-File: caixa.png Graphic file (type png)
-<use caixa.png>
-Package pdftex.def Info: caixa.png  used on input line 101.
-(pdftex.def)             Requested size: 224.9383pt x 251.5876pt.
-[6 <./caixa1.png>] [7 <./caixa.png>]
+<caixaP.png, id=30, 434.62375pt x 492.84125pt>
+File: caixaP.png Graphic file (type png)
+<use caixaP.png>
+Package pdftex.def Info: caixaP.png  used on input line 98.
+(pdftex.def)             Requested size: 195.57887pt x 221.7765pt.
+<caixaT.png, id=31, 422.57875pt x 470.75874pt>
+File: caixaT.png Graphic file (type png)
+<use caixaT.png>
+Package pdftex.def Info: caixaT.png  used on input line 101.
+(pdftex.def)             Requested size: 190.15868pt x 211.83948pt.
+[6 <./caixaP.png>] [7 <./caixaT.png>]
 LaTeX Font Info:    Try loading font information for LGR+ptm on input line 111.
 
 LaTeX Font Info:    No file LGRptm.fd. on input line 111.
@@ -897,17 +901,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 168--169
  []
 
 [10]
-<esfera4.png, id=56, 756.8275pt x 744.7825pt>
-File: esfera4.png Graphic file (type png)
-<use esfera4.png>
-Package pdftex.def Info: esfera4.png  used on input line 174.
-(pdftex.def)             Requested size: 264.89359pt x 260.67778pt.
-<esfera3.png, id=57, 735.74875pt x 742.775pt>
-File: esfera3.png Graphic file (type png)
-<use esfera3.png>
-Package pdftex.def Info: esfera3.png  used on input line 177.
-(pdftex.def)             Requested size: 257.51591pt x 259.97514pt.
- [11 <./esfera4.png> <./esfera3.png>]
+<esferaP.png, id=56, 656.4525pt x 639.38875pt>
+File: esferaP.png Graphic file (type png)
+<use esferaP.png>
+Package pdftex.def Info: esferaP.png  used on input line 174.
+(pdftex.def)             Requested size: 229.76181pt x 223.78941pt.
+<esferaT.png, id=57, 631.35875pt x 612.2875pt>
+File: esferaT.png Graphic file (type png)
+<use esferaT.png>
+Package pdftex.def Info: esferaT.png  used on input line 177.
+(pdftex.def)             Requested size: 220.97887pt x 214.30383pt.
+ [11 <./esferaP.png> <./esferaT.png>]
 <basecone.png, id=63, 842.14626pt x 208.78pt>
 File: basecone.png Graphic file (type png)
 <use basecone.png>
@@ -928,17 +932,17 @@ Overfull \hbox (102.0771pt too wide) in paragraph at lines 211--212
  [][] 
  []
 
-<cone2.png, id=65, 557.08125pt x 442.65375pt>
-File: cone2.png Graphic file (type png)
-<use cone2.png>
-Package pdftex.def Info: cone2.png  used on input line 219.
-(pdftex.def)             Requested size: 250.68425pt x 199.19234pt.
-<cone1.png, id=66, 652.4375pt x 656.4525pt>
-File: cone1.png Graphic file (type png)
-<use cone1.png>
-Package pdftex.def Info: cone1.png  used on input line 222.
-(pdftex.def)             Requested size: 260.97037pt x 262.57634pt.
-[12 <./basecone.png> <./conefinal.png>] [13 <./cone2.png> <./cone1.png>]
+<coneP.png, id=65, 552.0625pt x 564.1075pt>
+File: coneP.png Graphic file (type png)
+<use coneP.png>
+Package pdftex.def Info: coneP.png  used on input line 219.
+(pdftex.def)             Requested size: 248.42583pt x 253.84602pt.
+<coneT.png, id=66, 464.73625pt x 536.0025pt>
+File: coneT.png Graphic file (type png)
+<use coneT.png>
+Package pdftex.def Info: coneT.png  used on input line 222.
+(pdftex.def)             Requested size: 185.8912pt x 214.3972pt.
+[12 <./basecone.png> <./conefinal.png>] [13 <./coneP.png> <./coneT.png>]
 [14] (./relatorio.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -948,13 +952,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5788 strings out of 492649
- 81205 string characters out of 6129622
+ 5789 strings out of 492649
+ 81330 string characters out of 6129622
  148112 words of memory out of 5000000
  9564 multiletter control sequences out of 15000+600000
  27215 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,7n,32p,464b,230s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,7n,32p,506b,230s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
 xlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texl
@@ -966,7 +970,7 @@ e/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2
 xmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2018/texmf-dist/f
 onts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on relatorio.pdf (14 pages, 341470 bytes).
+Output written on relatorio.pdf (14 pages, 307178 bytes).
 PDF statistics:
  115 PDF objects out of 1000 (max. 8388607)
  65 compressed objects within 1 object stream

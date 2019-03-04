@@ -227,7 +227,7 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
 
     }
 
-    else cout << "Impossível escrever sobre ficheiro"; 
+    else cout << "Não foi possível abrir o ficheiro"; 
 
 }
 
