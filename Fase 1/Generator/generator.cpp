@@ -264,7 +264,8 @@ void generateSphere(double radius, int slices, int stacks, char* fileName){
                 file << "" << aX << " " << aY << " " << aZ << "\n";
                 file << "" << bX << " " << bY << " " << bZ << "\n";
                 file << "" << cX << " " << cY << " " << cZ << "\n";
-                file << "" << bX << " " << bY << " " << bZ << "\n";
+
+                file << "" << aX << " " << aY << " " << aZ << "\n";
                 file << "" << cX << " " << cY << " " << cZ << "\n";
                 file << "" << dX << " " << dY << " " << dZ << "\n";
             }
@@ -280,65 +281,78 @@ void generateSphere(double radius, int slices, int stacks, char* fileName){
 
 
 void generateCone(char* r,char* h,int slices,int stacks,char* fileName){
-  double altura=atof(h);
-  double raio=atof(r);
-  double x,y,z;
+    double altura=atof(h);
+    double raio=atof(r);
+    double x,y,z;
 
+    double alfa=(2*M_PI)/slices;
+    double beta=atan(abs(altura)/abs(raio));
+    double heightStack= altura/stacks;
 
-  double alfa=(2*M_PI)/slices;
-  double beta=atan(abs(altura)/abs(raio));
-  double heightStack= altura/stacks;
-
-  ofstream ficheiro;
-  ficheiro.open(fileName, ios::app);
-
+    ofstream ficheiro;
+    ficheiro.open(fileName, ios::app);
 
     if (ficheiro.is_open()) {
  
-  for(int i=0;i<stacks;i++){
-      for(int j=0;j<slices;j++){
+    for(int i=0;i<stacks;i++){
+        for(int j=0;j<slices;j++){
 
         y=heightStack*i;
 
-      ficheiro<<"0"<<" "<< y << " " << "0" << endl;
-      z = sin(alfa*(j + 1))*((altura - (heightStack*i)) / tan(beta));
-      x = cos(alfa*(j + 1))*((altura - (heightStack*i)) / tan(beta));
-      ficheiro << z << " " << y << " " << x << endl;
-      z = sin(alfa*j)*((altura - (heightStack*i)) / tan(beta));
-      x = cos(alfa*j)*((altura - (heightStack*i)) / tan(beta));
-      ficheiro << z << " " << y << " " << x << endl;
+        ficheiro<<"0"<<" "<< y << " " << "0" << endl;
 
-      ficheiro << z << " " << y << " " << x << endl;
-      y = heightStack*(i + 1);
-      z = sin(alfa*(j + 1))*((altura - (heightStack*(i + 1))) / tan(beta));
-      x = cos(alfa*(j + 1))*((altura - (heightStack*(i + 1))) / tan(beta));
-      ficheiro << z << " " << y << " " << x << endl;
-      z = sin(alfa*j)*((altura - (heightStack*(i + 1))) / tan(beta));
-      x = cos(alfa*j)*((altura - (heightStack*(i + 1))) / tan(beta));
-      ficheiro << z << " " << y << " " << x << endl;
+        z = sin(alfa*(j + 1))*((altura - (heightStack*i)) / tan(beta));
+        x = cos(alfa*(j + 1))*((altura - (heightStack*i)) / tan(beta));
 
-      y = heightStack*i;
-      z = sin(alfa*j)*((altura - (heightStack*i)) / tan(beta));
-      x = cos(alfa*j)*((altura - (heightStack*i)) / tan(beta));
-      ficheiro << z << " " << y << " " << x << endl;
-      z = sin(alfa*(j + 1))*((altura - (heightStack*i)) / tan(beta));
-      x = cos(alfa*(j + 1))*((altura - (heightStack*i)) / tan(beta));
-      ficheiro << z << " " << y << " " << x << endl;
-      y = heightStack*(i + 1);
-      z = sin(alfa*(j + 1))*((altura - (heightStack*(i + 1))) / tan(beta));
-      x = cos(alfa*(j + 1))*((altura - (heightStack*(i + 1))) / tan(beta));
-      ficheiro << z << " " << y << " " << x << endl;
+        ficheiro << z << " " << y << " " << x << endl;
 
+        z = sin(alfa*j)*((altura - (heightStack*i)) / tan(beta));
+        x = cos(alfa*j)*((altura - (heightStack*i)) / tan(beta));
 
-      }
-  }
-      ficheiro.close();
+        ficheiro << z << " " << y << " " << x << endl;
+        ficheiro << z << " " << y << " " << x << endl;
 
-      }
+        y = heightStack*(i + 1);
 
-  else cout << "Não foi possível abrir o ficheiro"; 
+        z = sin(alfa*(j + 1))*((altura - (heightStack*(i + 1))) / tan(beta));
+        x = cos(alfa*(j + 1))*((altura - (heightStack*(i + 1))) / tan(beta));
 
-  }
+        ficheiro << z << " " << y << " " << x << endl;
+
+        z = sin(alfa*j)*((altura - (heightStack*(i + 1))) / tan(beta));
+        x = cos(alfa*j)*((altura - (heightStack*(i + 1))) / tan(beta));
+
+        ficheiro << z << " " << y << " " << x << endl;
+
+        y = heightStack*i;
+
+        z = sin(alfa*j)*((altura - (heightStack*i)) / tan(beta));
+        x = cos(alfa*j)*((altura - (heightStack*i)) / tan(beta));
+
+        ficheiro << z << " " << y << " " << x << endl;
+
+        z = sin(alfa*(j + 1))*((altura - (heightStack*i)) / tan(beta));
+        x = cos(alfa*(j + 1))*((altura - (heightStack*i)) / tan(beta));
+
+        ficheiro << z << " " << y << " " << x << endl;
+
+        y = heightStack*(i + 1);
+
+        z = sin(alfa*(j + 1))*((altura - (heightStack*(i + 1))) / tan(beta));
+        x = cos(alfa*(j + 1))*((altura - (heightStack*(i + 1))) / tan(beta));
+
+        ficheiro << z << " " << y << " " << x << endl;
+
+        }
+    }
+    
+    ficheiro.close();
+
+    }
+
+    else cout << "Não foi possível abrir o ficheiro"; 
+
+}
 
 int main (int argc, char** argv){
 
@@ -352,7 +366,7 @@ int main (int argc, char** argv){
         generateSphere(atof(argv[2]), atoi(argv[3]), atoi(argv[4]), argv[5]);
 
     if(strcmp(argv[1],"cone")==0)
-    generateCone(argv[2], argv[3], atoi(argv[4]),atoi(argv[5]),argv[6]);  
+        generateCone(argv[2], argv[3], atoi(argv[4]),atoi(argv[5]),argv[6]);  
 
 
 	return 0;
