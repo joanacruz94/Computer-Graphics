@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1551669661 "/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex" "relatorio.pdf" "relatorio" 1551669663
-  "/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex" 1551669660 9016 7cffb3fcca0fa9d6cb935a45894004bb ""
+["pdflatex"] 1551671514 "/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex" "relatorio.pdf" "relatorio" 1551671516
+  "/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex" 1551671514 9016 60fee34d0082c7caa8ca9e897c5089c9 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc" 1480098666 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm" 1480098689 4524 6bce29db5bc272ba5f332261583fee9c ""
@@ -96,12 +96,12 @@
   "esfera2.jpg" 1551662355 17447 ba285d4ee3484ad834f6e8ef0c340ea6 ""
   "esfera3.png" 1551664779 149169 5f69e23205da2a48c5b4e62c81732ec5 ""
   "esfera4.png" 1551664724 22961 36bf4a77f1146eacd77fa2cfd1821915 ""
-  "plano.jpg" 1551646176 12613 1e58394ca836792bbc6ebd0f4d7f398d ""
+  "plano.jpg" 1551671409 19078 0b75db87c0f1a1fceb430db55f8971ab ""
   "plano1.png" 1551664742 12341 ade23484c69b1b4bfe05b9550de69362 ""
   "plano2.png" 1551664792 13584 3fe22b8dcbad27c181d013f822282c89 ""
-  "relatorio.aux" 1551669663 2481 3a91a78461ee1fae41c5aebaf09fd6fa ""
-  "relatorio.tex" 1551669660 9016 7cffb3fcca0fa9d6cb935a45894004bb ""
+  "relatorio.aux" 1551671516 2481 3a91a78461ee1fae41c5aebaf09fd6fa ""
+  "relatorio.tex" 1551671514 9016 60fee34d0082c7caa8ca9e897c5089c9 ""
   (generated)
-  "relatorio.pdf"
   "relatorio.log"
+  "relatorio.pdf"
   "relatorio.aux"
