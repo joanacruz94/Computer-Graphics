@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.12)  4 MAR 2019 00:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.12)  4 MAR 2019 03:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -619,6 +619,30 @@ LaTeX Warning: Label `fig:controller' multiply defined.
 
 LaTeX Warning: Label `fig:controller' multiply defined.
 
+
+LaTeX Warning: Label `fig:controller' multiply defined.
+
+
+LaTeX Warning: Label `fig:controller' multiply defined.
+
+
+LaTeX Warning: Label `fig:controller' multiply defined.
+
+
+LaTeX Warning: Label `fig:controller' multiply defined.
+
+
+LaTeX Warning: Label `fig:controller' multiply defined.
+
+
+LaTeX Warning: Label `fig:controller' multiply defined.
+
+
+LaTeX Warning: Label `fig:controller' multiply defined.
+
+
+LaTeX Warning: Label `fig:controller' multiply defined.
+
 )
 \openout1 = `relatorio.aux'.
 
@@ -688,161 +712,211 @@ Underfull \hbox (badness 10000) in paragraph at lines 45--49
 File: plano.jpg Graphic file (type jpg)
 <use plano.jpg>
 Package pdftex.def Info: plano.jpg  used on input line 55.
-(pdftex.def)             Requested size: 192.1708pt x 218.87096pt.
+(pdftex.def)             Requested size: 219.61661pt x 250.13007pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 65--66
+Underfull \hbox (badness 10000) in paragraph at lines 65--67
 
  []
 
-[4 <./plano.jpg>] [5]
-LaTeX Font Info:    Try loading font information for LGR+ptm on input line 83.
-LaTeX Font Info:    No file LGRptm.fd. on input line 83.
+<plano1.png, id=16, 567.11874pt x 362.35374pt>
+File: plano1.png Graphic file (type png)
+<use plano1.png>
+Package pdftex.def Info: plano1.png  used on input line 73.
+(pdftex.def)             Requested size: 255.20107pt x 163.05768pt.
+<plano2.png, id=18, 605.26125pt x 352.31625pt>
+File: plano2.png Graphic file (type png)
+<use plano2.png>
+Package pdftex.def Info: plano2.png  used on input line 76.
+(pdftex.def)             Requested size: 272.36504pt x 158.54083pt.
+[4 <./plano.jpg>] [5 <./plano1.png> <./plano2.png>]
+Overfull \hbox (2.66577pt too wide) in paragraph at lines 82--84
+\T1/ptm/m/n/10 O cál-culo dos pon-tos de uma caixa pre-cisa dos se-guin-tes pa-
+râ-me-tros com-pri-mento(dimensão
+ []
+
+<caixa1.png, id=30, 483.8075pt x 477.785pt>
+File: caixa1.png Graphic file (type png)
+<use caixa1.png>
+Package pdftex.def Info: caixa1.png  used on input line 98.
+(pdftex.def)             Requested size: 217.71136pt x 215.00125pt.
+<caixa.png, id=31, 499.8675pt x 559.08875pt>
+File: caixa.png Graphic file (type png)
+<use caixa.png>
+Package pdftex.def Info: caixa.png  used on input line 101.
+(pdftex.def)             Requested size: 224.9383pt x 251.5876pt.
+[6 <./caixa1.png>] [7 <./caixa.png>]
+LaTeX Font Info:    Try loading font information for LGR+ptm on input line 111.
+
+LaTeX Font Info:    No file LGRptm.fd. on input line 111.
 
 
 LaTeX Font Warning: Font shape `LGR/ptm/m/n' undefined
-(Font)              using `LGR/cmr/m/n' instead on input line 83.
+(Font)              using `LGR/cmr/m/n' instead on input line 111.
 
-<esfera.jpg, id=24, 639.38875pt x 574.145pt>
+<esfera.jpg, id=43, 639.38875pt x 574.145pt>
 File: esfera.jpg Graphic file (type jpg)
 <use esfera.jpg>
-Package pdftex.def Info: esfera.jpg  used on input line 90.
+Package pdftex.def Info: esfera.jpg  used on input line 118.
 (pdftex.def)             Requested size: 319.69359pt x 287.0718pt.
-<esfera1.jpg, id=25, 618.31pt x 558.085pt>
-File: esfera1.jpg Graphic file (type jpg)
-<use esfera1.jpg>
-Package pdftex.def Info: esfera1.jpg  used on input line 102.
-(pdftex.def)             Requested size: 309.15424pt x 279.04182pt.
-[6 <./esfera.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 105--108
+<esfera2.jpg, id=44, 620.3175pt x 571.13374pt>
+File: esfera2.jpg Graphic file (type jpg)
+<use esfera2.jpg>
+Package pdftex.def Info: esfera2.jpg  used on input line 130.
+(pdftex.def)             Requested size: 310.15799pt x 285.56618pt.
+[8 <./esfera.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 133--136
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--122
+Underfull \hbox (badness 10000) in paragraph at lines 149--150
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
+Underfull \hbox (badness 10000) in paragraph at lines 151--152
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--129
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--129
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
-[7 <./esfera1.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
+[9 <./esfera2.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 157--158
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 131--132
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
+Underfull \hbox (badness 10000) in paragraph at lines 159--160
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
+Underfull \hbox (badness 10000) in paragraph at lines 160--161
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--134
+Underfull \hbox (badness 10000) in paragraph at lines 160--161
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 134--135
+Underfull \hbox (badness 10000) in paragraph at lines 161--162
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--136
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--137
+Underfull \hbox (badness 10000) in paragraph at lines 163--164
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--137
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 137--138
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 138--139
+Underfull \hbox (badness 10000) in paragraph at lines 165--166
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 139--140
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--141
+Underfull \hbox (badness 10000) in paragraph at lines 167--168
 
  []
 
-[8] [9] [10] (./relatorio.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
+
+ []
+
+[10]
+<esfera4.png, id=56, 756.8275pt x 744.7825pt>
+File: esfera4.png Graphic file (type png)
+<use esfera4.png>
+Package pdftex.def Info: esfera4.png  used on input line 174.
+(pdftex.def)             Requested size: 264.89359pt x 260.67778pt.
+<esfera3.png, id=57, 735.74875pt x 742.775pt>
+File: esfera3.png Graphic file (type png)
+<use esfera3.png>
+Package pdftex.def Info: esfera3.png  used on input line 177.
+(pdftex.def)             Requested size: 257.51591pt x 259.97514pt.
+ [11 <./esfera4.png> <./esfera3.png>]
+<cone2.png, id=63, 557.08125pt x 442.65375pt>
+File: cone2.png Graphic file (type png)
+<use cone2.png>
+Package pdftex.def Info: cone2.png  used on input line 184.
+(pdftex.def)             Requested size: 250.68425pt x 199.19234pt.
+<cone1.png, id=64, 652.4375pt x 656.4525pt>
+File: cone1.png Graphic file (type png)
+<use cone1.png>
+Package pdftex.def Info: cone1.png  used on input line 187.
+(pdftex.def)             Requested size: 260.97037pt x 262.57634pt.
+ [12 <./cone2.png> <./cone1.png>]
+[13] (./relatorio.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -851,13 +925,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5739 strings out of 492649
- 80615 string characters out of 6129622
- 148110 words of memory out of 5000000
- 9524 multiletter control sequences out of 15000+600000
+ 5779 strings out of 492649
+ 81162 string characters out of 6129622
+ 148112 words of memory out of 5000000
+ 9556 multiletter control sequences out of 15000+600000
  27215 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,6n,32p,506b,230s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,7n,32p,506b,230s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
 xlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texl
@@ -869,10 +943,10 @@ e/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2
 xmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2018/texmf-dist/f
 onts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on relatorio.pdf (10 pages, 158128 bytes).
+Output written on relatorio.pdf (13 pages, 275660 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 55 compressed objects within 1 object stream
+ 108 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

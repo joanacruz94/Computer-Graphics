@@ -52,7 +52,7 @@ $y = 0$ \newline
 $z = tamanho/2$ \newline
 \end{center}
 \begin{figure}[H]
-\centering\includegraphics[scale=0.35]{plano} 
+\centering\includegraphics[scale=0.4]{plano} 
 \caption{\label{fig:controller}Figura ilustrativa de um plano XZ}
 \end{figure} 
 Efetuando os cálculos, obtemos os seguintes pontos: \newline
@@ -62,17 +62,45 @@ $B = (x,0,z)$ \newline
 $C = (-x,0,-z)$ \newline 
 $D = (x,0,-z)$ \newline
 \end{center}
-Pelo que obtemos as seguintes coordenadas para os vértices dos triângulos $ABC$ e $BCD$, terão como coordenadas: \newline
+Gerando o plano a partir do ponto C, e segundo o openGL, para a superfície do plano ficar visível do lado de fora pela regra da mão direita,
+obtemos que os vértices dos triângulos $CAB$ e $CBD$, terão como coordenadas: \newline
 \begin{center}
-$ABC\rightarrow (-x,y,z) (x,y,z) (-x,y,-z)$ \newline
-$BCD\rightarrow (x,y,z) (-x,y,-z) (x,y,-z)$ \newline
+$CAB\rightarrow (-x,y,-z) (-x,y,z) (x,y,z) $ \newline
+$CBD\rightarrow (-x,y,-z) (x,y,z) (x,y,-z)$ \newline
 \end{center}
+Exemplo: \textit{plane 5}
+\begin{figure}[H]
+\centering\includegraphics[scale=0.45]{plano1} 
+\caption{\label{fig:controller}Exemplo de um plano}
+\end{figure} \begin{figure}[H]
+\centering\includegraphics[scale=0.45]{plano2} 
+\caption{\label{fig:controller}Exemplo de um plano com a representação dos triângulos}
+\end{figure} 
 Caso fosse pedido qualquer plano $XZ$ teríamos que receber dois parâmetros: as dimensões do plano no eixo do xx e no eixo zz. 
 \newpage
 \section{Caixa}
-Para obtermos uma caixa necessitamos dos seguintes parametros compromento(dimensao do X), altura(dimensao do Y), largura(dimensao do Z) e o número de divisoes. 
-Uma caixa pode conter divisoes ou não, por esse motivo precisamos de guardar as dimensoes de cada divisao. 
-Precisamos de calcular as faces XY, as faces XZ e as faces YX 
+O cálculo dos pontos de uma caixa precisa dos seguintes parâmetros comprimento(dimensão no eixo dos $xx$), altura(dimensão no eixo dos $yy$), largura(dimensão no eixo dos $zz$) e o número de divisões. 
+Uma caixa pode ou não conter divisões pelo que precisamos de guardar informação sobre o número de divisões, sendo estas calculadas pelas seguintes equações:
+\begin{center}
+$divX = \frac{dimX}{div}$ \newline\newline
+$divY = \frac{dimY}{div}$ \newline\newline
+$divZ = \frac{dimZ}{div}$ \newline\newline
+\end{center}
+E de modo a que a caixa fique centrada na origem precisamos das coordenadas $x,y$, e $z$ do seu centro:
+\begin{center}
+$dimX = \frac{comprimento}{2}$ \newline\newline
+$dimY = \frac{altura}{2}$ \newline\newline
+$dimZ = \frac{largura}{2}$ \newline\newline
+\end{center}
+Precisamos de calcular as faces XY, as faces XZ e as faces YX\newline
+Exemplo: \textit{box 4 4 4 2}
+\begin{figure}[H]
+\centering\includegraphics[scale=0.45]{caixa1} 
+\caption{\label{fig:controller}Exemplo de uma caixa com divisões}
+\end{figure} \begin{figure}[H]
+\centering\includegraphics[scale=0.45]{caixa} 
+\caption{\label{fig:controller}Exemplo de uma caixa com divisões com a representação dos triângulos}
+\end{figure}
 \newpage
 \section{Esfera}
 O cálculo dos pontos de uma esfera necessita de 3 parâmetros: raio, slices que correspondem às divisoes na vertical ao longo da esfera e stacks que correspondem às divisoes na horizontal ao longo da esfera
@@ -99,11 +127,11 @@ $y = r \times \cos(b)$
 $z = r \times \sin(b) \times \cos(a)$ 
 \end{center}
 \begin{figure}[H]
-\centering\includegraphics[scale=0.50]{esfera1} 
+\centering\includegraphics[scale=0.50]{esfera2} 
 \caption{\label{fig:controller}Representação dos 4 pontos de uma interseção}
 \end{figure}
 Na figura acima apresentada demonstramos um exemplo de uma interseção entre slices e stacks em que geramos os pontos $A,B,C$ e $D$.
-Estes pontos servirão para calcular os vértices correspondentes aos triângulos $ABC$ e $BCD$. Por último falta-nos determinar, os ângulos correspondentes
+Estes pontos servirão para calcular os vértices correspondentes aos triângulos $ABC$ e $ACD$. Por último falta-nos determinar, os ângulos correspondentes
 aos pontos $B, C$ e $D$.\newline
 \begin{center}
 \begin{tabular}{||c c c||} 
@@ -112,9 +140,9 @@ Ponto & \textalpha & \textbeta \\ [0.5ex]
 \hline\hline
 B & \textalpha + \textDelta\textalpha & \textbeta\\ 
 \hline
-C & \textalpha & \textbeta + \textDelta\textbeta \\
+C & \textalpha + \textDelta\textalpha & \textbeta + \textDelta\textbeta \\
 \hline
-D & \textalpha + \textDelta\textalpha & \textbeta + \textDelta\textbeta\\ [1ex] 
+D & \textalpha & \textbeta + \textDelta\textbeta\\ [1ex] 
     \hline
 \end{tabular}
 \end{center}
@@ -139,9 +167,26 @@ Para cada stack i $\{$\newline
 \par$y = r\times\cos(\beta + \Delta\beta)$ \newline
 \par$z = r\times\sin(\beta + \Delta\beta)\times\cos(\alpha)$ \newline
 \par $\}$ \newline
-$\}$ 
+$\}$
+\newpage
+Exemplo: \textit{sphere 4 100 100}
+\begin{figure}[H]
+\centering\includegraphics[scale=0.35]{esfera4} 
+\caption{\label{fig:controller}Exemplo de uma esfera}
+\end{figure} \begin{figure}[H]
+\centering\includegraphics[scale=0.35]{esfera3} 
+\caption{\label{fig:controller}Exemplo de uma esfera com a representação dos triângulos}
+\end{figure}
 \newpage
 \section{Cone}
+Exemplo: \textit{cone 3 5 50 50}
+\begin{figure}[H]
+\centering\includegraphics[scale=0.45]{cone2} 
+\caption{\label{fig:controller}Exemplo de um cone}
+\end{figure} \begin{figure}[H]
+\centering\includegraphics[scale=0.4]{cone1} 
+\caption{\label{fig:controller}Exemplo de um cone com a representação dos triângulos}
+\end{figure}
 \newpage
 \section{Conclusão}
 \end{document}

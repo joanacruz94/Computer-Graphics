@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1551659035 "/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex" "relatorio.pdf" "relatorio" 1551659036
-  "/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex" 1551659035 7010 09f8501f7d37f727f5c9d86ac54f2fe9 ""
+["pdflatex"] 1551669661 "/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex" "relatorio.pdf" "relatorio" 1551669663
+  "/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex" 1551669660 9016 7cffb3fcca0fa9d6cb935a45894004bb ""
   "/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc" 1480098666 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm" 1480098689 4524 6bce29db5bc272ba5f332261583fee9c ""
@@ -88,12 +88,20 @@
   "/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1523934492 2717033 f61a5287d9c22a39a74f1979fe3f905c ""
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1528762553 4220280 a588d774bb8b18261d431a7aca2dbed0 ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
+  "caixa.png" 1551664698 18954 df1cb43c552f183ee9399390dea83d6d ""
+  "caixa1.png" 1551664761 13258 23bfd3aedf460236a4212250fc3d8a64 ""
+  "cone1.png" 1551664711 80166 4501c11bc3ec5d22837809b8c8315cf7 ""
+  "cone2.png" 1551664686 15199 f0fcb017464461db3ee375ff7d2d0b18 ""
   "esfera.jpg" 1551646166 19711 57b3d525eebb19acb2cb82cc1936b937 ""
-  "esfera1.jpg" 1551646161 17388 96cf46d3f9762ed4bc26cc964afa2fd9 ""
+  "esfera2.jpg" 1551662355 17447 ba285d4ee3484ad834f6e8ef0c340ea6 ""
+  "esfera3.png" 1551664779 149169 5f69e23205da2a48c5b4e62c81732ec5 ""
+  "esfera4.png" 1551664724 22961 36bf4a77f1146eacd77fa2cfd1821915 ""
   "plano.jpg" 1551646176 12613 1e58394ca836792bbc6ebd0f4d7f398d ""
-  "relatorio.aux" 1551659036 1128 c41eb53b4602d28af6c06bbd68841895 ""
-  "relatorio.tex" 1551659035 7010 09f8501f7d37f727f5c9d86ac54f2fe9 ""
+  "plano1.png" 1551664742 12341 ade23484c69b1b4bfe05b9550de69362 ""
+  "plano2.png" 1551664792 13584 3fe22b8dcbad27c181d013f822282c89 ""
+  "relatorio.aux" 1551669663 2481 3a91a78461ee1fae41c5aebaf09fd6fa ""
+  "relatorio.tex" 1551669660 9016 7cffb3fcca0fa9d6cb935a45894004bb ""
   (generated)
-  "relatorio.aux"
   "relatorio.pdf"
   "relatorio.log"
+  "relatorio.aux"
