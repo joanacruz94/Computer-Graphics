@@ -223,5 +223,31 @@ Exemplo: \textit{cone 1 2 50 50}
 \caption{\label{fig:controller}Exemplo de um cone com a representação dos triângulos}
 \end{figure}
 \newpage
+\section{Extras}
+
+Durante a realização do trabalho decidimos implementar algumas funcionalidades que por sua vez facilitaram a verificação dos resultados obtidos e permitiram uma melhor interação com os modelos produzidos pelo generator. 
+
+\begin{itemize}
+
+\item PolygonMode : Polígonos podem ser desenhados de forma preenchida,apenas com as linhas e contorno ou
+somente os vértices. Um polígono tem dois lados (front e back), que podem ser renderizados diferentemente dependendo do lado que observador estiver a observar. Para tal utilizamos os seguintes comandos:
+P, L e F.
+
+\item Zoom: Optou-se por implementar o zoom de modo a ser possível fazer aproximações da câmera sobre os diferentes modelos , para tal efeito utilizamos as seguintes teclas:
+-Zoom in :  X
+-Zoom out : Z
+
+\item Rotações e Translações : Durante a resolução dos problemas propostos, sentimos a necessidade de
+interagir com os modelos através de rotações e translações de forma a podermos concluir com toda a
+certeza que todas as faces/triângulos do modelo eram desenhadas. Para tal efeito utilizamos as seguintes teclas:
+
+-Rotações : Q , E e as setas .
+-Translações: W,S,A e D.
+
+\item ChangeModel: Para uma troca entre os diferentes modelos optou-se por realizar a função changeModel,para efectuar as mudanças utilizamos as seguintes teclas: N e M.
+\end{itemize}
+
+
+
 \section{Conclusão}
 \end{document}
