@@ -15,8 +15,6 @@ using namespace std;
  * @param filename : Corresponde a figura geométrica a ser gerada.
  * Método que cálcula todos as coordenadas de todos os pontos de um plano.
  */
-
-
 void generatePlane(char* l, char* fileName){
 	 
 	 double lenght = atof(l);
@@ -56,13 +54,11 @@ void generatePlane(char* l, char* fileName){
  * @param filename : Corresponde a figura geométrica a ser gerada.
  * Método que cálcula todos as coordenadas de todos os pontos de uma caixa.
  */
-void generateBox(char* a, char* b, char* c, int div, char* fileName)
-{
+void generateBox(char* a, char* b, char* c, int div, char* fileName){
+
     double length = atof(a); // Comprimento da caixa - dimensão da caixa no eixo dos xx
     double height = atof(b); // Altura da caixa - dimensão da caixa no eixo dos yy
     double width = atof(c);  // Largura da caixa - dimensão da caixa no eixo dos zz
-
-    double x, y, z, i, j;
 
     double divX = length/div; // Dimensão de uma divisão da caixa no eixo dos xx
     double divY = height/div; // Dimensão de uma divisão da caixa no eixo dos xx
@@ -71,6 +67,10 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
     double dimX = length/2; // Coordenada x do centro da caixa
     double dimY = height/2; // Coordenada y do centro da caixa
     double dimZ = width/2;  // Coordenada z do centro da caixa
+
+    double x, y, z;
+    int i,j;
+
 
     ofstream file;
     file.open(fileName, ios::app);
@@ -90,23 +90,25 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
 	     * v7------v8
          */
 
-        for (i = 0; i < length; i += divX) {
-			for (j = 0; j < width; j += divZ){
-                file << "" << (i-dimX+divX) << " " << dimY << " " << (j-dimZ) << "\n";
-                file << "" << (i-dimX) << " " << dimY << " " << (j-dimZ) << "\n";
-                file << "" << (i-dimX) << " " << dimY << " " << (j-dimZ+divZ) << "\n";
+        for (i = 0; i < div; i++) {
+            x = i*divX;
+			for (j = 0; j < div; j++){
+                z = j*divZ;
+                file << "" << (x-dimX+divX) << " " << dimY << " " << (z-dimZ) << "\n";
+                file << "" << (x-dimX) << " " << dimY << " " << (z-dimZ) << "\n";
+                file << "" << (x-dimX) << " " << dimY << " " << (z-dimZ+divZ) << "\n";
 
-                file << "" << (i-dimX+divX) << " " << dimY << " " << (j-dimZ) << "\n";
-                file << "" << (i-dimX) << " " << dimY << " " << (j-dimZ+divZ) << "\n";
-                file << "" << (i-dimX+divX) << " " << dimY << " " << (j-dimZ+divZ)  << "\n";
+                file << "" << (x-dimX+divX) << " " << dimY << " " << (z-dimZ) << "\n";
+                file << "" << (x-dimX) << " " << dimY << " " << (z-dimZ+divZ) << "\n";
+                file << "" << (x-dimX+divX) << " " << dimY << " " << (z-dimZ+divZ)  << "\n";
 
-                file << "" << (i-dimX+divX) << " " << (-dimY) << " " << (j-dimZ) << "\n";
-                file << "" << (i-dimX) << " " << (-dimY)  << " " << (j-dimZ+divZ)  << "\n";
-                file << "" << (i-dimX) << " " << (-dimY)  << " " << (j-dimZ) << "\n";
+                file << "" << (x-dimX+divX) << " " << (-dimY) << " " << (z-dimZ) << "\n";
+                file << "" << (x-dimX) << " " << (-dimY)  << " " << (z-dimZ+divZ)  << "\n";
+                file << "" << (x-dimX) << " " << (-dimY)  << " " << (z-dimZ) << "\n";
 
-                file << "" << (i-dimX+divX) << " " << (-dimY)  << " " << (j-dimZ) << "\n";
-                file << "" << (i-dimX+divX) << " " << (-dimY)  << " " << (j-dimZ+divZ) << "\n";
-                file << "" << (i-dimX) << " " << (-dimY)  << " " << (j-dimZ+divZ) << "\n";
+                file << "" << (x-dimX+divX) << " " << (-dimY)  << " " << (z-dimZ) << "\n";
+                file << "" << (x-dimX+divX) << " " << (-dimY)  << " " << (z-dimZ+divZ) << "\n";
+                file << "" << (x-dimX) << " " << (-dimY)  << " " << (z-dimZ+divZ) << "\n";
 
             }
         } 
@@ -124,24 +126,25 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
          * v1------v2
          */
 
-    	for (i = 0; i < length; i += divX) {
-			for (j = 0; j < height; j += divY){
+    	for (i = 0; i < div; i++) {
+            x = i*divX;
+			for (j = 0; j < div; j++){
+                y = j*divY;
+                file << "" << (x-dimX) << " " << (y-dimY) << " " << dimZ << "\n";
+                file << "" << (x-dimX+divX) << " " << (y-dimY+divY) << " " << dimZ << "\n";
+                file << "" << (x-dimX) << " " << (y-dimY+divY) << " " << dimZ << "\n";
 
-                file << "" << (i-dimX) << " " << (j-dimY) << " " << dimZ << "\n";
-                file << "" << (i-dimX+divX) << " " << (j-dimY+divY) << " " << dimZ << "\n";
-                file << "" << (i-dimX) << " " << (j-dimY+divY) << " " << dimZ << "\n";
+                file << "" << (x-dimX) << " " << (y-dimY) << " " << dimZ << "\n";
+                file << "" << (x-dimX+divX) << " " << (y-dimY) << " " << (dimZ) << "\n";
+                file << "" << (x-dimX+divX) << " " << (y-dimY+divY) << " " << dimZ << "\n";
 
-                file << "" << (i-dimX) << " " << (j-dimY) << " " << dimZ << "\n";
-                file << "" << (i-dimX+divX) << " " << (j-dimY) << " " << (dimZ) << "\n";
-                file << "" << (i-dimX+divX) << " " << (j-dimY+divY) << " " << dimZ << "\n";
+                file << "" << (x-dimX) << " " << (y-dimY) << " " << (-dimZ) << "\n";
+                file << "" << (x-dimX) << " " << (y-dimY+divY) << " " << (-dimZ) << "\n";
+                file << "" << (x-dimX+divX) << " " << (y-dimY+divY) << " " << (-dimZ) << "\n";
 
-                file << "" << (i-dimX) << " " << (j-dimY) << " " << (-dimZ) << "\n";
-                file << "" << (i-dimX) << " " << (j-dimY+divY) << " " << (-dimZ) << "\n";
-                file << "" << (i-dimX+divX) << " " << (j-dimY+divY) << " " << (-dimZ) << "\n";
-
-                file << "" << (i-dimX) << " " << (j-dimY) << " " << (-dimZ) << "\n";
-                file << "" << (i-dimX+divX) << " " << (j-dimY+divY) << " " << (-dimZ) << "\n";
-                file << "" << (i-dimX+divX) << " " << (j-dimY) << " " << (-dimZ) << "\n";
+                file << "" << (x-dimX) << " " << (y-dimY) << " " << (-dimZ) << "\n";
+                file << "" << (x-dimX+divX) << " " << (y-dimY+divY) << " " << (-dimZ) << "\n";
+                file << "" << (x-dimX+divX) << " " << (y-dimY) << " " << (-dimZ) << "\n";
 
             }
         }
@@ -160,23 +163,25 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
          * v8      v4
          */
 
-        for (i = 0; i < height; i += divX) {
-			for (j = 0; j < width; j += divZ){
-                file << "" << dimX << " " << (i-dimY) << " " << (j-dimZ+divZ) << "\n";
-                file << "" << dimX << " " << (i-dimY+divY) << " " << (j-dimZ) << "\n";
-                file << "" << dimX << " " << (i-dimY+divY) << " " << (j-dimZ+divZ) << "\n";
+        for (i = 0; i < div; i++) {
+            y = i*divY;
+			for (j = 0; j < div; j++){
+                z = j*divZ;
+                file << "" << dimX << " " << (y-dimY) << " " << (z-dimZ+divZ) << "\n";
+                file << "" << dimX << " " << (y-dimY+divY) << " " << (z-dimZ) << "\n";
+                file << "" << dimX << " " << (y-dimY+divY) << " " << (z-dimZ+divZ) << "\n";
 
-                file << "" << dimX << " " << (i-dimY) << " " << (j-dimZ+divZ) << "\n";
-                file << "" << dimX << " " << (i-dimY) << " " << (j-dimZ) << "\n";
-                file << "" << dimX << " " << (i-dimY+divY) << " " << (j-dimZ) << "\n";
+                file << "" << dimX << " " << (y-dimY) << " " << (z-dimZ+divZ) << "\n";
+                file << "" << dimX << " " << (y-dimY) << " " << (z-dimZ) << "\n";
+                file << "" << dimX << " " << (y-dimY+divY) << " " << (z-dimZ) << "\n";
 
-                file << "" << (-dimX) << " " << (i-dimY) << " " << (j-dimZ+divZ) << "\n";
-                file << "" << (-dimX) << " " << (i-dimY+divY) << " " << (j-dimZ+divZ) << "\n";
-                file << "" << (-dimX) << " " << (i-dimY+divY) << " " << (j-dimZ) << "\n";
+                file << "" << (-dimX) << " " << (y-dimY) << " " << (z-dimZ+divZ) << "\n";
+                file << "" << (-dimX) << " " << (y-dimY+divY) << " " << (z-dimZ+divZ) << "\n";
+                file << "" << (-dimX) << " " << (y-dimY+divY) << " " << (z-dimZ) << "\n";
 
-                file << "" << (-dimX) << " " << (i-dimY) << " " << (j-dimZ+divZ) << "\n";
-                file << "" << (-dimX) << " " << (i-dimY+divY) << " " << (j-dimZ) << "\n";
-                file << "" << (-dimX) << " " << (i-dimY) << " " << (j-dimZ) << "\n";
+                file << "" << (-dimX) << " " << (y-dimY) << " " << (z-dimZ+divZ) << "\n";
+                file << "" << (-dimX) << " " << (y-dimY+divY) << " " << (z-dimZ) << "\n";
+                file << "" << (-dimX) << " " << (y-dimY) << " " << (z-dimZ) << "\n";
             }
         }
 

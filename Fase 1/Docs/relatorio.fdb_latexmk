@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1551723809 "/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex" "relatorio.pdf" "relatorio" 1551723812
-  "/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex" 1551723809 10117 b715dfb8623a4dff61d53f4719a974b8 ""
+["pdflatex"] 1551903337 "/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex" "relatorio.pdf" "relatorio" 1551903349
+  "/Users/joanacruz/Desktop/CG/Fase 1/Docs/relatorio.tex" 1551903336 11510 9838de746c41faea20b8baa451dc0527 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc" 1480098666 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm" 1480098689 4524 6bce29db5bc272ba5f332261583fee9c ""
@@ -90,7 +90,7 @@
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
   "basecone.png" 1551722134 35135 dede5af692af09a1e869be3e3bb06466 ""
   "caixaP.png" 1551723571 12862 2992f7a6ce4f6c20fe6db509fdb0f959 ""
-  "caixaT.png" 1551723672 16646 840a00b3e795f47ad0e06bffc0ffd750 ""
+  "caixaT.png" 1551903244 16441 d977717d90486845584e405d6f8d024d ""
   "coneP.png" 1551723615 17152 4c6db369a56b52819dcfb8753f6164c8 ""
   "coneT.png" 1551723699 56212 dfc4373e4bc8f3e2988c9eedae5af24a ""
   "conefinal.png" 1551722134 87944 1ba5f0e4a02622d3331eb9c3ec1d4067 ""
@@ -101,9 +101,9 @@
   "plano.jpg" 1551671409 19078 0b75db87c0f1a1fceb430db55f8971ab ""
   "planoP.png" 1551723657 12461 441c45f31f85fd3a13f17f56363872b3 ""
   "planoT.png" 1551723636 13835 3c421701af72635f560a08a1f4cef17f ""
-  "relatorio.aux" 1551723812 2815 6d60dcdd9cd8fda625ae2c9777a38625 ""
-  "relatorio.tex" 1551723809 10117 b715dfb8623a4dff61d53f4719a974b8 ""
+  "relatorio.aux" 1551903348 2884 fdf2d4c6dc898dbdf3b254401e8b3db9 ""
+  "relatorio.tex" 1551903336 11510 9838de746c41faea20b8baa451dc0527 ""
   (generated)
-  "relatorio.pdf"
   "relatorio.log"
   "relatorio.aux"
+  "relatorio.pdf"
