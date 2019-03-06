@@ -61,7 +61,7 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
     double height = atof(b); // Altura da caixa - dimensão da caixa no eixo dos yy
     double width = atof(c);  // Largura da caixa - dimensão da caixa no eixo dos zz
 
-    double x, y, z;
+    double x, y, z, i, j;
 
     double divX = length/div; // Dimensão de uma divisão da caixa no eixo dos xx
     double divY = height/div; // Dimensão de uma divisão da caixa no eixo dos xx
@@ -89,40 +89,22 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
 	     * v7------v8
          */
 
-        z = dimZ;
-        for (int i = 0; i < div; i++) {
-            x = -dimX;
-            for (int j = 0; j < div; j++) {
-                file << "" << x << " 0 " << (z - divZ) << "\n";
-                file << "" << (x + divX) << " 0 " << z << "\n";
-                file << "" << x << " 0 " << z << "\n";
+        file << "" << dimX << " " << dimY << " " << (-dimZ) << "\n";
+        file << "" << (-dimX) << " " << dimY << " " << (-dimZ) << "\n";
+        file << "" << (-dimX) << " " << dimY << " " << dimZ << "\n";
 
-                file << "" << x << " 0 " << (z - divZ) << "\n";
-                file << "" << (x + divX) << " 0 " << (z - divZ) << "\n";
-                file << "" << (x + divX) << " 0 " << z << "\n";
+        file << "" << dimX << " " << dimY << " " << (-dimZ) << "\n";
+        file << "" << (-dimX) << " " << dimY << " " << dimZ << "\n";
+        file << "" << dimX << " " << dimY << " " << dimZ << "\n";
 
-                x += divX;
-            }
-            z -= divZ;
-        }
+        file << "" << dimX << " " << (-dimY) << " " << (-dimZ) << "\n";
+        file << "" << (-dimX) << " " << (-dimY)  << " " << dimZ << "\n";
+        file << "" << (-dimX) << " " << (-dimY)  << " " << (-dimZ) << "\n";
 
-        y = height;
-        z = -dimZ;
-        for (int i = 0; i < div; i++) {
-            x = -dimX;
-            for (int j = 0; j < div; j++) {
-                file << "" << (x + divX) << " " << y << " " << z << "\n";
-                file << "" << x << " " << y << " " << z << "\n";
-                file << "" << x << " " << y << " " << (z + divZ) << "\n";
+        file << "" << dimX << " " << (-dimY)  << " " << (-dimZ) << "\n";
+        file << "" << dimX << " " << (-dimY)  << " " << dimZ << "\n";
+        file << "" << (-dimX) << " " << (-dimY)  << " " << dimZ << "\n";
 
-                file << "" << (x + divX) << " " << y << " " << z << "\n";
-                file << "" << x << " " << y << " " << (z + divZ) << "\n";
-                file << "" << (x + divX) << " " << y << " " << (z + divZ) << "\n";
-
-                x += divX;
-            }
-            z += divZ;
-        }
 
         /*
          * Faces XY.
@@ -138,41 +120,28 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
          * v1------v2
          */
 
-        x = -dimX;
-        z = -dimZ;
-        for (int i = 0; i < div; i++) {
-            y = height;
-            for (int j = 0; j < div; j++) {
-                file << "" << x << " " << y << " " << z << "\n";
-                file << "" << x << " " << (y - divY) << " " << z << "\n";
-                file << "" << x << " " << (y - divY) << " " << (z + divZ) << "\n";
+    	//for (float i = x; i < dimX; i += divX) {
+			//for (float j = y; j < dimY; j += divY){
 
-                file << "" << x << " " << y << " " << z << "\n";
-                file << "" << x << " " << (y - divY) << " " << (z + divZ) << "\n";
-                file << "" << x << " " << y << " " << (z + divZ) << "\n";
+                file << "" << (-dimX) << " " << (-dimY) << " " << dimZ << "\n";
+                file << "" << dimX << " " << dimY << " " << dimZ << "\n";
+                file << "" << (-dimX) << " " << (dimY) << " " << dimZ << "\n";
 
-                y -= divY;
-            }
-            z += divZ;
-        }
+                file << "" << (-dimX) << " " << (-dimY) << " " << dimZ << "\n";
+                file << "" << (dimX) << " " << (-dimY) << " " << (dimZ) << "\n";
+                file << "" << (dimX) << " " << dimY << " " << dimZ << "\n";
 
-        x = dimX;
-        z = dimZ;
-        for (int i = 0; i < div; i++) {
-            y = height;
-            for (int j = 0; j < div; j++) {
-                file << "" << x << " " << y << " " << z << "\n";
-                file << "" << x << " " << (y - divY) << " " << z << "\n";
-                file << "" << x << " " << (y - divY) << " " << (z - divZ) << "\n";
+                file << "" << (-dimX) << " " << (-dimY) << " " << (-dimZ) << "\n";
+                file << "" << (-dimX) << " " << dimY << " " << (-dimZ) << "\n";
+                file << "" << (dimX) << " " << (dimY) << " " << (-dimZ) << "\n";
 
-                file << "" << x << " " << y << " " << z << "\n";
-                file << "" << x << " " << (y - divY) << " " << (z - divZ) << "\n";
-                file << "" << x << " " << y << " " << (z - divZ) << "\n";
+                file << "" << (-dimX) << " " << (-dimY) << " " << (-dimZ) << "\n";
+                file << "" << (dimX) << " " << (dimY) << " " << (-dimZ) << "\n";
+                file << "" << dimX << " " << (-dimY) << " " << (-dimZ) << "\n";
 
-                y -= divY;
-            }
-            z -= divZ;
-        }
+            //}
+        //}
+
 
         /*
          * Faces YZ.
@@ -187,42 +156,22 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName)
          * v8      v4
          */
 
-        x = -dimX;
-        z = dimZ;
-        for (int i = 0; i < div; i++) {
-            y = height;
-            for (int j = 0; j < div; j++) {
-                file << "" << x << " " << y << " " << z << "\n";
-                file << "" << x << " " << (y - divY) << " " << z << "\n";
-                file << "" << (x + divX) << " " << y << " " << z << "\n";
+        file << "" << dimX << " " << (-dimY) << " " << dimZ << "\n";
+        file << "" << dimX << " " << dimY << " " << (-dimZ) << "\n";
+        file << "" << dimX << " " << dimY << " " << dimZ << "\n";
 
-                file << "" << x << " " << (y - divY) << " " << z << "\n";
-                file << "" << (x + divX) << " " << (y - divY) << " " << z << "\n";
-                file << "" << (x + divX) << " " << y << " " << z << "\n";
+        file << "" << dimX << " " << (-dimY) << " " << dimZ << "\n";
+        file << "" << dimX << " " << (-dimY) << " " << (-dimZ) << "\n";
+        file << "" << dimX << " " << dimY << " " << (-dimZ) << "\n";
 
-                y -= divY;
-            }
-            x += divX;
-        }
+        file << "" << (-dimX) << " " << (-dimY) << " " << dimZ << "\n";
+        file << "" << (-dimX) << " " << dimY << " " << dimZ << "\n";
+        file << "" << (-dimX) << " " << dimY << " " << (-dimZ) << "\n";
 
-        x = -dimX;
-        z = -dimZ;
-        for (int i = 0; i < div; i++) {
-            y = height;
-            for (int j = 0; j < div; j++) {
-                file << "" << x << " " << y << " " << z << "\n";
-                file << "" << (x + divX) << " " << y << " " << z << "\n";
-                file << "" << (x + divX) << " " << (y - divY) << " " << z << "\n";
+        file << "" << (-dimX) << " " << (-dimY) << " " << dimZ << "\n";
+        file << "" << (-dimX) << " " << dimY << " " << (-dimZ) << "\n";
+        file << "" << (-dimX) << " " << (-dimY) << " " << (-dimZ) << "\n";
 
-                file << "" << x << " " << y << " " << z << "\n";
-                file << "" << (x + divX) << " " << (y - divY) << " " << z << "\n";
-                file << "" << x << " " << (y - divY) << " " << z << "\n";
-
-                y -= divY;
-            }
-            x += divX;
-        }
-       
         file.close();
 
     }
@@ -350,7 +299,7 @@ int main (int argc, char** argv){
         generateSphere(atof(argv[2]), atoi(argv[3]), atoi(argv[4]), argv[5]);
 
     if(strcmp(argv[1],"cone")==0)
-    generateCone(argv[2], argv[3], atoi(argv[4]),atoi(argv[5]),argv[6]);  
+        generateCone(argv[2], argv[3], atoi(argv[4]),atoi(argv[5]),argv[6]);  
 
 
 	return 0;
