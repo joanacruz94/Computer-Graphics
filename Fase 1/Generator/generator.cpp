@@ -47,6 +47,7 @@ void generatePlane(char* l, char* fileName){
 }
 
 
+
 /* Gerador de uma caixa:
  * @param a : Corresponde ao comprimento da caixa, convertido posteriormente para um double.
  * @param b : Corresponde à altura da caixa, convertido posteriormente para um double.
