@@ -8,16 +8,13 @@
 using namespace std;
 
 
-
-
 /* Gerador de um plano:
- * @param l : Corresponde ao tamanho, convertido posteriormente para um double.
+ * @param lenght : Corresponde ao tamanho do plano.
  * @param filename : Corresponde a figura geométrica a ser gerada.
- * Método que cálcula todos as coordenadas de todos os pontos de um plano.
+ * Método que cálcula todas as coordenadas dos triângulos de um plano.
  */
-void generatePlane(char* l, char* fileName){
+void generatePlane(double lenght, char* fileName){
 	 
-	 double lenght = atof(l);
      double dim = lenght/2;
 	 ofstream file;
 	 file.open(fileName,ios::app);
@@ -27,38 +24,31 @@ void generatePlane(char* l, char* fileName){
 	if(file.is_open()){
 
 	 	/* Corresponde as coordenadas do primeiro triângulo definido a custa de 3 pontos */
-        file << "" << (-dim) << " 0 " << (-dim) << "\n";
         file << "" << (-dim) << " 0 " << (dim) << "\n";
-        file << "" << (dim) << " 0 " << (dim) << "\n";
+        file << "" << (dim) << " 0 " << (-dim) << "\n";
+        file << "" << (-dim) << " 0 " << (-dim) << "\n";
 
 	 	/* Corresponde as coordenadas do segundo triângulo definido a custa de 3 pontos */
-        file << "" << (-dim) << " 0 " << (-dim) << "\n";
+        file << "" << (-dim) << " 0 " << (dim) << "\n";
         file << "" << (dim) << " 0 " << (dim) << "\n";
 		file << "" << (dim) << " 0 " << (-dim) << "\n";
 
 		file.close();
 
-	 	}
-
-	else cout << "Impossível escrever sobre ficheiro"; 
-	 		
+	}	 		
 }
 
 
 
 /* Gerador de uma caixa:
- * @param a : Corresponde ao comprimento da caixa, convertido posteriormente para um double.
- * @param b : Corresponde à altura da caixa, convertido posteriormente para um double.
- * @param c : Corresponde à largura da caixa, convertido posteriormente para um double.
+ * @param length : Corresponde ao comprimento da caixa, dimensão da caixa no eixo dos xx.
+ * @param height : Corresponde à altura da caixa, dimensão da caixa no eixo dos yy.
+ * @param width : Corresponde à largura da caixa, dimensão da caixa no eixo dos zz.
  * @param div : Corresponde ao número de divisões da caixa.
  * @param filename : Corresponde a figura geométrica a ser gerada.
- * Método que cálcula todos as coordenadas de todos os pontos de uma caixa.
+ * Método que cálcula todas as coordenadas dos triângulos de uma caixa.
  */
-void generateBox(char* a, char* b, char* c, int div, char* fileName){
-
-    double length = atof(a); // Comprimento da caixa - dimensão da caixa no eixo dos xx
-    double height = atof(b); // Altura da caixa - dimensão da caixa no eixo dos yy
-    double width = atof(c);  // Largura da caixa - dimensão da caixa no eixo dos zz
+void generateBox(double length, double height, double width, int div, char* fileName){
 
     double divX = length/div; // Dimensão de uma divisão da caixa no eixo dos xx
     double divY = height/div; // Dimensão de uma divisão da caixa no eixo dos xx
@@ -112,6 +102,7 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName){
 
             }
         } 
+
         /*
          * Faces XY.
          * Face traseira da caixa.
@@ -148,7 +139,6 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName){
 
             }
         }
-
 
         /*
          * Faces YZ.
@@ -188,11 +178,15 @@ void generateBox(char* a, char* b, char* c, int div, char* fileName){
         file.close();
 
     }
-
-    else cout << "Não foi possível abrir o ficheiro"; 
-
 }
 
+/* Gerador de uma esfera:
+ * @param radius : Corresponde ao raio da esfera.
+ * @param slices : Corresponde ao número de divisões na vertical ao longo da esfera.
+ * @param stacks : Corresponde ao número de divisões na horizontal ao longo da esfera.
+ * @param filename : Corresponde a figura geométrica a ser gerada.
+ * Método que cálcula todas as coordenadas dos triângulos de uma esfera.
+ */
 void generateSphere(double radius, int slices, int stacks, char* fileName){
     double deltaBeta = PI / stacks;
     double deltaAlpha = 2 * PI / slices;
@@ -235,57 +229,59 @@ void generateSphere(double radius, int slices, int stacks, char* fileName){
 
 		file.close();
 
-    }
-
-	else cout << "Impossível escrever sobre ficheiro"; 
-	 		
+    }	 		
 }
 
-void generateCone(char* r,char* h,int slices,int stacks,char* fileName){
+/* Gerador de um cone:
+ * @param radius : Corresponde ao raio do cone.
+ * @param height : Corresponde à altura do cone.
+ * @param slices : Corresponde ao número de divisões na vertical ao longo do cone.
+ * @param stacks : Corresponde ao número de divisões na horizontal ao longo do cone.
+ * @param filename : Corresponde a figura geométrica a ser gerada.
+ * Método que cálcula todas as coordenadas dos triângulos de um cone.
+ */
+void generateCone(double radius, double height, int slices, int stacks, char* fileName){
     
-    double altura=atof(h);
-    double raio=atof(r);
     double x,y,z,aux,incAlfa,incHeight,oldRadius,newRadius,alfa;
-    incAlfa=(2*M_PI)/slices;
-    incHeight=altura/stacks;
-    oldRadius=raio;
-    aux=raio/altura;
+    incAlfa = (2*M_PI)/slices;
+    incHeight = height/stacks;
+    oldRadius = radius;
+    aux = radius/height;
 
     ofstream file;
     file.open(fileName, ios::app);
-    // Check if file open
-    if (file.is_open()) {
 
-        
-        // Base
+    if (file.is_open()) {    
+        //Base
+
         for (int i = 0; i < slices; i++) {
             alfa = i * incAlfa;
-            x = raio * sin(alfa);
+            x = radius * sin(alfa);
             y = 0;
-            z = raio * cos(alfa);
+            z = radius * cos(alfa);
 
-            file << 0 << " " << y << " " << 0 << endl;
-            file << raio * sin(alfa + incAlfa) << " " << y << " " << raio * cos(alfa + incAlfa) << endl;
             file << x << " " << y << " " << z << endl;
+            file << 0 << " " << y << " " << 0 << endl;
+            file << radius * sin(alfa + incAlfa) << " " << y << " " << radius * cos(alfa + incAlfa) << endl;
         }
 
-        // Cone
+        //Superfície Lateral
         for (int i = 0; i < stacks; i++) {
             y = i * incHeight;
-            // New radius
-            newRadius = aux * (altura - ((i+1) * incHeight));
+            //Novo raio
+            newRadius = aux * (height - ((i+1) * incHeight));
             for (int j = 0; j < slices; j++) {
                 alfa = j * incAlfa;
 
                 x = oldRadius * sin(alfa);
                 z = oldRadius * cos(alfa);
 
-                // First Triangle
+                //Primeiro Triângulo
                 file << x << " " << y << " " << z << endl;
                 file << oldRadius * sin(alfa + incAlfa) << " " << y << " " << oldRadius * cos(alfa + incAlfa) << endl;
                 file << newRadius * sin(alfa + incAlfa) << " " << y + incHeight << " " << newRadius * cos(alfa + incAlfa) << endl;
 
-                // Second Triangle
+                //Segundo Triângulo
                 file << x << " " << y << " " << z << endl;
                 file << newRadius * sin(alfa + incAlfa) << " " << y + incHeight << " " << newRadius * cos(alfa + incAlfa) << endl;
                 file << newRadius * sin(alfa) << " " << y + incHeight << " " << newRadius * cos(alfa) << endl;
@@ -294,26 +290,76 @@ void generateCone(char* r,char* h,int slices,int stacks,char* fileName){
             oldRadius = newRadius;
         }
 
-        // Close File
         file.close();
     }
-    else
-        cout << "Impossível escrever sobre ficheiro " ;
 }
-int main (int argc, char** argv){
 
-	if(strcmp(argv[1],"plane")== 0)
-		generatePlane(argv[2],argv[3]);
+void showHelp(){
+    cout << "-------------------------------- Help Guide ---------------------------------------" << endl;
+    cout << "|                                                                                 |" << endl;
+    cout << "| How to use:                                                                     |" << endl;
+    cout << "|  -> ./generator (figure) (dimensions) (file)                                    |" << endl;
+    cout << "|                                                                                 |" << endl;
+    cout << "| Supported figures:                                                              |" << endl;
+    cout << "|  -> plane:                                                                      |" << endl;
+    cout << "|     Syntax: generator plane <size> <fileName>                                   |" << endl;
+    cout << "|  -> box:                                                                        |" << endl;
+    cout << "|     Syntax: generator box <xSize> <ySize> <zSize> <divisions> <fileName>        |" << endl;
+    cout << "|  -> sphere:                                                                     |" << endl;
+    cout << "|     Syntax: generator sphere <radius> <slices> <stacks> <fileName>              |" << endl;
+    cout << "|  -> cone:                                                                       |" << endl;
+    cout << "|     Syntax: generator cone <bottomRadius> <height> <slices> <stacks> <fileName> |" << endl;
+    cout << "-----------------------------------------------------------------------------------" << endl;
+}
 
-	if (strcmp(argv[1], "box") == 0) 
-        generateBox(argv[2], argv[3], argv[4],atoi(argv[5]),argv[6]);
+int main(int argc, char** argv){
 
-    if (strcmp(argv[1], "sphere") == 0) 
+    if(argc < 2){
+        cout << "Need arguments!" << endl;
+        return -1;
+    }
+
+	else if(strcmp(argv[1],"plane")== 0){
+        if (argc != 4) {
+			cout << "Error! Syntax: generator plane <size> <fileName>" << endl;
+			return -1;
+		}
+		generatePlane(atof(argv[2]), argv[3]);
+    }
+
+	else if (strcmp(argv[1], "box") == 0){
+        if (argc != 7) {
+			cout << "Error! Syntax: generator box <xSize> <ySize> <zSize> <divisions> <fileName>" << endl;
+			return -1;
+		}
+        generateBox(atof(argv[2]), atof(argv[3]), atof(argv[4]), atoi(argv[5]),argv[6]);
+    }
+
+    else if (strcmp(argv[1], "sphere") == 0){
+        if (argc != 6) {
+			cout << "Error! Syntax: generator sphere <radius> <slices> <stacks> <fileName>" << endl;
+			return -1;
+		}
         generateSphere(atof(argv[2]), atoi(argv[3]), atoi(argv[4]), argv[5]);
+    }
 
-    if(strcmp(argv[1],"cone")==0)
-        generateCone(argv[2], argv[3], atoi(argv[4]),atoi(argv[5]),argv[6]);  
+    else if(strcmp(argv[1],"cone") == 0){
+        if (argc != 7) {
+			cout << "Error! Syntax: generator cone <bottomRadius> <height> <slices> <stacks> <fileName>" << endl;
+			return -1;
+		}
+        generateCone(atof(argv[2]), atof(argv[3]), atoi(argv[4]), atoi(argv[5]), argv[6]);  
+    }
 
+    else if(strcmp(argv[1], "help") == 0){
+        showHelp();
+        return 0;
+    }
+
+    else{
+        cout << "Don't recognize that input. Need help? Try './generator help!" << endl;
+        return -1;
+    }
 
 	return 0;
 }

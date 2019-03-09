@@ -17,15 +17,13 @@
 
 using namespace std;
 
-int  model, nVertices;
+int model, nVertices;
 
 GLfloat cX, cY, cZ, cPosX=5.0, cPosY=5.0, cPosZ=5.0;
 float xx=0.0f;
 float yy=0.0f;
 float zz=0.0f;
 float degree=0.0f;
-
-
 
 GLuint buffers[1];
 
@@ -113,12 +111,24 @@ void normalizeCamCoords() {
 	cPosZ = (cY * 4) * cos(cZ) * cos(cX);
 }
 
+/*
+void changeColor(){
+	int i;
+	float r = 0.529f, g = 0.8078f, b = 0.98f;
+	glBegin(GL_TRIANGLES);
+	for (i = 0; i < nVertices; i+=3) {
+		glColor3f(r, g, b);
+		r+=0.01;
+		g+=0.01;			
+	}
+	glEnd(); 
+}*/
 
 void renderScene(void) {
 
 	// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(1.0f,1.0f,1.0f,0.0f);
+	glClearColor(0.0f,0.0f,0.0f,0.0f);
 
 
 	// set the camera
@@ -132,61 +142,69 @@ void renderScene(void) {
 	glTranslatef(xx,yy,zz); // moves the object.
 	glRotatef(degree,0.0f,1.0f,0.0f); // rotate the object (Vertical Axis)
 
-
 	glCullFace(GL_FRONT);
 	glFrontFace(GL_CW);
 	
-
-	glColor3f(0.0f, 0.0f, 0.0f);
+	glColor3f(0.529f, 0.8078f, 0.98f);
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
 	glVertexPointer(3, GL_FLOAT, 0, 0);
 	glDrawArrays(GL_TRIANGLES, 0, nVertices);
-
 
 	glPopMatrix();
 	// End of frame
 	glutSwapBuffers();
 	glFlush();
-
 }
-
-
-
-
 
 // Write function to process keyboard events
 void keyboardAction(unsigned char key, int x,int y){
 
-	if(key=='w'){
+	switch(key){
+	case 'w':
 		yy+=1.f;
-	}else if(key=='s'){
+		break;
+	case 's':
 		yy-=1.f;
-	}else if(key=='a'){
+		break;
+	case 'a':
 		xx-=1.f;
-	}else if(key=='d'){
+		break;
+	case 'd':
 		xx+=1.f;
-	}else if(key=='q'){
+		break;
+	case 'q':
 		degree-=10.f;
-	}else if(key=='e'){
+		break;
+	case 'e':
 		degree+=10.f;
-	}else if(key=='l'){
+		break;
+	case 'l':
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	}else if(key=='p'){
+		break;
+	case 'p':
 		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-	}else if(key=='f'){
+		break;
+	case 'f':
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}else if(key=='n'){
+		break;
+	case 'n':
 		changeModel(0);
 		modelo2Buffer();
-	}else if(key=='m'){
+		break;
+	case 'm':
 		changeModel(1);
 		modelo2Buffer();
-	}else if(key=='x'){
+		break;
+	case 'x':
 		cY -= 0.1;
 		normalizeCamCoords();
-	}else if(key=='z'){
+		break;
+	case 'z':
 		cY+= 0.1;
 		normalizeCamCoords();
+		break;
+	default:
+		break;
 	}
 
 	glutPostRedisplay();
@@ -218,6 +236,16 @@ void processSpecialKeys(int key, int xx, int yy) {
 
 }
 
+void showHelp(){
+    cout << "-------------- HELP GUIDE -----------------" << endl;
+    cout << "|                                         |" << endl;
+    cout << "| -> Arrows to rotate the camera          |" << endl;
+    cout << "| -> x, z to zoom in and zoom out         |" << endl;
+    cout << "| -> p, f, l  PolygonModes                |" << endl;
+    cout << "| -> n, m to change models                |" << endl;
+	cout << "|                                         |" << endl;
+    cout << "-------------------------------------------" << endl;
+}
 
 int main(int argc, char **argv) {
 	char* config = "config.xml";
@@ -252,12 +280,8 @@ int main(int argc, char **argv) {
 	if (!parseXML(argv[1])) return 1;
 	modelo2Buffer();
 
-	cout << "Help Guide :" << endl;
-	cout << "Arrows to rotate the camera" << endl;
-	cout << "x,z to zoom in and zoom out" << endl;
-	cout << "p,f,l  PolygonModes" << endl;
-	cout << "n,m to change models" << endl;
-	
+	showHelp();
+
 // enter GLUT's main cycle
 	glutMainLoop();
 	

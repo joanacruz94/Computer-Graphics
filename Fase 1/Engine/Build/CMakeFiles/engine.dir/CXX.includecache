@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/etiennecosta/Desktop/CG/Fase 1/Engine/engine.cpp
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/engine.cpp
 stdio.h
 -
 stdlib.h
@@ -16,7 +16,7 @@ math.h
 tinyxml.h
 -
 tinystr.h
-/Users/etiennecosta/Desktop/CG/Fase 1/Engine/tinystr.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/tinystr.h
 GLUT/glut.h
 -
 GL/glew.h
@@ -34,7 +34,7 @@ iostream
 vector
 -
 
-/Users/etiennecosta/Desktop/CG/Fase 1/Engine/tinystr.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/tinystr.h
 assert.h
 -
 string.h

@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/etiennecosta/Desktop/CG/Fase 1/Engine/engine.cpp" "/Users/etiennecosta/Desktop/CG/Fase 1/Engine/Build/CMakeFiles/engine.dir/engine.cpp.o"
+  "/Users/joanacruz/Desktop/CG/Fase 1/Engine/engine.cpp" "/Users/joanacruz/Desktop/CG/Fase 1/Engine/Build/CMakeFiles/engine.dir/engine.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 
