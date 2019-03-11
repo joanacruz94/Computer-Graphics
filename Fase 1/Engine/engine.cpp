@@ -19,12 +19,23 @@ using namespace std;
 
 int model, nVertices;
 
-GLfloat cX, cY, cZ, cPosX=5.0, cPosY=5.0, cPosZ=5.0;
-float xx=0.0f;
-float yy=0.0f;
-float zz=0.0f;
-float degree=0.0f;
+/*
+ * alpha - ângulo com o eixo dos xx e a camera; varia de 0 a 2pi
+ * beta - ângulo com o eixo dos yy e a camera; varia de 0 a pi
+ * radius - raio com a posição da camera
+ * alpha, beta e radius - estas variáveis vão definir constantemente a posição para onde a camera está a apontar
+ * cPosX - posição no eixo dos xx da camera
+ * cPosY - posição no eixo dos yy da camera
+ * cPosZ - posição no eixo dos zz da camera
+ */
+GLfloat alpha, radius, beta, cPosX=0.0, cPosY=0.0, cPosZ=0.0;
+float xx = 0.0f;
+float yy = 0.0f;
+float zz = 0.0f;
+float degree = 0.0f;
 
+//buffers is a global variable
+//number of buffers is 1 - one buffer per array
 GLuint buffers[1];
 
 vector<string> models;
@@ -55,8 +66,11 @@ void modelo2Buffer() {
 
 	nVertices = vertices.size() / 3;
 
+	//Generate Buffer
+	glGenBuffers(1, buffers);
+	//Set buffer active
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
-	glVertexPointer(3, GL_FLOAT, 0, 0);
+	//Fill buffer
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
 
 	vertices.clear();
@@ -106,34 +120,21 @@ void changeSize(int w, int h) {
 
 
 void normalizeCamCoords() {
-	cPosX = (cY * 4) * cos(cZ) * sin(cX);
-	cPosY = (cY * 4) * sin(cZ);
-	cPosZ = (cY * 4) * cos(cZ) * cos(cX);
+	cPosX = (radius * 4) * cos(beta) * sin(alpha);
+	cPosY = (radius * 4) * sin(beta);
+	cPosZ = (radius * 4) * cos(beta) * cos(alpha);
 }
-
-/*
-void changeColor(){
-	int i;
-	float r = 0.529f, g = 0.8078f, b = 0.98f;
-	glBegin(GL_TRIANGLES);
-	for (i = 0; i < nVertices; i+=3) {
-		glColor3f(r, g, b);
-		r+=0.01;
-		g+=0.01;			
-	}
-	glEnd(); 
-}*/
 
 void renderScene(void) {
 
 	// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0f,0.0f,0.0f,0.0f);
-
 
 	// set the camera
 	glLoadIdentity();
-	gluLookAt(cPosZ,cPosY,cPosX, 
+
+	//Eixos conforme os desenhados no gerador(yy na vertical, xx na horizontal, zz na diagonal)
+	gluLookAt(cPosX,cPosY,cPosZ, 
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
 
@@ -146,7 +147,6 @@ void renderScene(void) {
 	glFrontFace(GL_CW);
 	
 	glColor3f(0.529f, 0.8078f, 0.98f);
-	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
 	glVertexPointer(3, GL_FLOAT, 0, 0);
 	glDrawArrays(GL_TRIANGLES, 0, nVertices);
 
@@ -157,27 +157,36 @@ void renderScene(void) {
 }
 
 // Write function to process keyboard events
-void keyboardAction(unsigned char key, int x,int y){
+void keyboardAction(unsigned char key, int x, int y){
 
 	switch(key){
+	//Translações nos eixos xx, yy e zz
 	case 'w':
-		yy+=1.f;
+		yy += 1.f;
 		break;
 	case 's':
-		yy-=1.f;
+		yy -= 1.f;
 		break;
 	case 'a':
-		xx-=1.f;
+		xx -= 1.f;
 		break;
 	case 'd':
-		xx+=1.f;
+		xx += 1.f;
 		break;
+	case '4':
+		zz -= 1.f;
+		break;
+	case '5':
+		zz += 1.f;
+		break;
+	//Rotação no eixo vertical
 	case 'q':
 		degree-=10.f;
 		break;
 	case 'e':
 		degree+=10.f;
 		break;
+	//Diferentes modos de apresentar os polígonos: cor preenchida, linhas com a representação dos triângulos, ou por pontos
 	case 'l':
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		break;
@@ -187,6 +196,7 @@ void keyboardAction(unsigned char key, int x,int y){
 	case 'f':
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		break;
+	/*Mudar a primitiva gráfica*/
 	case 'n':
 		changeModel(0);
 		modelo2Buffer();
@@ -195,12 +205,13 @@ void keyboardAction(unsigned char key, int x,int y){
 		changeModel(1);
 		modelo2Buffer();
 		break;
+	//Fazer zoom in(diminui o raio da camera) e zoom out(aumenta o raio da camera)
 	case 'x':
-		cY -= 0.1;
+		radius -= 0.1;
 		normalizeCamCoords();
 		break;
 	case 'z':
-		cY+= 0.1;
+		radius+= 0.1;
 		normalizeCamCoords();
 		break;
 	default:
@@ -211,27 +222,30 @@ void keyboardAction(unsigned char key, int x,int y){
 }
 
 void processSpecialKeys(int key, int xx, int yy) {
-
+	//Rotações aumentando e diminuindo os ângulos alpha e beta da camera
 	switch (key) {
+	//Rotações no eixo do xx
 	case GLUT_KEY_LEFT:
-		cX -= 0.1;
+		alpha -= 0.1;
 		normalizeCamCoords();
 		break;
 	case GLUT_KEY_RIGHT:
-		cX += 0.1;
+		alpha += 0.1;
 		normalizeCamCoords();
 		break;
+	//Rotações no eixo dos yy	
 	case GLUT_KEY_UP:
-		cZ += 0.1;
+		beta += 0.1;
 		normalizeCamCoords();
 		break;
 	case GLUT_KEY_DOWN:
-		cZ -= 0.1;
+		beta -= 0.1;
 		normalizeCamCoords();
 		break;
 	default:
 		break;
 	}
+
 	glutPostRedisplay();
 
 }
@@ -249,9 +263,10 @@ void showHelp(){
 
 int main(int argc, char **argv) {
 	char* config = "config.xml";
-	cX = 0.0;
-	cY = 3.0;
-	cZ = -5.0;
+	//Temos que ver melhor qual a nossa preferência para começar com a camera
+	alpha = 1.0;
+	radius = 3.0;
+	beta = -5.0;
 	normalizeCamCoords();
 
 // init GLUT and the window
@@ -274,15 +289,16 @@ int main(int argc, char **argv) {
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glGenBuffers(1, buffers);
+	glClearColor(0.0f,0.0f,0.0f,0.0f);
+
 	
 // Parsing XML e adicionar os vertices dos models aos buffers
-	if (!parseXML(argv[1])) return 1;
+	if (!parseXML(config)) return 1;
 	modelo2Buffer();
 
 	showHelp();
 
-// enter GLUT's main cycle
+// enter GLUT's main radiuscle
 	glutMainLoop();
 	
 	return 1;
