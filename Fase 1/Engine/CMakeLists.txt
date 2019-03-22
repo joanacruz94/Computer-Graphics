@@ -33,7 +33,7 @@ link_directories(${TinyXML_LIBRARY_DIRS})
 add_definitions(${TinyXML_DEFINITIONS})
 
 
-add_executable(${PROJECT_NAME} engine.cpp)
+add_executable(${PROJECT_NAME} engine.cpp Group.h Group.cpp Vertex.h Vertex.cpp Model.h Model.cpp parser.h parser.cpp)
 
 
 if (WIN32)

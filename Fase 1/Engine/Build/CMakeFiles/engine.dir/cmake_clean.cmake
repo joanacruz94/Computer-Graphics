@@ -1,5 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/engine.dir/engine.cpp.o"
+  "CMakeFiles/engine.dir/Group.cpp.o"
+  "CMakeFiles/engine.dir/Vertex.cpp.o"
+  "CMakeFiles/engine.dir/Model.cpp.o"
+  "CMakeFiles/engine.dir/parser.cpp.o"
   "engine.pdb"
   "engine"
 )

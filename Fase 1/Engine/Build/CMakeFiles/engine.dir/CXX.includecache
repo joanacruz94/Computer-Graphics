@@ -6,6 +6,42 @@
 
 #IncludeRegexTransform: 
 
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Group.cpp
+Group.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Group.h
+Model.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Model.h
+Vertex.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Vertex.h
+vector
+-
+
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Group.h
+Vertex.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Vertex.h
+Model.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Model.h
+
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Model.cpp
+Model.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Model.h
+fstream
+-
+
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Model.h
+Vertex.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Vertex.h
+string
+-
+vector
+-
+
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Vertex.cpp
+Vertex.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Vertex.h
+
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Vertex.h
+
 /Users/joanacruz/Desktop/CG/Fase 1/Engine/engine.cpp
 stdio.h
 -
@@ -31,6 +67,38 @@ fstream
 -
 iostream
 -
+vector
+-
+Group.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Group.h
+Model.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Model.h
+Vertex.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Vertex.h
+parser.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/parser.h
+
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/parser.cpp
+parser.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/parser.h
+string
+-
+vector
+-
+Group.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Group.h
+Model.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Model.h
+Vertex.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Vertex.h
+tinyxml.h
+-
+tinystr.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/tinystr.h
+
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/parser.h
+Group.h
+/Users/joanacruz/Desktop/CG/Fase 1/Engine/Group.h
 vector
 -
 

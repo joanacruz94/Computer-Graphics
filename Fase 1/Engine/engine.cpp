@@ -14,10 +14,11 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
-
+#include "Group.h"
+#include "Model.h"
+#include "Vertex.h"
+#include "parser.h"
 using namespace std;
-
-int model, nVertices;
 
 /*
  * alpha - ângulo com o eixo dos xx e a camera; varia de 0 a 2pi
@@ -28,7 +29,7 @@ int model, nVertices;
  * cPosY - posição no eixo dos yy da camera
  * cPosZ - posição no eixo dos zz da camera
  */
-GLfloat alpha, radius, beta, cPosX=0.0, cPosY=0.0, cPosZ=0.0;
+GLfloat alpha, radius, beta, cPosX = 0.0, cPosY = 0.0, cPosZ = 0.0;
 float xx = 0.0f;
 float yy = 0.0f;
 float zz = 0.0f;
@@ -38,31 +39,22 @@ float degree = 0.0f;
 //number of buffers is 1 - one buffer per array
 GLuint buffers[1];
 
-vector<string> models;
+vector<Group> scene;
 
-// Entre os models que foram carregados com o fiheiro XML, seleciona um para ser desenhado
-
-void changeModel(int direction){
-	if(model<(models.size()-1)&&direction)
-		model++;
-	else 
-	 if(model>0 && !direction)
-	 	model--;
-}
-
-// Abre o ficheiro do modelo actual e passa-o para o Buffer 
-void modelo2Buffer() {
+// Abre o ficheiro do modelo actual e passa-o para o Buffer
+void sceneToBuffer()
+{
 	float n;
 	vector<float> vertices;
 	ifstream ficheiro;
 
-	ficheiro.open(models[model], ifstream::in);
-
-	for (ficheiro; ficheiro >> n;) {
+	for (int g = 0; g < scene.size(); g++)
+	{
+		Group group = scene[g];
+		glPushMatrix();
 		vertices.push_back(n);
+		
 	}
-
-	ficheiro.close();
 
 	nVertices = vertices.size() / 3;
 
@@ -76,56 +68,58 @@ void modelo2Buffer() {
 	vertices.clear();
 }
 
-// Abre um ficheiro XML e guarda o nome de todos os models a serem carregados no vetor models
-int parseXML(char* fileXML) {
-	TiXmlDocument ficheiroXML(fileXML);
-
-	if (!ficheiroXML.LoadFile()) 
-			return 0;
-
-	TiXmlElement* sceneElement = ficheiroXML.FirstChildElement("scene");
-	TiXmlElement* modelElement = sceneElement->FirstChildElement("model");
-
-	for (modelElement; modelElement != NULL; modelElement = modelElement->NextSiblingElement("model")) {
-		models.push_back(modelElement->Attribute("file"));
-	}
-
-	return 1;
-}
-
-void changeSize(int w, int h) {
+void changeSize(int w, int h)
+{
 
 	// Prevent a divide by zero, when window is too short
 	// (you cant make a window with zero width).
-	if(h == 0)
+	if (h == 0)
 		h = 1;
 
-	// compute window's aspect ratio 
+	// compute window's aspect ratio
 	float ratio = w * 1.0 / h;
 
 	// Set the projection matrix as current
 	glMatrixMode(GL_PROJECTION);
 	// Load Identity Matrix
 	glLoadIdentity();
-	
+
 	// Set the viewport to be the entire window
-    glViewport(0, 0, w, h);
+	glViewport(0, 0, w, h);
 
 	// Set perspective
-	gluPerspective(45.0f ,ratio, 1.0f ,1000.0f);
+	gluPerspective(45.0f, ratio, 1.0f, 1000.0f);
 
 	// return to the model view matrix mode
 	glMatrixMode(GL_MODELVIEW);
 }
 
-
-void normalizeCamCoords() {
+void normalizeCamCoords()
+{
 	cPosX = (radius * 4) * cos(beta) * sin(alpha);
 	cPosY = (radius * 4) * sin(beta);
 	cPosZ = (radius * 4) * cos(beta) * cos(alpha);
 }
 
-void renderScene(void) {
+void desenhaPrimitiva()
+{
+
+	glPushMatrix();
+	glTranslatef(xx, yy, zz);			 // moves the object.
+	glRotatef(degree, 0.0f, 1.0f, 0.0f); // rotate the object (Vertical Axis)
+
+	glCullFace(GL_FRONT);
+	glFrontFace(GL_CW);
+
+	glColor3f(0.529f, 0.8078f, 0.98f);
+	glVertexPointer(3, GL_FLOAT, 0, 0);
+	glDrawArrays(GL_TRIANGLES, 0, nVertices);
+
+	glPopMatrix();
+}
+
+void renderScene(void)
+{
 
 	// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -134,32 +128,23 @@ void renderScene(void) {
 	glLoadIdentity();
 
 	//Eixos conforme os desenhados no gerador(yy na vertical, xx na horizontal, zz na diagonal)
-	gluLookAt(cPosX,cPosY,cPosZ, 
-		      0.0,0.0,0.0,
-			  0.0f,1.0f,0.0f);
+	gluLookAt(cPosX, cPosY, cPosZ,
+			  0.0, 0.0, 0.0,
+			  0.0f, 1.0f, 0.0f);
 
 	// put the geometric transformations here
-	glPushMatrix();
-	glTranslatef(xx,yy,zz); // moves the object.
-	glRotatef(degree,0.0f,1.0f,0.0f); // rotate the object (Vertical Axis)
-
-	glCullFace(GL_FRONT);
-	glFrontFace(GL_CW);
-	
-	glColor3f(0.529f, 0.8078f, 0.98f);
-	glVertexPointer(3, GL_FLOAT, 0, 0);
-	glDrawArrays(GL_TRIANGLES, 0, nVertices);
-
-	glPopMatrix();
+	desenhaPrimitiva();
 	// End of frame
 	glutSwapBuffers();
 	glFlush();
 }
 
 // Write function to process keyboard events
-void keyboardAction(unsigned char key, int x, int y){
+void keyboardAction(unsigned char key, int x, int y)
+{
 
-	switch(key){
+	switch (key)
+	{
 	//Translações nos eixos xx, yy e zz
 	case 'w':
 		yy += 1.f;
@@ -181,10 +166,10 @@ void keyboardAction(unsigned char key, int x, int y){
 		break;
 	//Rotação no eixo vertical
 	case 'q':
-		degree-=10.f;
+		degree -= 10.f;
 		break;
 	case 'e':
-		degree+=10.f;
+		degree += 10.f;
 		break;
 	//Diferentes modos de apresentar os polígonos: cor preenchida, linhas com a representação dos triângulos, ou por pontos
 	case 'l':
@@ -199,11 +184,11 @@ void keyboardAction(unsigned char key, int x, int y){
 	/*Mudar a primitiva gráfica*/
 	case 'n':
 		changeModel(0);
-		modelo2Buffer();
+		sceneToBuffer();
 		break;
 	case 'm':
 		changeModel(1);
-		modelo2Buffer();
+		sceneToBuffer();
 		break;
 	//Fazer zoom in(diminui o raio da camera) e zoom out(aumenta o raio da camera)
 	case 'x':
@@ -211,7 +196,7 @@ void keyboardAction(unsigned char key, int x, int y){
 		normalizeCamCoords();
 		break;
 	case 'z':
-		radius+= 0.1;
+		radius += 0.1;
 		normalizeCamCoords();
 		break;
 	default:
@@ -221,9 +206,11 @@ void keyboardAction(unsigned char key, int x, int y){
 	glutPostRedisplay();
 }
 
-void processSpecialKeys(int key, int xx, int yy) {
+void processSpecialKeys(int key, int xx, int yy)
+{
 	//Rotações aumentando e diminuindo os ângulos alpha e beta da camera
-	switch (key) {
+	switch (key)
+	{
 	//Rotações no eixo do xx
 	case GLUT_KEY_LEFT:
 		alpha -= 0.1;
@@ -233,7 +220,7 @@ void processSpecialKeys(int key, int xx, int yy) {
 		alpha += 0.1;
 		normalizeCamCoords();
 		break;
-	//Rotações no eixo dos yy	
+	//Rotações no eixo dos yy
 	case GLUT_KEY_UP:
 		beta += 0.1;
 		normalizeCamCoords();
@@ -247,60 +234,72 @@ void processSpecialKeys(int key, int xx, int yy) {
 	}
 
 	glutPostRedisplay();
-
 }
 
-void showHelp(){
-    cout << "-------------- HELP GUIDE -----------------" << endl;
-    cout << "|                                         |" << endl;
-    cout << "| -> Arrows to rotate the camera          |" << endl;
-    cout << "| -> x, z to zoom in and zoom out         |" << endl;
-    cout << "| -> p, f, l  PolygonModes                |" << endl;
-    cout << "| -> n, m to change models                |" << endl;
+void showHelp()
+{
+	cout << "-------------- HELP GUIDE -----------------" << endl;
 	cout << "|                                         |" << endl;
-    cout << "-------------------------------------------" << endl;
+	cout << "| -> Arrows to rotate the camera          |" << endl;
+	cout << "| -> x, z to zoom in and zoom out         |" << endl;
+	cout << "| -> p, f, l  PolygonModes                |" << endl;
+	cout << "| -> n, m to change models                |" << endl;
+	cout << "|                                         |" << endl;
+	cout << "-------------------------------------------" << endl;
 }
 
-int main(int argc, char **argv) {
-	char* config = "config.xml";
+int main(int argc, char **argv)
+{
+	//char* config = "solarSystem.xml";
 	//Temos que ver melhor qual a nossa preferência para começar com a camera
+	vector<Group> groups = ParseXMLFile(argv[1]);
+	for (int i = 0; i < groups.size(); i++)
+	{
+		Group g = groups[i].subGroups[0];
+		for (int j = 0; j < g.models.size(); j++)
+		{
+			Model m = g.models[j];
+			for (int k = 0; k < m.vertexes.size(); k++)
+			{
+				Vertex v = m.vertexes[k];
+				cout << v.x << " " << v.y << " " << v.z << endl;
+			}
+		}
+	}
+	return 0;
 	alpha = 1.0;
 	radius = 3.0;
 	beta = -5.0;
 	normalizeCamCoords();
 
-// init GLUT and the window
+	// init GLUT and the window
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
-	glutInitWindowPosition(100,100);
-	glutInitWindowSize(800,800);
+	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+	glutInitWindowPosition(100, 100);
+	glutInitWindowSize(800, 800);
 	glutCreateWindow("Computação Gráfica-Fase1");
-		
-// Required callback registry 
+
+	// Required callback registry
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(changeSize);
-	
-// Callback registration for keyboard processing
+
+	// Callback registration for keyboard processing
 	glutKeyboardFunc(keyboardAction);
 	glutSpecialFunc(processSpecialKeys);
 
-
-//  OpenGL settings
+	//  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glClearColor(0.0f,0.0f,0.0f,0.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-	
-// Parsing XML e adicionar os vertices dos models aos buffers
-	if (!parseXML(config)) return 1;
-	modelo2Buffer();
+	// Parsing XML e adicionar os vertices dos models aos buffers
+	sceneToBuffer();
 
 	showHelp();
 
-// enter GLUT's main radiuscle
+	// enter GLUT's main radiuscle
 	glutMainLoop();
-	
+
 	return 1;
 }
-

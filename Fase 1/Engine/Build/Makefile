@@ -123,6 +123,87 @@ engine/fast:
 	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/build
 .PHONY : engine/fast
 
+Group.o: Group.cpp.o
+
+.PHONY : Group.o
+
+# target to build an object file
+Group.cpp.o:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Group.cpp.o
+.PHONY : Group.cpp.o
+
+Group.i: Group.cpp.i
+
+.PHONY : Group.i
+
+# target to preprocess a source file
+Group.cpp.i:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Group.cpp.i
+.PHONY : Group.cpp.i
+
+Group.s: Group.cpp.s
+
+.PHONY : Group.s
+
+# target to generate assembly for a file
+Group.cpp.s:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Group.cpp.s
+.PHONY : Group.cpp.s
+
+Model.o: Model.cpp.o
+
+.PHONY : Model.o
+
+# target to build an object file
+Model.cpp.o:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Model.cpp.o
+.PHONY : Model.cpp.o
+
+Model.i: Model.cpp.i
+
+.PHONY : Model.i
+
+# target to preprocess a source file
+Model.cpp.i:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Model.cpp.i
+.PHONY : Model.cpp.i
+
+Model.s: Model.cpp.s
+
+.PHONY : Model.s
+
+# target to generate assembly for a file
+Model.cpp.s:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Model.cpp.s
+.PHONY : Model.cpp.s
+
+Vertex.o: Vertex.cpp.o
+
+.PHONY : Vertex.o
+
+# target to build an object file
+Vertex.cpp.o:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Vertex.cpp.o
+.PHONY : Vertex.cpp.o
+
+Vertex.i: Vertex.cpp.i
+
+.PHONY : Vertex.i
+
+# target to preprocess a source file
+Vertex.cpp.i:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Vertex.cpp.i
+.PHONY : Vertex.cpp.i
+
+Vertex.s: Vertex.cpp.s
+
+.PHONY : Vertex.s
+
+# target to generate assembly for a file
+Vertex.cpp.s:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Vertex.cpp.s
+.PHONY : Vertex.cpp.s
+
 engine.o: engine.cpp.o
 
 .PHONY : engine.o
@@ -150,6 +231,33 @@ engine.cpp.s:
 	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/engine.cpp.s
 .PHONY : engine.cpp.s
 
+parser.o: parser.cpp.o
+
+.PHONY : parser.o
+
+# target to build an object file
+parser.cpp.o:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/parser.cpp.o
+.PHONY : parser.cpp.o
+
+parser.i: parser.cpp.i
+
+.PHONY : parser.i
+
+# target to preprocess a source file
+parser.cpp.i:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/parser.cpp.i
+.PHONY : parser.cpp.i
+
+parser.s: parser.cpp.s
+
+.PHONY : parser.s
+
+# target to generate assembly for a file
+parser.cpp.s:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/parser.cpp.s
+.PHONY : parser.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -159,9 +267,21 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... engine"
+	@echo "... Group.o"
+	@echo "... Group.i"
+	@echo "... Group.s"
+	@echo "... Model.o"
+	@echo "... Model.i"
+	@echo "... Model.s"
+	@echo "... Vertex.o"
+	@echo "... Vertex.i"
+	@echo "... Vertex.s"
 	@echo "... engine.o"
 	@echo "... engine.i"
 	@echo "... engine.s"
+	@echo "... parser.o"
+	@echo "... parser.i"
+	@echo "... parser.s"
 .PHONY : help
 
 

@@ -81,18 +81,122 @@ CMakeFiles/engine.dir/engine.cpp.o.provides: CMakeFiles/engine.dir/engine.cpp.o.
 CMakeFiles/engine.dir/engine.cpp.o.provides.build: CMakeFiles/engine.dir/engine.cpp.o
 
 
+CMakeFiles/engine.dir/Group.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/Group.cpp.o: ../Group.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/joanacruz/Desktop/CG/Fase 1/Engine/Build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/engine.dir/Group.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine.dir/Group.cpp.o -c "/Users/joanacruz/Desktop/CG/Fase 1/Engine/Group.cpp"
+
+CMakeFiles/engine.dir/Group.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/engine.dir/Group.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/joanacruz/Desktop/CG/Fase 1/Engine/Group.cpp" > CMakeFiles/engine.dir/Group.cpp.i
+
+CMakeFiles/engine.dir/Group.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine.dir/Group.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/joanacruz/Desktop/CG/Fase 1/Engine/Group.cpp" -o CMakeFiles/engine.dir/Group.cpp.s
+
+CMakeFiles/engine.dir/Group.cpp.o.requires:
+
+.PHONY : CMakeFiles/engine.dir/Group.cpp.o.requires
+
+CMakeFiles/engine.dir/Group.cpp.o.provides: CMakeFiles/engine.dir/Group.cpp.o.requires
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Group.cpp.o.provides.build
+.PHONY : CMakeFiles/engine.dir/Group.cpp.o.provides
+
+CMakeFiles/engine.dir/Group.cpp.o.provides.build: CMakeFiles/engine.dir/Group.cpp.o
+
+
+CMakeFiles/engine.dir/Vertex.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/Vertex.cpp.o: ../Vertex.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/joanacruz/Desktop/CG/Fase 1/Engine/Build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/engine.dir/Vertex.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine.dir/Vertex.cpp.o -c "/Users/joanacruz/Desktop/CG/Fase 1/Engine/Vertex.cpp"
+
+CMakeFiles/engine.dir/Vertex.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/engine.dir/Vertex.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/joanacruz/Desktop/CG/Fase 1/Engine/Vertex.cpp" > CMakeFiles/engine.dir/Vertex.cpp.i
+
+CMakeFiles/engine.dir/Vertex.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine.dir/Vertex.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/joanacruz/Desktop/CG/Fase 1/Engine/Vertex.cpp" -o CMakeFiles/engine.dir/Vertex.cpp.s
+
+CMakeFiles/engine.dir/Vertex.cpp.o.requires:
+
+.PHONY : CMakeFiles/engine.dir/Vertex.cpp.o.requires
+
+CMakeFiles/engine.dir/Vertex.cpp.o.provides: CMakeFiles/engine.dir/Vertex.cpp.o.requires
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Vertex.cpp.o.provides.build
+.PHONY : CMakeFiles/engine.dir/Vertex.cpp.o.provides
+
+CMakeFiles/engine.dir/Vertex.cpp.o.provides.build: CMakeFiles/engine.dir/Vertex.cpp.o
+
+
+CMakeFiles/engine.dir/Model.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/Model.cpp.o: ../Model.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/joanacruz/Desktop/CG/Fase 1/Engine/Build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/engine.dir/Model.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine.dir/Model.cpp.o -c "/Users/joanacruz/Desktop/CG/Fase 1/Engine/Model.cpp"
+
+CMakeFiles/engine.dir/Model.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/engine.dir/Model.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/joanacruz/Desktop/CG/Fase 1/Engine/Model.cpp" > CMakeFiles/engine.dir/Model.cpp.i
+
+CMakeFiles/engine.dir/Model.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine.dir/Model.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/joanacruz/Desktop/CG/Fase 1/Engine/Model.cpp" -o CMakeFiles/engine.dir/Model.cpp.s
+
+CMakeFiles/engine.dir/Model.cpp.o.requires:
+
+.PHONY : CMakeFiles/engine.dir/Model.cpp.o.requires
+
+CMakeFiles/engine.dir/Model.cpp.o.provides: CMakeFiles/engine.dir/Model.cpp.o.requires
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/Model.cpp.o.provides.build
+.PHONY : CMakeFiles/engine.dir/Model.cpp.o.provides
+
+CMakeFiles/engine.dir/Model.cpp.o.provides.build: CMakeFiles/engine.dir/Model.cpp.o
+
+
+CMakeFiles/engine.dir/parser.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/parser.cpp.o: ../parser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/joanacruz/Desktop/CG/Fase 1/Engine/Build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/engine.dir/parser.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine.dir/parser.cpp.o -c "/Users/joanacruz/Desktop/CG/Fase 1/Engine/parser.cpp"
+
+CMakeFiles/engine.dir/parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/engine.dir/parser.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/joanacruz/Desktop/CG/Fase 1/Engine/parser.cpp" > CMakeFiles/engine.dir/parser.cpp.i
+
+CMakeFiles/engine.dir/parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine.dir/parser.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/joanacruz/Desktop/CG/Fase 1/Engine/parser.cpp" -o CMakeFiles/engine.dir/parser.cpp.s
+
+CMakeFiles/engine.dir/parser.cpp.o.requires:
+
+.PHONY : CMakeFiles/engine.dir/parser.cpp.o.requires
+
+CMakeFiles/engine.dir/parser.cpp.o.provides: CMakeFiles/engine.dir/parser.cpp.o.requires
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/parser.cpp.o.provides.build
+.PHONY : CMakeFiles/engine.dir/parser.cpp.o.provides
+
+CMakeFiles/engine.dir/parser.cpp.o.provides.build: CMakeFiles/engine.dir/parser.cpp.o
+
+
 # Object files for target engine
 engine_OBJECTS = \
-"CMakeFiles/engine.dir/engine.cpp.o"
+"CMakeFiles/engine.dir/engine.cpp.o" \
+"CMakeFiles/engine.dir/Group.cpp.o" \
+"CMakeFiles/engine.dir/Vertex.cpp.o" \
+"CMakeFiles/engine.dir/Model.cpp.o" \
+"CMakeFiles/engine.dir/parser.cpp.o"
 
 # External object files for target engine
 engine_EXTERNAL_OBJECTS =
 
 engine: CMakeFiles/engine.dir/engine.cpp.o
+engine: CMakeFiles/engine.dir/Group.cpp.o
+engine: CMakeFiles/engine.dir/Vertex.cpp.o
+engine: CMakeFiles/engine.dir/Model.cpp.o
+engine: CMakeFiles/engine.dir/parser.cpp.o
 engine: CMakeFiles/engine.dir/build.make
 engine: /usr/local/lib/libtinyxml.dylib
 engine: CMakeFiles/engine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/joanacruz/Desktop/CG/Fase 1/Engine/Build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/joanacruz/Desktop/CG/Fase 1/Engine/Build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable engine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/engine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -101,6 +205,10 @@ CMakeFiles/engine.dir/build: engine
 .PHONY : CMakeFiles/engine.dir/build
 
 CMakeFiles/engine.dir/requires: CMakeFiles/engine.dir/engine.cpp.o.requires
+CMakeFiles/engine.dir/requires: CMakeFiles/engine.dir/Group.cpp.o.requires
+CMakeFiles/engine.dir/requires: CMakeFiles/engine.dir/Vertex.cpp.o.requires
+CMakeFiles/engine.dir/requires: CMakeFiles/engine.dir/Model.cpp.o.requires
+CMakeFiles/engine.dir/requires: CMakeFiles/engine.dir/parser.cpp.o.requires
 
 .PHONY : CMakeFiles/engine.dir/requires
 
