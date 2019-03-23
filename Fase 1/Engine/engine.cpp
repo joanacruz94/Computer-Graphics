@@ -34,43 +34,25 @@ float xx = 0.0f;
 float yy = 0.0f;
 float zz = 0.0f;
 float degree = 0.0f;
-
-//buffers is a global variable
-//number of buffers is 1 - one buffer per array
-GLuint buffers[1];
-
+int nBuffer,counterBuff;
 vector<Group> scene;
+GLuint * buffers;
 
-// Abre o ficheiro do modelo actual e passa-o para o Buffer
-void sceneToBuffer()
-{
-	float n;
-	vector<float> vertices;
-	ifstream ficheiro;
-
-	for (int g = 0; g < scene.size(); g++)
+int countGroups(){
+	int nGroups;
+	for (int i = 0; i < scene.size(); i++)
 	{
-		Group group = scene[g];
-		glPushMatrix();
-		vertices.push_back(n);
-		
+		nGroups++;
+		Group g = scene[i];
+		for(int j = 0; j < g.subGroups.size(); j++)
+		{
+			nGroups++;
+		}		
 	}
-
-	nVertices = vertices.size() / 3;
-
-	//Generate Buffer
-	glGenBuffers(1, buffers);
-	//Set buffer active
-	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
-	//Fill buffer
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
-
-	vertices.clear();
+	return nGroups;
 }
-
 void changeSize(int w, int h)
 {
-
 	// Prevent a divide by zero, when window is too short
 	// (you cant make a window with zero width).
 	if (h == 0)
@@ -101,21 +83,22 @@ void normalizeCamCoords()
 	cPosZ = (radius * 4) * cos(beta) * cos(alpha);
 }
 
-void desenhaPrimitiva()
-{
-
-	glPushMatrix();
-	glTranslatef(xx, yy, zz);			 // moves the object.
-	glRotatef(degree, 0.0f, 1.0f, 0.0f); // rotate the object (Vertical Axis)
-
-	glCullFace(GL_FRONT);
-	glFrontFace(GL_CW);
-
-	glColor3f(0.529f, 0.8078f, 0.98f);
-	glVertexPointer(3, GL_FLOAT, 0, 0);
-	glDrawArrays(GL_TRIANGLES, 0, nVertices);
-
-	glPopMatrix();
+void drawScene(vector<Group>groups) {
+	for (int i = 0; i < groups.size(); i++) {
+		Group group = groups[i];
+		glPushMatrix();
+		//glScalef(group.scale.x, group.scale.y, group.scale.z);
+		glRotatef(group.rotationAngle, group.rotation.x, group.rotation.y, group.rotation.z);
+		glTranslatef(group.translation.x, group.translation.y, group.translation.z);
+		drawScene(group.subGroups);
+		glColor3f(0.529f, 0.8078f, 0.98f);
+		if (group.models.size() > 0) {
+			glBindBuffer(GL_ARRAY_BUFFER, buffers[counterBuff]);
+			glVertexPointer(3, GL_FLOAT, 0, 0);
+			glDrawArrays(GL_TRIANGLES, 0, group.models[0].vertexes.size()*3);
+		}
+		glPopMatrix();
+	}
 }
 
 void renderScene(void)
@@ -132,8 +115,9 @@ void renderScene(void)
 			  0.0, 0.0, 0.0,
 			  0.0f, 1.0f, 0.0f);
 
-	// put the geometric transformations here
-	desenhaPrimitiva();
+
+	drawScene(scene);
+	
 	// End of frame
 	glutSwapBuffers();
 	glFlush();
@@ -180,15 +164,6 @@ void keyboardAction(unsigned char key, int x, int y)
 		break;
 	case 'f':
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		break;
-	/*Mudar a primitiva gráfica*/
-	case 'n':
-		changeModel(0);
-		sceneToBuffer();
-		break;
-	case 'm':
-		changeModel(1);
-		sceneToBuffer();
 		break;
 	//Fazer zoom in(diminui o raio da camera) e zoom out(aumenta o raio da camera)
 	case 'x':
@@ -248,25 +223,32 @@ void showHelp()
 	cout << "-------------------------------------------" << endl;
 }
 
+void fillBuffers(vector<Group> groups) {
+	for (int i = 0; i < groups.size(); i++) {
+		Group g = groups[i];
+		fillBuffers(g.subGroups);
+		if (g.models.size() > 0) {
+			vector<Vertex> points = g.models[0].vertexes;			
+			float * vertices;
+			vertices = (float*)malloc(sizeof(float)*points.size() * 3);
+			for (int j = 0; j < points.size(); j++) {
+				vertices[3 * j] = points[j].x;
+				vertices[3 * j + 1] = points[j].y;
+				vertices[3 * j + 2] = points[j].z;
+			}
+			glBindBuffer(GL_ARRAY_BUFFER, buffers[nBuffer++]);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * points.size() * 3, vertices, GL_STATIC_DRAW);
+			free(vertices);
+		}
+	}
+}
+
 int main(int argc, char **argv)
 {
 	//char* config = "solarSystem.xml";
 	//Temos que ver melhor qual a nossa preferência para começar com a camera
-	vector<Group> groups = ParseXMLFile(argv[1]);
-	for (int i = 0; i < groups.size(); i++)
-	{
-		Group g = groups[i].subGroups[0];
-		for (int j = 0; j < g.models.size(); j++)
-		{
-			Model m = g.models[j];
-			for (int k = 0; k < m.vertexes.size(); k++)
-			{
-				Vertex v = m.vertexes[k];
-				cout << v.x << " " << v.y << " " << v.z << endl;
-			}
-		}
-	}
-	return 0;
+	scene = ParseXMLFile(argv[1]);
+	//cout << scene.size();
 	alpha = 1.0;
 	radius = 3.0;
 	beta = -5.0;
@@ -277,7 +259,7 @@ int main(int argc, char **argv)
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(800, 800);
-	glutCreateWindow("Computação Gráfica-Fase1");
+	glutCreateWindow("Computação Gráfica");
 
 	// Required callback registry
 	glutDisplayFunc(renderScene);
@@ -290,11 +272,16 @@ int main(int argc, char **argv)
 	//  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
-	glEnableClientState(GL_VERTEX_ARRAY);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-	// Parsing XML e adicionar os vertices dos models aos buffers
-	sceneToBuffer();
+	nBuffer = 0;
+	counterBuff = 0;
+	int groupsNumber = countGroups();
+	buffers = (GLuint*)malloc(sizeof(GLuint)*groupsNumber);
+	glGenBuffers(groupsNumber, buffers);
+
+	fillBuffers(scene);
+	glEnableClientState(GL_VERTEX_ARRAY);
 
 	showHelp();
 

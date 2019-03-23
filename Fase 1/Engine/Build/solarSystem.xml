@@ -1,16 +1,42 @@
 <scene>
 	<group>
-		<translate X=5 Y=100 Z=2 />
+		<translate X=5 Y=0 Z=2 />
+		<scale X=0 Y=0 Z=0 />
  		<rotate angle=45 axisX=0 axisY=1 axisZ=0 /> 
 		<models>
  			<model file="sphere.3d" />
 		</models>
+	 </group>
+	 <group>
+		<translate X=10 Y=2 Z=2 />
+		<scale X=5 Y=5 Z=5 />
+		<rotate angle=45 axisX=0 axisY=1 axisZ=0 /> 
+		<models>
+			<model file="sphere.3d" />
+		</models>
+	</group>
+	<group>
+		<translate X=15 Y=2 Z=2 />
+		<scale X=5 Y=5 Z=5 />
+		<rotate angle=45 axisX=0 axisY=1 axisZ=0 /> 
+		<models>
+			<model file="sphere.3d" />
+		</models>
+	</group>
+	<group>
+		<translate X=20 Y=2 Z=2 />
+		<scale X=5 Y=5 Z=5 />
+		<rotate angle=45 axisX=0 axisY=1 axisZ=0 /> 
+		<models>
+			<model file="sphere.3d" />
+		</models>
 		<group>
-			<translate X=5 Y=100 Z=2 />
+			<translate X=15 Y=2 Z=2 />
+			<scale X=5 Y=5 Z=5 />
 			<rotate angle=45 axisX=0 axisY=1 axisZ=0 /> 
 			<models>
 				<model file="sphere.3d" />
 			</models>
 		</group>
-	 </group>
+	</group>
 </scene> 

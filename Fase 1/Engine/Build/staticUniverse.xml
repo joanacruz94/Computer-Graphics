@@ -1,0 +1,113 @@
+<scene>
+	<group>
+		<models>
+			<model file="sphere.3d" />
+		</models>
+	</group>
+	<group>
+		<translate X="5" Y="0" Z="0" />
+		<models>
+			<model file="sphere.3d" />
+		</models>
+	</group>
+	<group>
+		<translate X="9" Y="0" Z="0" />
+		<models>
+			<model file="sphere.3d" />
+		</models>
+	</group>
+	<group>
+		<translate X="52" Y="0" Z="0" /> 
+		<models>
+			<model file="sphere.3d" />
+		</models>
+		<group>
+			<translate X="6" Y="0" Z="0" /> 
+			<models>
+				<model file="sphere.3d"/>
+			</models>
+		</group>
+	</group>
+	<group>
+		<translate X="70" Y="0" Z="0" /> 
+		<models>
+			<model file="sphere.3d" />
+		</models>
+	</group> 
+	<group>
+		<translate X="159" Y="0" Z="0" /> 
+		<models>
+			<model file="sphere.3d"/>
+		</models>  
+		<group>
+			<translate X="16.8" Y="0" Z="0" />
+			<models>
+				<model file="sphere.3d" />
+			</models>
+		</group>
+		<group>
+			<translate X="21.3" Y="0" Z="0" /> 
+			<models>
+				<model file="sphere.3d" />
+			</models>
+		</group>
+		<group>
+			<translate X="25.3" Y="0" Z="0" /> 
+			<models>
+				<model file="sphere.3d" />
+			</models>
+		</group>
+		<group>
+			<translate X="30.3" Y="0" Z="0" /> 
+			<models>
+				<model file="sphere.3d" />
+			</models>
+		</group>
+	</group>
+	<group>
+		<translate X="294" Y="0" Z="0" /> 
+		<models>
+			<model file="sphere.3d" />
+		</models>
+        <group>
+            <translate X="0" Y="-3" Z="0" /> 
+            <rotate angle="-70" axisX="1" axisY="0" axisZ="0" /> 
+            <models>
+				<model file="sphere.3d" />
+			</models>
+        </group>
+		<group>
+            <rotate angle="-70" axisX="1" axisY="0" axisZ="0" />
+            <rotate angle="90" axisX="1" axisY="0" axisZ="0" /> 
+            <translate X="0" Y="3" Z="0" /> 
+            <translate X="16.8" Y="0" Z="0" />
+			<models>
+				<model file="sphere.3d" />
+			</models>
+		</group>
+	</group>
+	<group>
+		<translate X="354" Y="0" Z="0" /> 
+		<models>
+			<model file="sphere.3d" />
+		</models>
+	</group>
+	<group>
+		<translate X="462" Y="0" Z="0" /> 
+		<models>
+			<model file="sphere.3d" />
+		</models>
+		<group>
+			<translate X="12" Y="0" Z="0" /> 
+			<models>
+				<model file="sphere.3d" />
+			</models>
+		</group>
+	</group>
+	<group>
+		<translate X="602" Y="0" Z="0" /> 
+		<models>
+			<model file="sphere.3d" />
+		</models>
+	</group>
+</scene>
