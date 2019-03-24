@@ -28,10 +28,19 @@ Vertex ParseAttributes(TiXmlElement *element)
 
 Model ParseModel(TiXmlElement *modelElement)
 {
+    float r = 0, g = 0, b = 0;
+
     if (modelElement->Attribute("file"))
     {
         string filePath = modelElement->Attribute("file");
-        return Model(filePath);
+        if (modelElement->Attribute("R"))
+            r = atof(modelElement->Attribute("R"));
+        if (modelElement->Attribute("G"))
+            g = atof(modelElement->Attribute("G"));
+        if (modelElement->Attribute("B"))
+            b = atof(modelElement->Attribute("B"));
+
+        return Model(filePath, Vertex(r,g,b));
     }
     return Model();
 }
@@ -40,7 +49,18 @@ Group ParseGroup(TiXmlElement *groupElement)
 {
     Group group = Group();
     group.subGroups = vector<Group>();
-    TiXmlElement *grandChildElement, *element3, *childElement;
+    TiXmlElement *grandChildElement, *childElement;
+    group.rotation.x = 0;
+    group.rotation.y = 0;
+    group.rotation.z = 0;
+    group.rotationAngle = 0;
+    group.translation.x = 0;
+    group.translation.y = 0;
+    group.translation.z = 0;
+    group.scale.x = 0;
+    group.scale.y = 0;
+    group.scale.z = 0;
+
 
     for (childElement = groupElement->FirstChildElement(); childElement; childElement = childElement->NextSiblingElement())
     {

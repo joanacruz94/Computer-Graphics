@@ -5,15 +5,14 @@
 #define MODEL_H
 using namespace std;
 
-class Model
-{
-private:
-
+class Model{
 public:
 	string fileName;
 	vector<Vertex> vertexes;
+	Vertex color;
 	Model();
-	Model(string path);
+	Model(string path, Vertex colr);
 	~Model();
 };
+
 #endif

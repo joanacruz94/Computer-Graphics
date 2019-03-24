@@ -4,9 +4,7 @@
 #define GROUP_H
 using namespace std;
 
-class Group
-{
-private:
+class Group{
 public:
 	Vertex rotation;
 	float rotationAngle;
@@ -18,4 +16,5 @@ public:
 	Group(Vertex rot, float rotAng, Vertex trans, Vertex scle, vector<Model> modls, vector<Group> subs);
 	~Group();
 };
+
 #endif

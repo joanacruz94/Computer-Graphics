@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.12)  22 MAR 2019 22:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.12)  24 MAR 2019 20:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -726,24 +726,44 @@ o.jpg>]
 \tf@toc=\write4
 \openout4 = `relatorio.toc'.
 
- [1] [2] (./relatorio.aux) ) 
+ [1]
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 91.
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omslmr.fd
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 91.
+ [2]
+Overfull \hbox (109.75807pt too wide) in paragraph at lines 152--153
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (130.90794pt too wide) in paragraph at lines 153--154
+[][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[3] [4] (./relatorio.aux) ) 
 Here is how much of TeX's memory you used:
- 5772 strings out of 492649
- 82175 string characters out of 6129622
- 146106 words of memory out of 5000000
- 9551 multiletter control sequences out of 15000+600000
- 52191 words of font info for 38 fonts, out of 8000000 for 9000
+ 6049 strings out of 492649
+ 84429 string characters out of 6129622
+ 157106 words of memory out of 5000000
+ 9825 multiletter control sequences out of 15000+600000
+ 55189 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,5n,32p,506b,261s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips
-/lm/lm-ec.enc}</usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmbx12.
-pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr
-/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texl
-ive/2018/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
-Output written on relatorio.pdf (3 pages, 97396 bytes).
+ 42i,5n,32p,506b,1526s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/
+lm/lm-mathsy.enc}{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-ec.e
+nc}</usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/l
+ocal/texlive/2018/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texl
+ive/2018/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2018/te
+xmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/f
+onts/type1/public/lm/lmsy10.pfb>
+Output written on relatorio.pdf (5 pages, 115814 bytes).
 PDF statistics:
- 32 PDF objects out of 1000 (max. 8388607)
- 21 compressed objects within 1 object stream
+ 43 PDF objects out of 1000 (max. 8388607)
+ 29 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

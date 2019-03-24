@@ -1,10 +1,8 @@
 using namespace std;
 #ifndef VERTEX_H
 #define VERTEX_H
-class Vertex
-{
-private:
 
+class Vertex{
 public:
 	float x;
 	float y;
@@ -13,4 +11,5 @@ public:
 	Vertex(float xx, float yy, float zz);
 	~Vertex();
 };
+
 #endif

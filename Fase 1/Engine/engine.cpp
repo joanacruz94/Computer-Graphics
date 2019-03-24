@@ -29,6 +29,7 @@ using namespace std;
  * cPosY - posição no eixo dos yy da camera
  * cPosZ - posição no eixo dos zz da camera
  */
+
 GLfloat alpha, radius, beta, cPosX = 0.0, cPosY = 0.0, cPosZ = 0.0;
 float xx = 0.0f;
 float yy = 0.0f;
@@ -38,7 +39,8 @@ int nBuffer,counterBuff;
 vector<Group> scene;
 GLuint * buffers;
 
-int countGroups(){
+int countGroups()
+{
 	int nGroups;
 	for (int i = 0; i < scene.size(); i++)
 	{
@@ -51,6 +53,7 @@ int countGroups(){
 	}
 	return nGroups;
 }
+
 void changeSize(int w, int h)
 {
 	// Prevent a divide by zero, when window is too short
@@ -78,22 +81,25 @@ void changeSize(int w, int h)
 
 void normalizeCamCoords()
 {
-	cPosX = (radius * 4) * cos(beta) * sin(alpha);
-	cPosY = (radius * 4) * sin(beta);
-	cPosZ = (radius * 4) * cos(beta) * cos(alpha);
+	cPosX = radius * cos(beta) * sin(alpha);
+	cPosY = radius * sin(beta);
+	cPosZ = radius * cos(beta) * cos(alpha);
 }
 
-void drawScene(vector<Group>groups) {
+void drawScene(vector<Group>groups) 
+{	
 	for (int i = 0; i < groups.size(); i++) {
 		Group group = groups[i];
 		glPushMatrix();
-		//glScalef(group.scale.x, group.scale.y, group.scale.z);
 		glRotatef(group.rotationAngle, group.rotation.x, group.rotation.y, group.rotation.z);
 		glTranslatef(group.translation.x, group.translation.y, group.translation.z);
+		if(group.scale.x || group.scale.y || group.scale.z)
+			glScalef(group.scale.x, group.scale.y, group.scale.z);
 		drawScene(group.subGroups);
-		glColor3f(0.529f, 0.8078f, 0.98f);
+		Model m = group.models[0];
+		glColor3f(m.color.x, m.color.y, m.color.z);
 		if (group.models.size() > 0) {
-			glBindBuffer(GL_ARRAY_BUFFER, buffers[counterBuff]);
+			glBindBuffer(GL_ARRAY_BUFFER, buffers[counterBuff++]);
 			glVertexPointer(3, GL_FLOAT, 0, 0);
 			glDrawArrays(GL_TRIANGLES, 0, group.models[0].vertexes.size()*3);
 		}
@@ -103,6 +109,7 @@ void drawScene(vector<Group>groups) {
 
 void renderScene(void)
 {
+	counterBuff = 0;
 
 	// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -115,8 +122,11 @@ void renderScene(void)
 			  0.0, 0.0, 0.0,
 			  0.0f, 1.0f, 0.0f);
 
-
+	glPushMatrix();
+	glTranslatef(xx,yy,zz); // moves the object.
+	glRotatef(degree,0.0f,1.0f,0.0f); // rotate the object (Vertical Axis)
 	drawScene(scene);
+	glPopMatrix();
 	
 	// End of frame
 	glutSwapBuffers();
@@ -131,22 +141,22 @@ void keyboardAction(unsigned char key, int x, int y)
 	{
 	//Translações nos eixos xx, yy e zz
 	case 'w':
-		yy += 1.f;
+		yy += 10.f;
 		break;
 	case 's':
-		yy -= 1.f;
+		yy -= 10.f;
 		break;
 	case 'a':
-		xx -= 1.f;
+		xx -= 10.f;
 		break;
 	case 'd':
-		xx += 1.f;
+		xx += 10.f;
 		break;
 	case '4':
-		zz -= 1.f;
+		zz -= 10.f;
 		break;
 	case '5':
-		zz += 1.f;
+		zz += 10.f;
 		break;
 	//Rotação no eixo vertical
 	case 'q':
@@ -167,11 +177,11 @@ void keyboardAction(unsigned char key, int x, int y)
 		break;
 	//Fazer zoom in(diminui o raio da camera) e zoom out(aumenta o raio da camera)
 	case 'x':
-		radius -= 0.1;
+		radius -= 2.0;
 		normalizeCamCoords();
 		break;
 	case 'z':
-		radius += 0.1;
+		radius += 2.0;
 		normalizeCamCoords();
 		break;
 	default:
@@ -218,12 +228,12 @@ void showHelp()
 	cout << "| -> Arrows to rotate the camera          |" << endl;
 	cout << "| -> x, z to zoom in and zoom out         |" << endl;
 	cout << "| -> p, f, l  PolygonModes                |" << endl;
-	cout << "| -> n, m to change models                |" << endl;
 	cout << "|                                         |" << endl;
 	cout << "-------------------------------------------" << endl;
 }
 
-void fillBuffers(vector<Group> groups) {
+void fillBuffers(vector<Group> groups)
+{
 	for (int i = 0; i < groups.size(); i++) {
 		Group g = groups[i];
 		fillBuffers(g.subGroups);
@@ -245,13 +255,31 @@ void fillBuffers(vector<Group> groups) {
 
 int main(int argc, char **argv)
 {
-	//char* config = "solarSystem.xml";
-	//Temos que ver melhor qual a nossa preferência para começar com a camera
 	scene = ParseXMLFile(argv[1]);
-	//cout << scene.size();
-	alpha = 1.0;
-	radius = 3.0;
-	beta = -5.0;
+
+		for(int i = 0; i < scene.size(); i++)
+	{
+		Group g = scene[i];
+		cout << "File " << g.models[0].fileName << endl;
+		cout << "Rotation.x " << g.rotation.x << endl;
+		cout << "Rotation.y " << g.rotation.y << endl;
+		cout << "Rotation.z " << g.rotation.z << endl;
+		cout << "Rotation.angle " << g.rotationAngle << endl;
+		cout << "Translation.x " << g.translation.x << endl;
+		cout << "Translation.y " << g.translation.y << endl;
+		cout << "Translation.z " << g.translation.z << endl;
+		cout << "Scale.x " << g.scale.x << endl;
+		cout << "Scale.y " << g.scale.y << endl;
+		cout << "Scale.z " << g.scale.z << endl;
+		Vertex color = g.models[0].color;
+		cout << "color.x " << color.x << endl;
+		cout << "color.y " << color.y << endl;
+		cout << "color.z " << color.z << endl;
+	}
+
+	alpha = 0.0;
+	radius = 100.0;
+	beta = 0.0;
 	normalizeCamCoords();
 
 	// init GLUT and the window
@@ -272,6 +300,8 @@ int main(int argc, char **argv)
 	//  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
+	glFrontFace(GL_CW);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
 	nBuffer = 0;

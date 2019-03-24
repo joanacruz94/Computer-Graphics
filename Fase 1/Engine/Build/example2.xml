@@ -1,0 +1,15 @@
+<scene>
+	<group>
+		<scale X=2 Y=2 Z=2/>
+		<models>
+			<model file="sphere.3d" R=0.37 G=0.37 B=0.37/>
+		</models>
+	</group>
+    <group>
+        <translate X=10/>
+		<scale X=2 Y=5 Z=2/>
+		<models>
+			<model file="sphere.3d" G=0.4 B=0.8/>
+		</models>
+	</group>
+</scene>
