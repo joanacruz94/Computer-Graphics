@@ -1,0 +1,16 @@
+\babel@toc {portuges}{}
+\contentsline {section}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{2}
+\contentsline {section}{\numberline {2}Engine}{3}
+\contentsline {section}{\numberline {3}Estruturas de dados}{4}
+\contentsline {subsection}{\numberline {3.1}Vertex}{4}
+\contentsline {subsection}{\numberline {3.2}Model}{4}
+\contentsline {subsection}{\numberline {3.3}Group}{4}
+\contentsline {section}{\numberline {4}Processamento de um ficheiro XML}{6}
+\contentsline {subsection}{\numberline {4.1}Parser}{6}
+\contentsline {section}{\numberline {5}Utiliza\IeC {\c c}\IeC {\~a}o de VBO's}{7}
+\contentsline {section}{\numberline {6}Ciclo de rendering}{8}
+\contentsline {section}{\numberline {7}Exemplos de Execu\IeC {\c c}\IeC {\~a}o}{9}
+\contentsline {subsection}{\numberline {7.1}Figuras primitivas}{9}
+\contentsline {subsection}{\numberline {7.2}Figuras primitivas com diferentes escalas}{10}
+\contentsline {subsection}{\numberline {7.3}Sistema solar est\IeC {\'a}tico}{11}
+\contentsline {section}{\numberline {8}Conclus\IeC {\~a}o}{16}
