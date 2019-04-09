@@ -23,6 +23,7 @@ Vertex ParseAttributes(TiXmlElement *element)
         z = atof(element->Attribute("Z"));
     if (element->Attribute("axisZ"))
         z = atof(element->Attribute("axisZ"));
+    
     return Vertex(x, y, z);
 }
 
@@ -56,7 +57,8 @@ Group ParseGroup(TiXmlElement *groupElement)
 
     Group group = Group();
     group.subGroups = vector<Group>();
-    TiXmlElement *grandChildElement, *childElement;
+    group.orbitPoints = vector<Vertex>();
+    TiXmlElement *grandChildElement, *childElement, *childTranslationElement;
     group.rotation.x = 0;
     group.rotation.y = 0;
     group.rotation.z = 0;
@@ -70,6 +72,8 @@ Group ParseGroup(TiXmlElement *groupElement)
     group.color.x = 0;
     group.color.y = 0;
     group.color.z = 0;
+    group.timeT = 0;
+
     bool translate = false, rotate = false, scale = false;
 
     for (childElement = groupElement->FirstChildElement(); childElement; childElement = childElement->NextSiblingElement())
@@ -97,6 +101,17 @@ Group ParseGroup(TiXmlElement *groupElement)
         else if (!strcmp(childElement->Value(), "translate") && !translate)
         {
             group.translation = ParseAttributes(childElement);
+            if (childElement->Attribute("time")){
+                group.timeT = atof(childElement->Attribute("time"));
+                for (grandChildElement = childElement->FirstChildElement("point"); grandChildElement; grandChildElement = grandChildElement->NextSiblingElement())
+                {
+                    if (!strcmp(grandChildElement->Value(), "point"))
+                    {
+                        Vertex point = ParseAttributes(grandChildElement);
+                        group.orbitPoints.push_back(point);
+                    }
+                }
+            }
             translate = true;
         }
         else if (!strcmp(childElement->Value(), "scale") && !scale)

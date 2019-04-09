@@ -13,8 +13,10 @@ public:
 	Vertex color;
 	vector<Model> models;
 	vector<Group> subGroups;
+	vector<Vertex> orbitPoints;
+	float timeT;
 	Group(void);
-	Group(Vertex rot, float rotAng, Vertex trans, Vertex scle, Vertex colr, vector<Model> modls, vector<Group> subs);
+	Group(Vertex rot, float rotAng, Vertex trans, Vertex scle, Vertex colr, vector<Model> modls, vector<Group> subs, vector<Vertex> orbitPoint, float timeTranslation);
 	~Group();
 };
 
