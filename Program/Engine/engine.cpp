@@ -38,118 +38,7 @@ float degree = 0.0f;
 int nBuffer,counterBuff;
 vector<Group> scene;
 GLuint * buffers;
-
-//constrói a matriz
-void buildRotMatrix(float *x, float *y, float *z, float *m) {
-
-	m[0] = x[0]; m[1] = x[1]; m[2] = x[2]; m[3] = 0;
-	m[4] = y[0]; m[5] = y[1]; m[6] = y[2]; m[7] = 0;
-	m[8] = z[0]; m[9] = z[1]; m[10] = z[2]; m[11] = 0;
-	m[12] = 0; m[13] = 0; m[14] = 0; m[15] = 1;
-}
-
-//efetua o produto escalar
-void cross(float *a, float *b, float *res) {
-
-	res[0] = a[1]*b[2] - a[2]*b[1];
-	res[1] = a[2]*b[0] - a[0]*b[2];
-	res[2] = a[0]*b[1] - a[1]*b[0];
-}
-
-//comprimento de um vetor
-float length(float *v) {
-
-	float res = sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]);
-	return res;
-
-}
-
-//normaliza um vetor
-void normalize(float *a) {
-	float l = sqrt(length(a));
-	a[0] = a[0]/l;
-	a[1] = a[1]/l;
-	a[2] = a[2]/l;
-}
-
-
-void multMatrixVector(float *m, float *v, float *res) {
-
-	for (int j = 0; j < 4; ++j) {
-		res[j] = 0;
-		for (int k = 0; k < 4; ++k) {
-			res[j] += v[k] * m[j * 4 + k];
-		}
-	}
-
-}
-
-void getCatmullRomPoint(float t, float *p0, float *p1, float *p2, float *p3, float *pos, float *deriv) {
-
-	// catmull-rom matrix
-	float m[4][4] = { { -0.5f,  1.5f, -1.5f,  0.5f },
-					{ 1.0f, -2.5f,  2.0f, -0.5f },
-					{ -0.5f,  0.0f,  0.5f,  0.0f },
-					{ 0.0f,  1.0f,  0.0f,  0.0f } };
-
-	// reset res and deriv
-	pos[0] = 0.0; pos[1] = 0.0; pos[2] = 0.0;
-	deriv[0] = 0.0; deriv[1] = 0.0; deriv[2] = 0.0;
-	
-	// Compute A = M * P
-    float Px[4] = {p0[0], p1[0], p2[0], p3[0]};
-    float Py[4] = {p0[1], p1[1], p2[1], p3[1]};
-    float Pz[4] = {p0[2], p1[2], p2[2], p3[2]};
-
-	float A[3][4];
-    multMatrixVector(*m, Px, A[1]);
-    multMatrixVector(*m, Py, A[2]);
-    multMatrixVector(*m, Pz, A[3]);
-
-	// Compute point res = T * A
-	// compute deriv = T' * A
-	float T[4] = { pow(t,3), pow(t,2), t, 1 };
-    float Td[4] = { 3*pow(t,2), 2*pow(t,1), 1, 0 };
-
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			pos[i] += T[j] * A[i][j];
-			deriv[i] += Td[j] * A[i][j];
-		}
-	}
-}
-
-/*
-void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv) {
-
-	float t = gt * POINT_COUNT; // this is the real global t
-	int index = floor(t);  // which segment
-	t = t - index; // where within  the segment
-
-	// indices store the points
-	int indices[4]; 
-	indices[0] = (index + POINT_COUNT-1)%POINT_COUNT;	
-	indices[1] = (indices[0]+1)%POINT_COUNT;
-	indices[2] = (indices[1]+1)%POINT_COUNT; 
-	indices[3] = (indices[2]+1)%POINT_COUNT;
-
-	getCatmullRomPoint(t, p[indices[0]], p[indices[1]], p[indices[2]], p[indices[3]], pos, deriv);
-}*/
-
-void renderCatmullRomCurve() {
-	// draw curve using line segments with GL_LINE_LOOP
-    float res[3];
-    float deriv[3];
-
-    glBegin(GL_LINE_LOOP);
-    for (float gt = 0.0; gt < 1; gt += 0.2) {
-        getGlobalCatmullRomPoint(gt, res, deriv);
-        glVertex3f(res[0], res[1], res[2]);
-    }
-    glEnd();
-}
+float up[3] = { 0, 1, 0 };
 
 int countGroups()
 {
@@ -207,12 +96,173 @@ void normalizeCamCoords()
 	cPosZ = radius * cos(beta) * cos(alpha);
 }
 
+//constrói a matriz
+void buildRotMatrix(float *x, float *y, float *z, float *m) {
+
+	m[0] = x[0]; m[1] = x[1]; m[2] = x[2]; m[3] = 0;
+	m[4] = y[0]; m[5] = y[1]; m[6] = y[2]; m[7] = 0;
+	m[8] = z[0]; m[9] = z[1]; m[10] = z[2]; m[11] = 0;
+	m[12] = 0; m[13] = 0; m[14] = 0; m[15] = 1;
+}
+
+//efetua o produto escalar
+void cross(float *a, float *b, float *res) {
+
+	res[0] = a[1]*b[2] - a[2]*b[1];
+	res[1] = a[2]*b[0] - a[0]*b[2];
+	res[2] = a[0]*b[1] - a[1]*b[0];
+}
+
+//comprimento de um vetor
+float length(float *v) {
+
+	float res = sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]);
+	return res;
+
+}
+
+//normaliza um vetor
+void normalize(float *a) {
+	float l = sqrt(length(a));
+	a[0] = a[0]/l;
+	a[1] = a[1]/l;
+	a[2] = a[2]/l;
+}
+
+void multMatrixVector(float *m, float *v, float *res) {
+
+	for (int j = 0; j < 4; ++j) {
+		res[j] = 0;
+		for (int k = 0; k < 4; ++k) {
+			res[j] += v[k] * m[j * 4 + k];
+		}
+	}
+
+}
+
+
+void getCatmullRomPoint(float t, float *p0, float *p1, float *p2, float *p3, float *res, float *deriv) {
+    
+    // catmull-rom matrix
+    float m[16] = {    -0.5f,  1.5f, -1.5f,  0.5f,
+						1.0f, -2.5f,  2.0f, -0.5f,
+						-0.5f,  0.0f,  0.5f,  0.0f,
+						0.0f,  1.0f,  0.0f,  0.0f };
+    
+    // reset res and deriv
+    res[0] = 0.0; res[1] = 0.0; res[2] = 0.0;
+    deriv[0] = 0.0; deriv[1] = 0.0; deriv[2] = 0.0;
+    
+    // Compute A = M * P
+    float Ax[4], Ay[4], Az[4];
+    
+    float Px[4], Py[4], Pz[4];
+    Px[0] = p0[0];
+    Px[1] = p1[0];
+    Px[2] = p2[0];
+    Px[3] = p3[0];
+    
+    Py[0] = p0[1];
+    Py[1] = p1[1];
+    Py[2] = p2[1];
+    Py[3] = p3[1];
+    
+    Pz[0] = p0[2];
+    Pz[1] = p1[2];
+    Pz[2] = p2[2];
+    Pz[3] = p3[2];
+    
+    multMatrixVector(m, Px, Ax);
+    multMatrixVector(m, Py, Ay);
+    multMatrixVector(m, Pz, Az);
+    
+    // Compute point res = T * A
+    float T[4] = { pow(t,3), pow(t,2), t, 1 };
+    
+    res[0] = T[0] * Ax[0] + T[1] * Ax[1] + T[2] * Ax[2] + T[3] * Ax[3];
+    res[1] = T[0] * Ay[0] + T[1] * Ay[1] + T[2] * Ay[2] + T[3] * Ay[3];
+    res[2] = T[0] * Az[0] + T[1] * Az[1] + T[2] * Az[2] + T[3] * Az[3];
+    
+    // compute deriv = T' * A
+    float Tl[4] = { 3*pow(t,2), 2*pow(t,1), 1, 0 };
+    
+    deriv[0] = Tl[0] * Ax[0] + Tl[1] * Ax[1] + Tl[2] * Ax[2] + Tl[3] * Ax[3];
+    deriv[1] = Tl[0] * Ay[0] + Tl[1] * Ay[1] + Tl[2] * Ay[2] + Tl[3] * Ay[3];
+    deriv[2] = Tl[0] * Az[0] + Tl[1] * Az[1] + Tl[2] * Az[2] + Tl[3] * Az[3];
+    // ...
+}
+
+
+void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv, vector<Vertex> points) {
+
+	int nPoints = points.size();
+	float t = gt * nPoints; // this is the real global t
+	int index = floor(t);  // which segment
+	t = t - index; // where within  the segment
+
+	// indices store the points
+	int indices[4];
+	indices[0] = (index + nPoints - 1) % nPoints;
+	indices[1] = (indices[0] + 1) % nPoints;
+	indices[2] = (indices[1] + 1) % nPoints;
+	indices[3] = (indices[2] + 1) % nPoints;
+	float **p = new float*[nPoints];
+
+	for (int i = 0; i < nPoints; i++) {
+		p[i] = new float[3];
+		p[i][0] = points[i].x;
+		p[i][1] = points[i].y;
+		p[i][2] = points[i].z;
+	}
+
+	getCatmullRomPoint(t, p[indices[0]], p[indices[1]], p[indices[2]], p[indices[3]], pos, deriv);
+}
+
+void renderCatmullRomCurve(vector<Vertex> points) {
+	// draw curve using line segments with GL_LINE_LOOP
+    float res[3];
+    float deriv[3];
+
+    glBegin(GL_LINE_LOOP);
+    for (float gt = 0.0; gt < 1; gt += 0.01) {
+        getGlobalCatmullRomPoint(gt, res, deriv,points);
+        glVertex3f(res[0], res[1], res[2]);
+    }
+    glEnd();
+}
+
+void orbitaCatmullRom(vector<Vertex> points, float gr){
+    int numberPoints = points.size();
+    float p[numberPoints][3];
+    float Z[3], m[16], pos[3], deriv[3];
+
+    renderCatmullRomCurve(points);
+
+    getGlobalCatmullRomPoint(gr, pos, deriv,points);
+
+    normalize(deriv);
+    cross(deriv, up, Z);
+	normalize(Z);
+    cross(Z, deriv, up);
+    normalize(up);
+
+    buildRotMatrix(deriv, up, Z, m);
+	glTranslatef(pos[0], pos[1], pos[2]);
+    glMultMatrixf(m);
+	gr+=0.1;
+}
+
 void drawScene(vector<Group>groups) 
 {	
 	int size = 0;
+	float te, gr;
 	for (int i = 0; i < groups.size(); i++) {
 		Group group = groups[i];
 		glPushMatrix();
+		if (group.orbitPoints.size() > 0) {
+			// desenhar orbita
+			orbitaCatmullRom(group.orbitPoints, 0);
+		}
 		glRotatef(group.rotationAngle, group.rotation.x, group.rotation.y, group.rotation.z);
 		glTranslatef(group.translation.x, group.translation.y, group.translation.z);
 		if(group.scale.x || group.scale.y || group.scale.z)
