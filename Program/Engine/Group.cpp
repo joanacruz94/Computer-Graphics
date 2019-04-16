@@ -7,7 +7,7 @@ using namespace std;
 Group::Group(void) {
 }
 
-Group::Group(Vertex rot, float rotAng, Vertex trans, Vertex scle, Vertex colr, vector<Model> modls, vector<Group> subs, vector<Vertex> orbitPoint, float timeTranslation)
+Group::Group(Vertex rot, float rotAng, Vertex trans, Vertex scle, Vertex colr, vector<Model> modls, vector<Group> subs, vector<Vertex> orbitPoint, float timeTranslation, float timeRotation)
 {
     rotation = rot;
     rotationAngle = rotAng;
@@ -17,7 +17,8 @@ Group::Group(Vertex rot, float rotAng, Vertex trans, Vertex scle, Vertex colr, v
     models = modls;
     subGroups = subs;
     orbitPoints = orbitPoint;
-    timeT = timeTranslation;
+    translationTime = timeTranslation;
+    rotationTime = timeRotation;
 };
 
 Group::~Group()

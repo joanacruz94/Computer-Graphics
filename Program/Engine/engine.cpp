@@ -55,7 +55,8 @@ int countGroups()
 	return nGroups;
 }
 
-int groupVertexSize(Group g){
+int groupVertexSize(Group g)
+{
 	int res = 0;
 	vector<Model> models = g.models;
 	for(int i = 0; i < models.size(); i++){
@@ -96,41 +97,38 @@ void normalizeCamCoords()
 	cPosZ = radius * cos(beta) * cos(alpha);
 }
 
-//constrói a matriz
-void buildRotMatrix(float *x, float *y, float *z, float *m) {
-
+void buildRotMatrix(float *x, float *y, float *z, float *m) 
+{
 	m[0] = x[0]; m[1] = x[1]; m[2] = x[2]; m[3] = 0;
 	m[4] = y[0]; m[5] = y[1]; m[6] = y[2]; m[7] = 0;
 	m[8] = z[0]; m[9] = z[1]; m[10] = z[2]; m[11] = 0;
 	m[12] = 0; m[13] = 0; m[14] = 0; m[15] = 1;
 }
 
-//efetua o produto escalar
-void cross(float *a, float *b, float *res) {
-
+void cross(float *a, float *b, float *res) 
+{
 	res[0] = a[1]*b[2] - a[2]*b[1];
 	res[1] = a[2]*b[0] - a[0]*b[2];
 	res[2] = a[0]*b[1] - a[1]*b[0];
 }
 
-//comprimento de um vetor
-float length(float *v) {
-
+float length(float *v) 
+{
 	float res = sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]);
 	return res;
 
 }
 
-//normaliza um vetor
-void normalize(float *a) {
+void normalize(float *a) 
+{
 	float l = sqrt(length(a));
 	a[0] = a[0]/l;
 	a[1] = a[1]/l;
 	a[2] = a[2]/l;
 }
 
-void multMatrixVector(float *m, float *v, float *res) {
-
+void multMatrixVector(float *m, float *v, float *res) 
+{
 	for (int j = 0; j < 4; ++j) {
 		res[j] = 0;
 		for (int k = 0; k < 4; ++k) {
@@ -140,9 +138,8 @@ void multMatrixVector(float *m, float *v, float *res) {
 
 }
 
-
-void getCatmullRomPoint(float t, float *p0, float *p1, float *p2, float *p3, float *res, float *deriv) {
-    
+void getCatmullRomPoint(float t, float *p0, float *p1, float *p2, float *p3, float *res, float *deriv) 
+{    
     // catmull-rom matrix
     float m[16] = {    -0.5f,  1.5f, -1.5f,  0.5f,
 						1.0f, -2.5f,  2.0f, -0.5f,
@@ -189,16 +186,15 @@ void getCatmullRomPoint(float t, float *p0, float *p1, float *p2, float *p3, flo
     deriv[0] = Tl[0] * Ax[0] + Tl[1] * Ax[1] + Tl[2] * Ax[2] + Tl[3] * Ax[3];
     deriv[1] = Tl[0] * Ay[0] + Tl[1] * Ay[1] + Tl[2] * Ay[2] + Tl[3] * Ay[3];
     deriv[2] = Tl[0] * Az[0] + Tl[1] * Az[1] + Tl[2] * Az[2] + Tl[3] * Az[3];
-    // ...
 }
 
 
-void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv, vector<Vertex> points) {
-
+void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv, vector<Vertex> points) 
+{
 	int nPoints = points.size();
 	float t = gt * nPoints; // this is the real global t
-	int index = floor(t);  // which segment
-	t = t - index; // where within  the segment
+	int index = floor(t);  	// which segment
+	t = t - index; 			// where within  the segment
 
 	// indices store the points
 	int indices[4];
@@ -218,10 +214,11 @@ void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv, vector<Vertex>
 	getCatmullRomPoint(t, p[indices[0]], p[indices[1]], p[indices[2]], p[indices[3]], pos, deriv);
 }
 
-void renderCatmullRomCurve(vector<Vertex> points) {
+void renderCatmullRomCurve(vector<Vertex> points) 
+{
 	// draw curve using line segments with GL_LINE_LOOP
-    float res[3];
-    float deriv[3];
+    float res[3], deriv[3];
+	glColor3f(1.0f, 1.0f, 1.0f);
 
     glBegin(GL_LINE_LOOP);
     for (float gt = 0.0; gt < 1; gt += 0.01) {
@@ -231,7 +228,8 @@ void renderCatmullRomCurve(vector<Vertex> points) {
     glEnd();
 }
 
-void orbitaCatmullRom(vector<Vertex> points, float gr){
+void orbitaCatmullRom(vector<Vertex> points, float gr)
+{
     int numberPoints = points.size();
     float p[numberPoints][3];
     float Z[3], m[16], pos[3], deriv[3];
@@ -249,7 +247,6 @@ void orbitaCatmullRom(vector<Vertex> points, float gr){
     buildRotMatrix(deriv, up, Z, m);
 	glTranslatef(pos[0], pos[1], pos[2]);
     glMultMatrixf(m);
-	gr+=0.1;
 }
 
 void drawScene(vector<Group>groups) 
@@ -260,11 +257,23 @@ void drawScene(vector<Group>groups)
 		Group group = groups[i];
 		glPushMatrix();
 		if (group.orbitPoints.size() > 0) {
+			//Melhorar cálculo do tempo
+			te = glutGet(GLUT_ELAPSED_TIME) % (int)(group.translationTime * 10000);
+        	gr = te / (group.translationTime * 10000);
 			// desenhar orbita
-			orbitaCatmullRom(group.orbitPoints, 0);
+			orbitaCatmullRom(group.orbitPoints, gr);
 		}
-		glRotatef(group.rotationAngle, group.rotation.x, group.rotation.y, group.rotation.z);
-		glTranslatef(group.translation.x, group.translation.y, group.translation.z);
+		else{
+			glTranslatef(group.translation.x, group.translation.y, group.translation.z);
+		}
+		if(group.rotationTime != 0){
+			te = glutGet(GLUT_ELAPSED_TIME)/100.f;
+            gr = (te*360) / (group.rotationTime * 1000);
+            glRotatef(gr,group.rotation.x, group.rotation.y, group.rotation.z);
+		}
+		else{
+			glRotatef(group.rotationAngle, group.rotation.x, group.rotation.y, group.rotation.z);
+		}
 		if(group.scale.x || group.scale.y || group.scale.z)
 			glScalef(group.scale.x, group.scale.y, group.scale.z);
 		glColor3f(group.color.x, group.color.y, group.color.z);
@@ -294,11 +303,11 @@ void renderScene(void)
 			  0.0, 0.0, 0.0,
 			  0.0f, 1.0f, 0.0f);
 
-	glPushMatrix();
-	glTranslatef(xx,yy,zz); // moves the object.
-	glRotatef(degree,0.0f,1.0f,0.0f); // rotate the object (Vertical Axis)
+	//glPushMatrix();
+	//glTranslatef(xx,yy,zz); // moves the object.
+	//glRotatef(degree,0.0f,1.0f,0.0f); // rotate the object (Vertical Axis)
 	drawScene(scene);
-	glPopMatrix();
+	//glPopMatrix();
 	
 	// End of frame
 	glutSwapBuffers();
@@ -433,8 +442,19 @@ int main(int argc, char **argv)
 {
 	scene = ParseXMLFile(argv[1]);
 
+	for(int i = 0; i < scene.size(); i++){
+		Group g = scene[i];
+		for (int j = 0; j < g.orbitPoints.size() ; j++){
+			cout << g.orbitPoints[j].x << endl;
+			cout << g.orbitPoints[j].y << endl;
+			cout << g.orbitPoints[j].z << endl;
+		}
+		cout << g.scale.x << endl;
+		cout << g.scale.y << endl;
+		cout << g.scale.z << endl;
+	}
 	alpha = 0.0;
-	radius = 100.0;
+	radius = 150.0;
 	beta = 0.0;
 	normalizeCamCoords();
 
@@ -446,6 +466,7 @@ int main(int argc, char **argv)
 	glutCreateWindow("Computação Gráfica");
 
 	// Required callback registry
+	glutIdleFunc(renderScene);
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(changeSize);
 

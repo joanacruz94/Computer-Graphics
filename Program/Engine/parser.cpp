@@ -72,7 +72,8 @@ Group ParseGroup(TiXmlElement *groupElement)
     group.color.x = 0;
     group.color.y = 0;
     group.color.z = 0;
-    group.timeT = 0;
+    group.translationTime = 0;
+    group.rotationTime = 0;
 
     bool translate = false, rotate = false, scale = false;
 
@@ -95,14 +96,19 @@ Group ParseGroup(TiXmlElement *groupElement)
         else if (!strcmp(childElement->Value(), "rotate") && !rotate)
         {
             group.rotation = ParseAttributes(childElement);
-            group.rotationAngle = atof(childElement->Attribute("angle"));
+            if(childElement->Attribute("angle")){
+                group.rotationAngle = atof(childElement->Attribute("angle"));
+            }
+            else{
+                group.rotationTime = atof(childElement->Attribute("time"));
+            }
             rotate = true;
         }
         else if (!strcmp(childElement->Value(), "translate") && !translate)
         {
             group.translation = ParseAttributes(childElement);
             if (childElement->Attribute("time")){
-                group.timeT = atof(childElement->Attribute("time"));
+                group.translationTime = atof(childElement->Attribute("time"));
                 for (grandChildElement = childElement->FirstChildElement("point"); grandChildElement; grandChildElement = grandChildElement->NextSiblingElement())
                 {
                     if (!strcmp(grandChildElement->Value(), "point"))

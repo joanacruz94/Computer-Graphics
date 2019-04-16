@@ -1,0 +1,8 @@
+<scene>
+	<group>
+		<color R=1 G=0.2 B=0.2/>
+		<models>
+			<model file="teapot.3d"/>
+		</models>
+	</group>
+</scene>
