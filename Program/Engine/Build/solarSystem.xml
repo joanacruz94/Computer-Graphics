@@ -1,0 +1,282 @@
+<scene>
+	<group>
+        <!-- SOL -->
+		<color R=1 G=0.2 B=0.2/>
+		<scale X=4 Y=4 Z=4/>
+		<rotate time=10 aXisY=1/>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+	</group>
+	<group>
+	<!--Cometa -->
+		<color R=0.6 G=1.0 B=0.5 />
+		<scale X=0.1 Y=0.1 Z=0.1/>
+		<rotate angle=45 axisX=1 axisY=0 axisZ=0 />
+		<translate time=100>
+			<point X=0 Y=0 Z=15 />
+			<point X=10.607 Y=0 Z=10.607 />
+			<point X=15 Y=0 Z=0 />
+			<point X=10.607 Y=0 Z=-10.607 />
+			<point X=0 Y=0 Z=-15 />
+			<point X=-10.607 Y=0 Z=-10.607 />
+			<point X=-15 Y=0 Z=0 />
+			<point X=-10.607 Y=0 Z=10.607 />
+		</translate>
+		<models>
+			<model file=teapot.3d />
+		</models>
+	</group>
+    <group>
+        <!-- MERCÚRIO -->
+		<color R=0.37 G=0.37 B=0.37/>
+		<scale X=0.1 Y=0.1 Z=0.1/>
+		<rotate time=10 axisY=1/>
+		<translate time=15>
+			<point X=10 Y=0 Z=0/>
+			<point X=7.071 Y=0 Z=-7.071/>
+			<point X=0 Y=0 Z=-10/>
+			<point X=-7.071 Y=0 Z=-7.071/>
+			<point X=-10 Y=0 Z=0/>
+			<point X=-7.071 Y=0 Z=7.071/>
+			<point X=0 Y=0 Z=10/>
+			<point X=7.071 Y=0 Z=7.071/>
+		</translate>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+	</group>
+    <group>
+        <!-- VENÚS -->
+		<color R=0.8 G=0.4/>
+		<scale X=0.2 Y=0.2 Z=0.2/>
+		<rotate time=10 axisY=1/>
+		<translate time=20>
+			<point X=14 Y=0 Z=0/>
+			<point X=9.899 Y=0 Z=-9.899/>
+			<point X=0 Y=0 Z=-14/>
+			<point X=-9.899 Y=0 Z=-9.899/>
+			<point X=-14 Y=0 Z=0/>
+			<point X=-9.899 Y=0 Z=9.899/>
+			<point X=0 Y=0 Z=14/>
+			<point X=9.899 Y=0 Z=9.899/>
+		</translate>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+	</group>
+    <group>
+        <!-- TERRA -->
+		<color B=1/>
+		<scale X=0.2 Y=0.2 Z=0.2/>
+		<rotate time=10 axisY=1/>
+		<translate time=25>
+			<point X=17 Y=0 Z=0/>
+			<point X=12.021 Y=0 Z=-12.021/>
+			<point X=0 Y=0 Z=-17/>
+			<point X=-12.021 Y=0 Z=-12.021/>
+			<point X=-17 Y=0 Z=0/>
+			<point X=-12.021 Y=0 Z=12.021/>
+			<point X=0 Y=0 Z=17/>
+			<point X=12.021 Y=0 Z=12.021/>
+		</translate>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+        <group>
+        <!-- LUA -->
+			<color R=0.37 G=0.37 B=0.37/>
+			<scale X=0.15 Y=0.15 Z=0.15/>
+			<rotate time=10 axisY=1/>
+			<translate time=20 >
+				<point X=0 Y=0 Z=3 />
+				<point X=2.121 Y=0 Z=2.121 />
+				<point X=3 Y=0 Z=0 />
+				<point X=2.121 Y=0 Z=-2.121 />
+				<point X=0 Y=0 Z=-3 />
+				<point X=-2.121 Y=0 Z=-2.121 />
+				<point X=-3 Y=0 Z=0 />
+				<point X=-2.121 Y=0 Z=2.121 />
+			</translate>
+			<models>
+				<model file=sphere.3d />
+			</models>
+		</group>
+	</group>
+    <group>
+        <!-- MARTE -->
+		<color R=1/>
+		<scale X=0.15 Y=0.15 Z=0.15/>
+		<rotate time=10 axisY=1/>
+		<translate time=30>
+			<point X=21 Y=0 Z=0/>
+			<point X=14.849 Y=0 Z=-14.849/>
+			<point X=0 Y=0 Z=-21/>
+			<point X=-14.849 Y=0 Z=-14.849/>
+			<point X=-21 Y=0 Z=0/>
+			<point X=-14.849 Y=0 Z=14.849/>
+			<point X=0 Y=0 Z=21/>
+			<point X=14.849 Y=0 Z=14.849/>
+		</translate>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+	</group>
+    <group>
+        <!-- JÚPITER -->
+		<color R=1 G=0.8 B=0.6/>
+        <scale X=0.5 Y=0.5 Z=0.5/>
+		<rotate time=10 axisY=1/>
+		<translate time=80>
+			<point X=40 Y=0 Z=0/>
+			<point X=28.284 Y=0 Z=-28.284/>
+			<point X=0 Y=0 Z=-40/>
+			<point X=-28.284 Y=0 Z=-28.284/>
+			<point X=-40 Y=0 Z=0/>
+			<point X=-28.284 Y=0 Z=28.284/>
+			<point X=0 Y=0 Z=40/>
+			<point X=28.284 Y=0 Z=28.284/>
+		</translate>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+		<group>
+        <!-- LUA EUROPA-->
+		<color R=0.37 G=0.37 B=0.37/>
+        <scale X=0.04 Y=0.04 Z=0.04/>
+		<translate time=10 >
+			<point X=0 Y=0 Z=3 />
+			<point X=2.121 Y=0 Z=2.121 />
+			<point X=3 Y=0 Z=0 />
+			<point X=2.121 Y=0 Z=-2.121 />
+			<point X=0 Y=0 Z=-3 />
+			<point X=-2.121 Y=0 Z=-2.121 />
+			<point X=-3 Y=0 Z=0 />
+			<point X=-2.121 Y=0 Z=2.121 />
+		</translate>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+		</group>
+		<group>
+        <!-- LUA GANIMEDES-->
+		<color R=0.37 G=0.37 B=0.37/>
+        <scale X=0.04 Y=0.04 Z=0.04/>
+		<translate time=20 >
+			<point X=0 Y=0 Z=4 />
+			<point X=2.828 Y=0 Z=2.828 />
+			<point X=4 Y=0 Z=0 />
+			<point X=2.828 Y=0 Z=-2.828 />
+			<point X=0 Y=0 Z=-4 />
+			<point X=-2.828 Y=0 Z=-2.828 />
+			<point X=-4 Y=0 Z=0 />
+			<point X=-2.828 Y=0 Z=2.828 />
+		</translate>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+		</group>
+		<group>
+        <!-- LUA IO -->
+		<color R=0.37 G=0.37 B=0.37/>
+        <scale X=0.04 Y=0.04 Z=0.04/>
+		<translate time=30 >
+			<point X=0 Y=0 Z=5 />
+			<point X=3.536 Y=0 Z=3.536 />
+			<point X=5 Y=0 Z=0 />
+			<point X=3.536 Y=0 Z=-3.536 />
+			<point X=0 Y=0 Z=-5 />
+			<point X=-3.536 Y=0 Z=-3.536 />
+			<point X=-5 Y=0 Z=0 />
+			<point X=-3.536 Y=0 Z=3.536 />
+		</translate>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+		</group>
+		<group>
+        <!-- LUA CALISTO -->
+		<color R=0.37 G=0.37 B=0.37/>
+        <scale X=0.04 Y=0.04 Z=0.04/>
+		<translate time=40 >
+			<point X=0 Y=0 Z=6 />
+			<point X=4.242 Y=0 Z=4.242 />
+			<point X=6 Y=0 Z=0 />
+			<point X=4.242 Y=0 Z=-4.242 />
+			<point X=0 Y=0 Z=-6 />
+			<point X=-4.242 Y=0 Z=-4.242 />
+			<point X=-6 Y=0 Z=0 />
+			<point X=-4.242 Y=0 Z=4.242 />
+		</translate>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+		</group>
+	</group>
+    <group>
+        <!-- SATURNO -->
+		<color R=1 G=1 B=0.8/>
+		<scale X=0.4 Y=0.4 Z=0.4/>
+		<rotate time=10 axisY=1/>
+		<translate time=100>
+			<point X=60 Y=0 Z=0/>
+			<point X=42.426 Y=0 Z=-42.426/>
+			<point X=0 Y=0 Z=-60/>
+			<point X=-42.426 Y=0 Z=-42.426/>
+			<point X=-60 Y=0 Z=0/>
+			<point X=-42.426 Y=0 Z=42.426/>
+			<point X=0 Y=0 Z=60/>
+			<point X=42.426 Y=0 Z=42.426/>
+		</translate>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+		<group>
+        <!-- ANEL SATURNO -->
+		<color R=1 G=1 B=0.3/>
+		<scale X=1.8 Y=0.1 Z=1/>
+		<rotate angle=35 axisZ=1/>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+		</group>
+	</group>
+    <group>
+        <!-- URANO -->
+		<color G=1 B=1/>
+		<scale X=0.35 Y=0.35 Z=0.35/>
+		<rotate time=10 axisY=1/>
+		<translate time=170>
+			<point X=70 Y=0 Z=0/>
+			<point X=49.497 Y=0 Z=-49.497/>
+			<point X=0 Y=0 Z=-70/>
+			<point X=-49.497 Y=0 Z=-49.497/>
+			<point X=-70 Y=0 Z=0/>
+			<point X=-49.497 Y=0 Z=49.497/>
+			<point X=0 Y=0 Z=70/>
+			<point X=49.497 Y=0 Z=49.497/>
+		</translate>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+	</group>
+	<group>
+        <!-- NEPTUNO -->
+		<color G=0.4 B=0.8/>
+		<scale X=0.35 Y=0.35 Z=0.35/>
+		<rotate time=10 axisY=1/>
+		<translate time=200>
+			<point X=80 Y=0 Z=0/>
+			<point X=56.569 Y=0 Z=-56.569/>
+			<point X=0 Y=0 Z=-80/>
+			<point X=-56.569 Y=0 Z=-56.569/>
+			<point X=-80 Y=0 Z=0/>
+			<point X=-56.569 Y=0 Z=56.569/>
+			<point X=0 Y=0 Z=80/>
+			<point X=56.569 Y=0 Z=56.569/>
+		</translate>
+		<models>
+			<model file=sphere.3d/>
+		</models>
+	</group>
+</scene>

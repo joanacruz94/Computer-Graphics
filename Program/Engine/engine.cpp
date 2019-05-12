@@ -30,6 +30,7 @@ using namespace std;
  * cPosZ - posição no eixo dos zz da camera
  */
 
+const float PI = 3.14159265358979323846f;
 GLfloat alpha, radius, beta, cPosX = 0.0, cPosY = 0.0, cPosZ = 0.0;
 float xx = 0.0f;
 float yy = 0.0f;
@@ -256,16 +257,6 @@ void drawScene(vector<Group>groups)
 	for (int i = 0; i < groups.size(); i++) {
 		Group group = groups[i];
 		glPushMatrix();
-		if (group.orbitPoints.size() > 0) {
-			//Melhorar cálculo do tempo
-			te = glutGet(GLUT_ELAPSED_TIME) % (int)(group.translationTime * 10000);
-        	gr = te / (group.translationTime * 10000);
-			// desenhar orbita
-			orbitaCatmullRom(group.orbitPoints, gr);
-		}
-		else{
-			glTranslatef(group.translation.x, group.translation.y, group.translation.z);
-		}
 		if(group.rotationTime != 0){
 			te = glutGet(GLUT_ELAPSED_TIME)/100.f;
             gr = (te*360) / (group.rotationTime * 1000);
@@ -274,9 +265,17 @@ void drawScene(vector<Group>groups)
 		else{
 			glRotatef(group.rotationAngle, group.rotation.x, group.rotation.y, group.rotation.z);
 		}
+		if (group.orbitPoints.size() > 0) {
+			te = glutGet(GLUT_ELAPSED_TIME) % (int)(group.translationTime * 1000);
+        	gr = te / (group.translationTime * 1000);
+			orbitaCatmullRom(group.orbitPoints, gr);
+		}
+		else{
+			glTranslatef(group.translation.x, group.translation.y, group.translation.z);
+		}
 		if(group.scale.x || group.scale.y || group.scale.z)
 			glScalef(group.scale.x, group.scale.y, group.scale.z);
-		glColor3f(group.color.x, group.color.y, group.color.z);
+			glColor3f(group.color.x, group.color.y, group.color.z);
 		if (group.models.size() > 0) {
 			glBindBuffer(GL_ARRAY_BUFFER, buffers[counterBuff++]);
 			glVertexPointer(3, GL_FLOAT, 0, 0);
@@ -303,11 +302,11 @@ void renderScene(void)
 			  0.0, 0.0, 0.0,
 			  0.0f, 1.0f, 0.0f);
 
-	//glPushMatrix();
-	//glTranslatef(xx,yy,zz); // moves the object.
-	//glRotatef(degree,0.0f,1.0f,0.0f); // rotate the object (Vertical Axis)
+	glPushMatrix();
+	glTranslatef(xx,yy,zz); // moves the object.
+	glRotatef(degree,0.0f,1.0f,0.0f); // rotate the object (Vertical Axis)
 	drawScene(scene);
-	//glPopMatrix();
+	glPopMatrix();
 	
 	// End of frame
 	glutSwapBuffers();
@@ -441,18 +440,6 @@ void fillBuffers(vector<Group> groups)
 int main(int argc, char **argv)
 {
 	scene = ParseXMLFile(argv[1]);
-
-	for(int i = 0; i < scene.size(); i++){
-		Group g = scene[i];
-		for (int j = 0; j < g.orbitPoints.size() ; j++){
-			cout << g.orbitPoints[j].x << endl;
-			cout << g.orbitPoints[j].y << endl;
-			cout << g.orbitPoints[j].z << endl;
-		}
-		cout << g.scale.x << endl;
-		cout << g.scale.y << endl;
-		cout << g.scale.z << endl;
-	}
 	alpha = 0.0;
 	radius = 150.0;
 	beta = 0.0;
@@ -466,8 +453,8 @@ int main(int argc, char **argv)
 	glutCreateWindow("Computação Gráfica");
 
 	// Required callback registry
-	glutIdleFunc(renderScene);
 	glutDisplayFunc(renderScene);
+	glutIdleFunc(renderScene);
 	glutReshapeFunc(changeSize);
 
 	// Callback registration for keyboard processing
