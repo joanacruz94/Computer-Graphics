@@ -8,9 +8,10 @@ using namespace std;
 class Model{
 public:
 	string fileName;
+	string fileTexture;
 	vector<Vertex> vertexes;
 	Model();
-	Model(string path);
+	Model(string path, string texture);	
 	~Model();
 };
 

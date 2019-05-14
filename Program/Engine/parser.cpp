@@ -41,6 +41,7 @@ Vertex ParseColor(TiXmlElement *element)
     return Vertex(r, g, b);
 }
 
+
 Model ParseModel(TiXmlElement *modelElement)
 {
 
@@ -74,6 +75,8 @@ Group ParseGroup(TiXmlElement *groupElement)
     group.color.z = 0;
     group.translationTime = 0;
     group.rotationTime = 0;
+    group.lightType = "";
+    group.texture = "";
 
     bool translate = false, rotate = false, scale = false;
 
@@ -104,6 +107,10 @@ Group ParseGroup(TiXmlElement *groupElement)
             }
             rotate = true;
         }
+                else if (!strcmp(childElement->Value(), "lights") && !rotate)
+        {
+            
+        }
         else if (!strcmp(childElement->Value(), "translate") && !translate)
         {
             group.translation = ParseAttributes(childElement);
@@ -129,6 +136,12 @@ Group ParseGroup(TiXmlElement *groupElement)
         {
             group.subGroups.push_back(ParseGroup(childElement));
         }
+        else if (!strcmp(childElement->Value(), "lights"))
+        {
+            group.lightType = childElement->Attribute("type");
+            group.lightP = ParseAttributes(childElement);
+        }
+        
     }
     return group;
 }

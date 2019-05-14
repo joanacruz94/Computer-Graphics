@@ -4,7 +4,7 @@ using namespace std;
 
 Model::Model() {}
 
-Model::Model(string path)
+Model::Model(string path, string texture)
 {
     ifstream file;
 
@@ -18,6 +18,8 @@ Model::Model(string path)
         vertexes.push_back(Vertex(x, y, z));
     }
     file.close();
+    fileTexture = texture;
+    
 };
 
 Model::~Model()
