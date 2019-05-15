@@ -16,6 +16,7 @@ set(CMAKE_CXX_COMPILER_ID "Clang")
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/System/Library/Frameworks/GLUT.framework/Headers"
   "/usr/local/include"
+  "../ยง{IL_INCLUDE_DIR}"
   )
 
 # Targets to which this target links.

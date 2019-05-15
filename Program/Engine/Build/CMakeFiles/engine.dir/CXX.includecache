@@ -23,10 +23,10 @@ Model.h
 /Users/joanacruz/Desktop/CG/Program/Engine/Model.h
 
 /Users/joanacruz/Desktop/CG/Program/Engine/Model.cpp
+IL/il.h
+-
 Model.h
 /Users/joanacruz/Desktop/CG/Program/Engine/Model.h
-fstream
--
 
 /Users/joanacruz/Desktop/CG/Program/Engine/Model.h
 Vertex.h
@@ -34,6 +34,18 @@ Vertex.h
 string
 -
 vector
+-
+IL/il.h
+-
+GLUT/glut.h
+-
+GL/glew.h
+-
+GL/glut.h
+-
+fstream
+-
+iostream
 -
 
 /Users/joanacruz/Desktop/CG/Program/Engine/Vertex.cpp
@@ -58,6 +70,8 @@ GLUT/glut.h
 GL/glew.h
 -
 GL/glut.h
+-
+IL/il.h
 -
 ctype.h
 -
@@ -131,6 +145,14 @@ stdlib.h
 /usr/local/include/GL/glut.h
 freeglut_std.h
 /usr/local/include/GL/freeglut_std.h
+
+/usr/local/include/IL/il.h
+stdio.h
+-
+limits.h
+-
+wchar.h
+-
 
 /usr/local/include/tinyxml.h
 ctype.h

@@ -44,13 +44,19 @@ Vertex ParseColor(TiXmlElement *element)
 
 Model ParseModel(TiXmlElement *modelElement)
 {
-
+    string filePath = "", textureFile = "";
+    Model m; 
     if (modelElement->Attribute("file"))
     {
         string filePath = modelElement->Attribute("file");
-        return Model(filePath);
+        m = Model(filePath);
+        m.fillBuffer();
     }
-    return Model();
+    if(modelElement->Attribute("texture")){
+        m.fileTexture = modelElement->Attribute("texture");
+        m.prepareTexture(modelElement->Attribute("texture"));
+    }   
+    return m;
 }
 
 Group ParseGroup(TiXmlElement *groupElement)
@@ -76,7 +82,6 @@ Group ParseGroup(TiXmlElement *groupElement)
     group.translationTime = 0;
     group.rotationTime = 0;
     group.lightType = "";
-    group.texture = "";
 
     bool translate = false, rotate = false, scale = false;
 
@@ -106,10 +111,6 @@ Group ParseGroup(TiXmlElement *groupElement)
                 group.rotationTime = atof(childElement->Attribute("time"));
             }
             rotate = true;
-        }
-                else if (!strcmp(childElement->Value(), "lights") && !rotate)
-        {
-            
         }
         else if (!strcmp(childElement->Value(), "translate") && !translate)
         {

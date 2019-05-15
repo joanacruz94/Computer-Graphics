@@ -18,9 +18,8 @@ public:
 	float rotationTime;
 	string lightType;
 	Vertex lightP;
-	string texture;
 	Group(void);
-	Group(Vertex rot, float rotAng, Vertex trans, Vertex scle, Vertex colr, vector<Model> modls, vector<Group> subs, vector<Vertex> orbitPoint, float timeTranslation, float timeRotation, string light, Vertex ligthPos, string fileTexture);
+	Group(Vertex rot, float rotAng, Vertex trans, Vertex scle, Vertex colr, vector<Model> modls, vector<Group> subs, vector<Vertex> orbitPoint, float timeTranslation, float timeRotation, string light, Vertex ligthPos);
 	~Group();
 };
 

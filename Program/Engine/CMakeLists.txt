@@ -32,12 +32,16 @@ include_directories(${TinyXML_INCLUDE_DIRS})
 link_directories(${TinyXML_LIBRARY_DIRS})
 add_definitions(${TinyXML_DEFINITIONS})
 
+find_package(DevIL REQUIRED)
+link_libraries(${IL_LIBRARIES} )
+include_directories(ยง{IL_INCLUDE_DIR})
 
 add_executable(${PROJECT_NAME} engine.cpp Group.h Group.cpp Vertex.h Vertex.cpp Model.h Model.cpp parser.h parser.cpp)
 
 
 if (WIN32)
-	target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} glew32)
+	target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} glew32 DevIL)
+	file(COPY ${TOOLKITS_FOLDER}/devil/DevIL.dll DESTINATION ${CMAKE_BINARY_DIR})
 else(WIN32)
 	target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${TinyXML_LIBRARIES})
 endif (WIN32)

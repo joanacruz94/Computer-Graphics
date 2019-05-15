@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/System/Library/Frameworks/GLUT.framework/Headers -I/usr/local/include 
+CXX_INCLUDES = -I/System/Library/Frameworks/GLUT.framework/Headers -I/usr/local/include -I/Users/joanacruz/Desktop/CG/Program/Engine/ยง{IL_INCLUDE_DIR} 
 

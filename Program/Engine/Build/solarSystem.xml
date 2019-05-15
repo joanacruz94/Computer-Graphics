@@ -2,10 +2,10 @@
 	<group>
         <!-- SOL -->
 		<color R=1 G=0.2 B=0.2/>
-		<scale X=4 Y=4 Z=4/>
+		<scale X=5 Y=5 Z=5/>
 		<rotate time=10 aXisY=1/>
 		<models>
-			<model file=sphere.3d/>
+			<model file=sphere.3d texture=sun.jpg/>
 		</models>
 	</group>
 	<group>
@@ -43,7 +43,7 @@
 			<point X=7.071 Y=0 Z=7.071/>
 		</translate>
 		<models>
-			<model file=sphere.3d/>
+			<model file=sphere.3d texture=mercury.jpg/>
 		</models>
 	</group>
     <group>
@@ -62,7 +62,7 @@
 			<point X=9.899 Y=0 Z=9.899/>
 		</translate>
 		<models>
-			<model file=sphere.3d/>
+			<model file=sphere.3d texture=venus.jpg/>
 		</models>
 	</group>
     <group>
@@ -81,7 +81,7 @@
 			<point X=12.021 Y=0 Z=12.021/>
 		</translate>
 		<models>
-			<model file=sphere.3d/>
+			<model file=sphere.3d texture=earth.jpg/>
 		</models>
         <group>
         <!-- LUA -->
@@ -99,7 +99,7 @@
 				<point X=-2.121 Y=0 Z=2.121 />
 			</translate>
 			<models>
-				<model file=sphere.3d />
+				<model file=sphere.3d texture=moon.jpg/>
 			</models>
 		</group>
 	</group>
@@ -119,7 +119,7 @@
 			<point X=14.849 Y=0 Z=14.849/>
 		</translate>
 		<models>
-			<model file=sphere.3d/>
+			<model file=sphere.3d texture=mars.jpg/>
 		</models>
 	</group>
     <group>
@@ -138,7 +138,7 @@
 			<point X=28.284 Y=0 Z=28.284/>
 		</translate>
 		<models>
-			<model file=sphere.3d/>
+			<model file=sphere.3d texture=jupiter.jpg/>
 		</models>
 		<group>
         <!-- LUA EUROPA-->
@@ -155,7 +155,7 @@
 			<point X=-2.121 Y=0 Z=2.121 />
 		</translate>
 		<models>
-			<model file=sphere.3d/>
+			<model file=sphere.3d />
 		</models>
 		</group>
 		<group>
@@ -229,7 +229,7 @@
 			<point X=42.426 Y=0 Z=42.426/>
 		</translate>
 		<models>
-			<model file=sphere.3d/>
+			<model file=sphere.3d texture=saturn.jpg/>
 		</models>
 		<group>
         <!-- ANEL SATURNO -->
@@ -237,7 +237,7 @@
 		<scale X=1.8 Y=0.1 Z=1/>
 		<rotate angle=35 axisZ=1/>
 		<models>
-			<model file=sphere.3d/>
+			<model file=sphere.3d texture=saturn_ring.jpg/>
 		</models>
 		</group>
 	</group>
@@ -257,7 +257,7 @@
 			<point X=49.497 Y=0 Z=49.497/>
 		</translate>
 		<models>
-			<model file=sphere.3d/>
+			<model file=sphere.3d texture=uranus.jpg/>
 		</models>
 	</group>
 	<group>
@@ -276,7 +276,7 @@
 			<point X=56.569 Y=0 Z=56.569/>
 		</translate>
 		<models>
-			<model file=sphere.3d/>
+			<model file=sphere.3d texture=neptune.jpg/>
 		</models>
 	</group>
 </scene>

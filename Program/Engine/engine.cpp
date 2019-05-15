@@ -9,6 +9,7 @@
 #include <GL/glew.h>
 #include <GL/glut.h>
 #endif
+#include <IL/il.h>
 #include <ctype.h>
 #include <string>
 #include <fstream>
@@ -275,12 +276,15 @@ void drawScene(vector<Group>groups)
 		}
 		if(group.scale.x || group.scale.y || group.scale.z)
 			glScalef(group.scale.x, group.scale.y, group.scale.z);
-			glColor3f(group.color.x, group.color.y, group.color.z);
+			//glColor3f(group.color.x, group.color.y, group.color.z);
+		
 		if (group.models.size() > 0) {
-			glBindBuffer(GL_ARRAY_BUFFER, buffers[counterBuff++]);
-			glVertexPointer(3, GL_FLOAT, 0, 0);
-			size = groupVertexSize(group);
-			glDrawArrays(GL_TRIANGLES, 0, size);
+			for(int w = 0; w < group.models.size(); w++){
+				Model m = group.models[0];
+				glBindTexture(GL_TEXTURE_2D, m.texture);
+				m.draw();
+				glBindTexture(GL_TEXTURE_2D, 0);
+			}
 		}
 		drawScene(group.subGroups);
 		glPopMatrix();
@@ -412,6 +416,7 @@ void showHelp()
 	cout << "-------------------------------------------" << endl;
 }
 
+/*
 void fillBuffers(vector<Group> groups)
 {
 	for (int i = 0; i < groups.size(); i++) {
@@ -435,17 +440,16 @@ void fillBuffers(vector<Group> groups)
 		}
 		fillBuffers(g.subGroups);
 	}
-}
+}*/
 
 int main(int argc, char **argv)
 {
-	scene = ParseXMLFile(argv[1]);
 	alpha = 0.0;
 	radius = 150.0;
 	beta = 0.0;
 	normalizeCamCoords();
 
-	// init GLUT and the window
+	// Init GLUT and the window
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(100, 100);
@@ -461,22 +465,53 @@ int main(int argc, char **argv)
 	glutKeyboardFunc(keyboardAction);
 	glutSpecialFunc(processSpecialKeys);
 
-	//  OpenGL settings
+	// OpenGL settings	
+	glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_NORMAL_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
+	//glEnable(GL_LIGHTING);
+    //glEnable(GL_LIGHT0);
+    glEnable(GL_TEXTURE_2D);
 	glCullFace(GL_FRONT);
 	glFrontFace(GL_CW);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-	nBuffer = 0;
+	scene = ParseXMLFile(argv[1]);
+
+	//for(int i = 0; i < scene.size(); i++){
+		Group g = scene[0];
+		//for(int j = 0; j < g.models.size(); i++){
+			Model m = g.models[0];
+			// cout << "Vértices" << endl;
+			for(int w = 0; w < m.vertexes.size(); w++){
+			// cout << m.vertexes[w].x << endl;
+			// cout << m.vertexes[w].y << endl;
+			// cout << m.vertexes[w].z << endl;
+			}
+			// cout << "Normals";
+			for(int w = 0; w < m.normals.size(); w++){
+			// cout << m.normals[w].x << endl;
+			// cout << m.normals[w].y << endl;
+			// cout << m.normals[w].z << endl;
+			}
+			// cout << "Textures";
+			for(int w = 0; w < m.textures.size(); w++){
+			// cout << m.textures[w].x << endl;
+			// cout << m.textures[w].y << endl;
+			// cout << m.textures[w].z << endl;
+			}
+		//}
+	//}
+
+	/*nBuffer = 0;
 	counterBuff = 0;
 	int groupsNumber = countGroups();
 	buffers = (GLuint*)malloc(sizeof(GLuint)*groupsNumber);
 	glGenBuffers(groupsNumber, buffers);
 
-	fillBuffers(scene);
-	glEnableClientState(GL_VERTEX_ARRAY);
-
+	fillBuffers(scene);*/
 	showHelp();
 
 	// enter GLUT's main radiuscle

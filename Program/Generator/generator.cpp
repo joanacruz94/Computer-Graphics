@@ -286,7 +286,7 @@ void generateSphere(double radius, int slices, int stacks, char* fileName){
     double deltaBeta = PI / stacks;
     double deltaAlpha = 2 * PI / slices;
     double angleBeta, angleAlpha;
-    double aX, aY, aZ, bX, bY, bZ, cX, cY, cZ, dX, dY, dZ, nX, nY, nZ, tX, tY, tZ;
+    double aX, aY, aZ, bX, bY, bZ, cX, cY, cZ, dX, dY, dZ, nX, nY, nZ, t1X, t1Y, t2X, t2Y, t3X, t3Y, t4X, t4Y, tZ;
     ofstream file;
     file.open(fileName,ios::app);
     
@@ -298,46 +298,52 @@ void generateSphere(double radius, int slices, int stacks, char* fileName){
                 angleAlpha = j*deltaAlpha;
                 nX = sin(angleBeta) * cos(angleAlpha);
                 nY = cos(angleBeta);
-                nZ = sin(angleBeta) * sin(angleAlpha);
-                tX = (slices - (double)j)/slices;
-                tY = (stacks - (double)i)/stacks;
+                nZ = sin(angleBeta) * sin(angleAlpha);               
                 tZ = 0;
 
                 aX = radius*sin(angleBeta)*sin(angleAlpha);
                 aY = radius*cos(angleBeta);
                 aZ = radius*sin(angleBeta)*cos(angleAlpha);
+                t1X = angleAlpha / (2 * PI);
+                t1Y = angleBeta / PI;
                 
                 bX = radius*sin(angleBeta)*sin(angleAlpha + deltaAlpha);
                 bY = radius*cos(angleBeta);
                 bZ = radius*sin(angleBeta)*cos(angleAlpha + deltaAlpha);
+                t2X =(angleAlpha + deltaAlpha ) / (2 * PI);
+			    t2Y = angleBeta / (PI);
                 
                 cX = radius*sin(angleBeta + deltaBeta)*sin(angleAlpha + deltaAlpha);
                 cY = radius*cos(angleBeta + deltaBeta);
                 cZ = radius*sin(angleBeta + deltaBeta)*cos(angleAlpha + deltaAlpha);
+                t3X = (angleAlpha + deltaAlpha) / (2 * M_PI);
+			    t3Y = (angleBeta + deltaBeta) / (PI);
                 
                 dX = radius*sin(angleBeta + deltaBeta)*sin(angleAlpha);
                 dY = radius*cos(angleBeta + deltaBeta);
                 dZ = radius*sin(angleBeta + deltaBeta)*cos(angleAlpha);
+                t4X = angleAlpha  / (2 * PI);
+			    t4Y = (angleBeta+deltaBeta) / (PI);
                 
                 file << "" << aX << " " << aY << " " << aZ << endl;
                 file << "" << nX << " " << nY << " " << nZ << endl;
-                file << "" << tX << " " << tY << " " << tZ << endl;
+                file << "" << t1X << " " << t1Y << " " << tZ << endl;
                 file << "" << bX << " " << bY << " " << bZ << endl;
                 file << "" << nX << " " << nY << " " << nZ << endl;
-                file << "" << tX << " " << tY << " " << tZ << endl;
+                file << "" << t2X << " " << t2Y << " " << tZ << endl;
                 file << "" << cX << " " << cY << " " << cZ << endl;
                 file << "" << nX << " " << nY << " " << nZ << endl;
-                file << "" << tX << " " << tY << " " << tZ << endl;
+                file << "" << t3X << " " << t3Y << " " << tZ << endl;
                 
                 file << "" << aX << " " << aY << " " << aZ << endl;
                 file << "" << nX << " " << nY << " " << nZ << endl;
-                file << "" << tX << " " << tY << " " << tZ << endl;
+                file << "" << t1X << " " << t1Y << " " << tZ << endl;
                 file << "" << cX << " " << cY << " " << cZ << endl;
                 file << "" << nX << " " << nY << " " << nZ << endl;
-                file << "" << tX << " " << tY << " " << tZ << endl;
+                file << "" << t3X << " " << t3Y << " " << tZ << endl;
                 file << "" << dX << " " << dY << " " << dZ << endl;
                 file << "" << nX << " " << nY << " " << nZ << endl;
-                file << "" << tX << " " << tY << " " << tZ << endl;
+                file << "" << t4X << " " << t4Y << " " << tZ << endl;
             }
         }        
         file.close();       

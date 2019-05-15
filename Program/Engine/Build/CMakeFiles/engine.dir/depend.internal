@@ -6,10 +6,16 @@ CMakeFiles/engine.dir/Group.cpp.o
  /Users/joanacruz/Desktop/CG/Program/Engine/Group.h
  /Users/joanacruz/Desktop/CG/Program/Engine/Model.h
  /Users/joanacruz/Desktop/CG/Program/Engine/Vertex.h
+ /usr/local/include/GL/freeglut_std.h
+ /usr/local/include/GL/glut.h
+ /usr/local/include/IL/il.h
 CMakeFiles/engine.dir/Model.cpp.o
  /Users/joanacruz/Desktop/CG/Program/Engine/Model.cpp
  /Users/joanacruz/Desktop/CG/Program/Engine/Model.h
  /Users/joanacruz/Desktop/CG/Program/Engine/Vertex.h
+ /usr/local/include/GL/freeglut_std.h
+ /usr/local/include/GL/glut.h
+ /usr/local/include/IL/il.h
 CMakeFiles/engine.dir/Vertex.cpp.o
  /Users/joanacruz/Desktop/CG/Program/Engine/Vertex.cpp
  /Users/joanacruz/Desktop/CG/Program/Engine/Vertex.h
@@ -22,6 +28,7 @@ CMakeFiles/engine.dir/engine.cpp.o
  /Users/joanacruz/Desktop/CG/Program/Engine/tinystr.h
  /usr/local/include/GL/freeglut_std.h
  /usr/local/include/GL/glut.h
+ /usr/local/include/IL/il.h
  /usr/local/include/tinyxml.h
 CMakeFiles/engine.dir/parser.cpp.o
  /Users/joanacruz/Desktop/CG/Program/Engine/Group.h
@@ -30,4 +37,7 @@ CMakeFiles/engine.dir/parser.cpp.o
  /Users/joanacruz/Desktop/CG/Program/Engine/parser.cpp
  /Users/joanacruz/Desktop/CG/Program/Engine/parser.h
  /Users/joanacruz/Desktop/CG/Program/Engine/tinystr.h
+ /usr/local/include/GL/freeglut_std.h
+ /usr/local/include/GL/glut.h
+ /usr/local/include/IL/il.h
  /usr/local/include/tinyxml.h
