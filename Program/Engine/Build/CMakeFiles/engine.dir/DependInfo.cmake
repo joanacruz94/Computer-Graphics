@@ -5,7 +5,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/joanacruz/Desktop/CG/Program/Engine/Group.cpp" "/Users/joanacruz/Desktop/CG/Program/Engine/Build/CMakeFiles/engine.dir/Group.cpp.o"
+  "/Users/joanacruz/Desktop/CG/Program/Engine/Light.cpp" "/Users/joanacruz/Desktop/CG/Program/Engine/Build/CMakeFiles/engine.dir/Light.cpp.o"
+  "/Users/joanacruz/Desktop/CG/Program/Engine/Material.cpp" "/Users/joanacruz/Desktop/CG/Program/Engine/Build/CMakeFiles/engine.dir/Material.cpp.o"
   "/Users/joanacruz/Desktop/CG/Program/Engine/Model.cpp" "/Users/joanacruz/Desktop/CG/Program/Engine/Build/CMakeFiles/engine.dir/Model.cpp.o"
+  "/Users/joanacruz/Desktop/CG/Program/Engine/Scene.cpp" "/Users/joanacruz/Desktop/CG/Program/Engine/Build/CMakeFiles/engine.dir/Scene.cpp.o"
   "/Users/joanacruz/Desktop/CG/Program/Engine/Vertex.cpp" "/Users/joanacruz/Desktop/CG/Program/Engine/Build/CMakeFiles/engine.dir/Vertex.cpp.o"
   "/Users/joanacruz/Desktop/CG/Program/Engine/engine.cpp" "/Users/joanacruz/Desktop/CG/Program/Engine/Build/CMakeFiles/engine.dir/engine.cpp.o"
   "/Users/joanacruz/Desktop/CG/Program/Engine/parser.cpp" "/Users/joanacruz/Desktop/CG/Program/Engine/Build/CMakeFiles/engine.dir/parser.cpp.o"

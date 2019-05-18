@@ -4,6 +4,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/engine.dir/Vertex.cpp.o"
   "CMakeFiles/engine.dir/Model.cpp.o"
   "CMakeFiles/engine.dir/parser.cpp.o"
+  "CMakeFiles/engine.dir/Light.cpp.o"
+  "CMakeFiles/engine.dir/Scene.cpp.o"
+  "CMakeFiles/engine.dir/Material.cpp.o"
   "engine.pdb"
   "engine"
 )

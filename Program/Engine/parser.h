@@ -1,9 +1,10 @@
 #include "Group.h"
+#include "Scene.h"
 #include <vector>
 #ifndef PARSER_H
 #define PARSER_H
 using namespace std;
 
-std::vector<Group> ParseXMLFile(char *fileName);
+Scene ParseXMLFile(char *fileName);
 
 #endif

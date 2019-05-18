@@ -36,7 +36,7 @@ find_package(DevIL REQUIRED)
 link_libraries(${IL_LIBRARIES} )
 include_directories(ยง{IL_INCLUDE_DIR})
 
-add_executable(${PROJECT_NAME} engine.cpp Group.h Group.cpp Vertex.h Vertex.cpp Model.h Model.cpp parser.h parser.cpp)
+add_executable(${PROJECT_NAME} engine.cpp Group.h Group.cpp Vertex.h Vertex.cpp Model.h Model.cpp parser.h parser.cpp Light.cpp Light.h Scene.cpp Scene.h Material.cpp Material.h)
 
 
 if (WIN32)

@@ -77,14 +77,14 @@ void Model::draw(){
         glNormalPointer(GL_FLOAT, 0, 0);
     }
 
-    if(textures.size()!=0){
+    if(textures.size()!=0 && fileTexture.compare("")){
         glBindBuffer(GL_ARRAY_BUFFER, buffer[2]);
         glTexCoordPointer(2, GL_FLOAT, 0, 0);
         glBindTexture(GL_TEXTURE_2D, texture);
     }
 
     glDrawArrays(GL_TRIANGLES, 0, (vertexes.size()) * 3);
-    // glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 

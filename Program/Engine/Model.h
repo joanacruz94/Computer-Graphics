@@ -1,4 +1,5 @@
 #include "Vertex.h"
+#include "Material.h"
 #include <string>
 #include <vector>
 #include <IL/il.h>
@@ -22,6 +23,8 @@ public:
 	vector<Vertex> textures;
 	GLuint buffer[3];
 	GLuint texture;
+	Vertex color;
+	Material material;
 	Model();
 	Model(string path);	
 	~Model();

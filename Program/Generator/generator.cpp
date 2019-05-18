@@ -161,8 +161,8 @@ void generateBox(double length, double height, double width, int div, char* file
             x = i*divX;
             for (j = 0; j < div; j++){
                 y = j*divY;
-                tX = (double) i/div;
-                tY = (double) j/div;
+                tX = (double) j/div;
+                tY = (double) i/div;
                 tZ = 0;
 
                 file << "" << (x-dimX) << " " << (y-dimY) << " " << dimZ << endl;
@@ -304,26 +304,26 @@ void generateSphere(double radius, int slices, int stacks, char* fileName){
                 aX = radius*sin(angleBeta)*sin(angleAlpha);
                 aY = radius*cos(angleBeta);
                 aZ = radius*sin(angleBeta)*cos(angleAlpha);
-                t1X = angleAlpha / (2 * PI);
-                t1Y = angleBeta / PI;
+                t1X = (double)j /slices;
+                t1Y = (double)i /stacks;
                 
                 bX = radius*sin(angleBeta)*sin(angleAlpha + deltaAlpha);
                 bY = radius*cos(angleBeta);
                 bZ = radius*sin(angleBeta)*cos(angleAlpha + deltaAlpha);
-                t2X =(angleAlpha + deltaAlpha ) / (2 * PI);
-			    t2Y = angleBeta / (PI);
+                t2X = (double)(j+1)/slices;
+			    t2Y = (double)i /stacks;
                 
                 cX = radius*sin(angleBeta + deltaBeta)*sin(angleAlpha + deltaAlpha);
                 cY = radius*cos(angleBeta + deltaBeta);
                 cZ = radius*sin(angleBeta + deltaBeta)*cos(angleAlpha + deltaAlpha);
-                t3X = (angleAlpha + deltaAlpha) / (2 * M_PI);
-			    t3Y = (angleBeta + deltaBeta) / (PI);
+                t3X = (double)(j+1) /slices;
+			    t3Y = (double)(i+1) /stacks;
                 
                 dX = radius*sin(angleBeta + deltaBeta)*sin(angleAlpha);
                 dY = radius*cos(angleBeta + deltaBeta);
                 dZ = radius*sin(angleBeta + deltaBeta)*cos(angleAlpha);
-                t4X = angleAlpha  / (2 * PI);
-			    t4Y = (angleBeta+deltaBeta) / (PI);
+                t4X = (double)j /slices;
+			    t4Y = (double)(i+1) /stacks;
                 
                 file << "" << aX << " " << aY << " " << aZ << endl;
                 file << "" << nX << " " << nY << " " << nZ << endl;
@@ -385,10 +385,10 @@ void generateCone(double radius, double height, int slices, int stacks, char* fi
             file << "" << ((double)i/slices) << " " << "0" << " 0" << endl;
             file << 0 << " " << y << " " << 0 << endl;
             file << "0 " << "-1" << " 0" << endl;
-            file << "" << ((double)i/slices) << " " << "1" << " 0" << endl;
+            file << "" << "0 " << " " << "0" << " 0" << endl;
             file << radius * sin(alfa + incAlfa) << " " << y << " " << radius * cos(alfa + incAlfa) << endl;
             file << "0 " << "-1" << " 0" << endl;
-            file << "" << ((double)i/slices) << " " << "1" << " 0" << endl;
+            file << "" << ((double)(i+1)/slices) << " " << "1" << " 0" << endl;
         }
         
         //Superfície Lateral
@@ -436,11 +436,11 @@ void generateCone(double radius, double height, int slices, int stacks, char* fi
     }
 }
 
-float getBezierPoint(float u, float v, int coord, float ** vertices, int * indices) {
-    float pointValue = 0;
+double getBezierPoint(double u, double v, int coord, double ** vertices, int * indices) {
+    double pointValue = 0;
     
-    float bu[4][1] = { { powf(1 - u, 3) },{ 3 * u * powf(1 - u, 2) },{ 3 * powf(u, 2) * (1 - u) },{ powf(u, 3) } };
-    float bv[4][1] = { { powf(1 - v, 3) },{ 3 * v * powf(1 - v, 2) },{ 3 * powf(v, 2) * (1 - v) },{ powf(v, 3) } };
+    double bu[4][1] = { { powf(1 - u, 3) },{ 3 * u * powf(1 - u, 2) },{ 3 * powf(u, 2) * (1 - u) },{ powf(u, 3) } };
+    double bv[4][1] = { { powf(1 - v, 3) },{ 3 * v * powf(1 - v, 2) },{ 3 * powf(v, 2) * (1 - v) },{ powf(v, 3) } };
     
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
@@ -452,10 +452,10 @@ float getBezierPoint(float u, float v, int coord, float ** vertices, int * indic
 
 
 
-void generatePatch(int points, float ** controlPoints, int patches, int ** indices, float tessel, char * fileName) {
-    float ponto[3];
-    float v, u;
-    float tesselation = 1.0 / tessel;
+void generatePatch(int points, double ** controlPoints, int patches, int ** indices, double tessel, char * fileName) {
+    double ponto[3];
+    double v, u;
+    double tesselation = 1.0 / tessel;
     ofstream file;
     file.open(fileName, ios::app);
     
@@ -468,26 +468,38 @@ void generatePatch(int points, float ** controlPoints, int patches, int ** indic
                     ponto[1] = getBezierPoint(u, v, 1, controlPoints, indicesPatch);
                     ponto[2] = getBezierPoint(u, v, 2, controlPoints, indicesPatch);
                     file << ponto[0] << " " << ponto[1] << " " << ponto[2] << endl;
+                    file << ponto[0] << " " << ponto[1] << " " << ponto[2] << endl;
+                    file << "" << u << " " << v << " " << 0 << endl;
                     ponto[0] = getBezierPoint(u + tesselation, v, 0, controlPoints, indicesPatch);
                     ponto[1] = getBezierPoint(u + tesselation, v, 1, controlPoints, indicesPatch);
                     ponto[2] = getBezierPoint(u + tesselation, v, 2, controlPoints, indicesPatch);
                     file << ponto[0] << " " << ponto[1] << " " << ponto[2] << endl;
+                    file << ponto[0] << " " << ponto[1] << " " << ponto[2] << endl;
+                    file << "" << (u + tesselation) << " " << v << " " << 0 << endl;
                     ponto[0] = getBezierPoint(u, v + tesselation, 0, controlPoints, indicesPatch);
                     ponto[1] = getBezierPoint(u, v + tesselation, 1, controlPoints, indicesPatch);
                     ponto[2] = getBezierPoint(u, v + tesselation, 2, controlPoints, indicesPatch);
                     file << ponto[0] << " " << ponto[1] << " " << ponto[2] << endl;
+                    file << ponto[0] << " " << ponto[1] << " " << ponto[2] << endl;
+                    file << "" << u << " " << (v + tesselation) << " " << 0 << endl;
                     ponto[0] = getBezierPoint(u, v + tesselation, 0, controlPoints, indicesPatch);
                     ponto[1] = getBezierPoint(u, v + tesselation, 1, controlPoints, indicesPatch);
                     ponto[2] = getBezierPoint(u, v + tesselation, 2, controlPoints, indicesPatch);
                     file << ponto[0] << " " << ponto[1] << " " << ponto[2] << endl;
+                    file << ponto[0] << " " << ponto[1] << " " << ponto[2] << endl;
+                    file << "" << u << " " << (v + tesselation) << " " << 0 << endl;
                     ponto[0] = getBezierPoint(u + tesselation, v, 0, controlPoints, indicesPatch);
                     ponto[1] = getBezierPoint(u + tesselation, v, 1, controlPoints, indicesPatch);
                     ponto[2] = getBezierPoint(u + tesselation, v, 2, controlPoints, indicesPatch);
                     file << ponto[0] << " " << ponto[1] << " " << ponto[2] << endl;
+                    file << ponto[0] << " " << ponto[1] << " " << ponto[2] << endl;
+                    file << "" << (u + tesselation) << " " << v << " " << 0 << endl;
                     ponto[0] = getBezierPoint(u + tesselation, v + tesselation, 0, controlPoints, indicesPatch);
                     ponto[1] = getBezierPoint(u + tesselation, v + tesselation, 1, controlPoints, indicesPatch);
                     ponto[2] = getBezierPoint(u + tesselation, v + tesselation, 2, controlPoints, indicesPatch);
                     file << ponto[0] << " " << ponto[1] << " " << ponto[2] << endl;
+                    file << ponto[0] << " " << ponto[1] << " " << ponto[2] << endl;
+                    file << "" << (u + tesselation) << " " << (v + tesselation) << " " << 0 << endl;
                 }
             }
         }
@@ -496,12 +508,12 @@ void generatePatch(int points, float ** controlPoints, int patches, int ** indic
         
 }
 
-void patches(string fileIn, float tesselLvl, char * fileName) {
+void patches(string fileIn, double tesselLvl, char * fileName) {
     string line;
     string indice[16];
     ifstream infile;
     int i, j, patches, points, **indices;
-    float **controlPoints;
+    double ** controlPoints;
     infile.open(fileIn);
     
     getline(infile, line);
@@ -523,9 +535,9 @@ void patches(string fileIn, float tesselLvl, char * fileName) {
     }
     getline(infile, line);
     points = stoi(line);
-    controlPoints = (float **)malloc(sizeof(float*)*points);
+    controlPoints = (double **)malloc(sizeof(double*)*points);
     for (i = 0; i < points; i++) {
-        controlPoints[i] = (float *)malloc(sizeof(float) * 3);
+        controlPoints[i] = (double *)malloc(sizeof(double) * 3);
     }
     for (i = 0; i < points; i++) {
         getline(infile, line);

@@ -19,6 +19,7 @@
 #include "Model.h"
 #include "Vertex.h"
 #include "parser.h"
+#include "Scene.h"
 using namespace std;
 
 /*
@@ -38,34 +39,11 @@ float yy = 0.0f;
 float zz = 0.0f;
 float degree = 0.0f;
 int nBuffer,counterBuff;
-vector<Group> scene;
+Scene scene;
 GLuint * buffers;
 float up[3] = { 0, 1, 0 };
 
-int countGroups()
-{
-	int nGroups;
-	for (int i = 0; i < scene.size(); i++)
-	{
-		nGroups++;
-		Group g = scene[i];
-		for(int j = 0; j < g.subGroups.size(); j++)
-		{
-			nGroups++;
-		}		
-	}
-	return nGroups;
-}
 
-int groupVertexSize(Group g)
-{
-	int res = 0;
-	vector<Model> models = g.models;
-	for(int i = 0; i < models.size(); i++){
-		res += models[i].vertexes.size();
-	}
-	return res*3;
-}
 
 void changeSize(int w, int h)
 {
@@ -251,9 +229,31 @@ void orbitaCatmullRom(vector<Vertex> points, float gr)
     glMultMatrixf(m);
 }
 
-void drawScene(vector<Group>groups) 
-{	
-	int size = 0;
+void createAsteroides()
+{
+	float r = 24;
+	float alpha;
+	float rr;
+	float x,z;
+	srand(31457);
+	int belt = 0;
+	glColor3f(0.3,0.3,0.3);
+	while(belt < 1000){
+		rr = rand() * 10.0 / RAND_MAX;
+		alpha = rand() * 6.28 / RAND_MAX;
+		x = cos(alpha) * (rr + r);
+		z = sin(alpha) * (rr + r);
+		if(fabs(x) < 100 && fabs(z) < 100){
+			glPushMatrix();
+			glTranslatef(x, 0.0, z);
+			glutSolidSphere(0.1, 10, 10);
+			glPopMatrix();
+			belt++;
+		}
+	}
+}
+
+void drawGroups(vector<Group> groups){
 	float te, gr;
 	for (int i = 0; i < groups.size(); i++) {
 		Group group = groups[i];
@@ -275,26 +275,30 @@ void drawScene(vector<Group>groups)
 			glTranslatef(group.translation.x, group.translation.y, group.translation.z);
 		}
 		if(group.scale.x || group.scale.y || group.scale.z)
-			glScalef(group.scale.x, group.scale.y, group.scale.z);
-			//glColor3f(group.color.x, group.color.y, group.color.z);
-		
+			glScalef(group.scale.x, group.scale.y, group.scale.z);		
 		if (group.models.size() > 0) {
 			for(int w = 0; w < group.models.size(); w++){
-				Model m = group.models[0];
-				glBindTexture(GL_TEXTURE_2D, m.texture);
-				m.draw();
-				glBindTexture(GL_TEXTURE_2D, 0);
+				Model m = group.models[w];
+				m.material.draw();
+				m.draw();			
 			}
 		}
-		drawScene(group.subGroups);
+		drawGroups(group.subGroups);
 		glPopMatrix();
 	}
+} 
+
+void drawScene(Scene scene) 
+{	
+	for(int i = 0; i < scene.lights.size(); i++){
+		Light l = scene.lights[i];
+		l.draw();
+	}
+	drawGroups(scene.groups);
 }
 
 void renderScene(void)
 {
-	counterBuff = 0;
-
 	// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -309,6 +313,8 @@ void renderScene(void)
 	glPushMatrix();
 	glTranslatef(xx,yy,zz); // moves the object.
 	glRotatef(degree,0.0f,1.0f,0.0f); // rotate the object (Vertical Axis)
+	if(!scene.fileScene.compare("solarSystem.xml"))
+		createAsteroides();
 	drawScene(scene);
 	glPopMatrix();
 	
@@ -416,32 +422,6 @@ void showHelp()
 	cout << "-------------------------------------------" << endl;
 }
 
-/*
-void fillBuffers(vector<Group> groups)
-{
-	for (int i = 0; i < groups.size(); i++) {
-		Group g = groups[i];
-		if (g.models.size() > 0) {
-			vector<Vertex> points;
-			for(int w = 0; w < g.models.size(); w++){
-				vector<Vertex> pointsPrimitive = g.models[w].vertexes;
-				points.insert(points.end(),pointsPrimitive.begin(), pointsPrimitive.end());			
-			}
-			float * vertices;
-			vertices = (float*)malloc(sizeof(float)*points.size() * 3);
-			for (int j = 0; j < points.size(); j++) {
-				vertices[3 * j] = points[j].x;
-				vertices[3 * j + 1] = points[j].y;
-				vertices[3 * j + 2] = points[j].z;
-			}
-			glBindBuffer(GL_ARRAY_BUFFER, buffers[nBuffer++]);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * points.size() * 3, vertices, GL_STATIC_DRAW);
-			free(vertices);
-		}
-		fillBuffers(g.subGroups);
-	}
-}*/
-
 int main(int argc, char **argv)
 {
 	alpha = 0.0;
@@ -471,8 +451,8 @@ int main(int argc, char **argv)
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
-	//glEnable(GL_LIGHTING);
-    //glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
     glEnable(GL_TEXTURE_2D);
 	glCullFace(GL_FRONT);
 	glFrontFace(GL_CW);
@@ -480,38 +460,6 @@ int main(int argc, char **argv)
 
 	scene = ParseXMLFile(argv[1]);
 
-	//for(int i = 0; i < scene.size(); i++){
-		Group g = scene[0];
-		//for(int j = 0; j < g.models.size(); i++){
-			Model m = g.models[0];
-			// cout << "Vértices" << endl;
-			for(int w = 0; w < m.vertexes.size(); w++){
-			// cout << m.vertexes[w].x << endl;
-			// cout << m.vertexes[w].y << endl;
-			// cout << m.vertexes[w].z << endl;
-			}
-			// cout << "Normals";
-			for(int w = 0; w < m.normals.size(); w++){
-			// cout << m.normals[w].x << endl;
-			// cout << m.normals[w].y << endl;
-			// cout << m.normals[w].z << endl;
-			}
-			// cout << "Textures";
-			for(int w = 0; w < m.textures.size(); w++){
-			// cout << m.textures[w].x << endl;
-			// cout << m.textures[w].y << endl;
-			// cout << m.textures[w].z << endl;
-			}
-		//}
-	//}
-
-	/*nBuffer = 0;
-	counterBuff = 0;
-	int groupsNumber = countGroups();
-	buffers = (GLuint*)malloc(sizeof(GLuint)*groupsNumber);
-	glGenBuffers(groupsNumber, buffers);
-
-	fillBuffers(scene);*/
 	showHelp();
 
 	// enter GLUT's main radiuscle
