@@ -161,8 +161,8 @@ void generateBox(double length, double height, double width, int div, char* file
             x = i*divX;
             for (j = 0; j < div; j++){
                 y = j*divY;
-                tX = (double) j/div;
-                tY = (double) i/div;
+                tX += (double) j/div;
+                tY += (double) i/div;
                 tZ = 0;
 
                 file << "" << (x-dimX) << " " << (y-dimY) << " " << dimZ << endl;
@@ -224,8 +224,8 @@ void generateBox(double length, double height, double width, int div, char* file
             y = i*divY;
             for (j = 0; j < div; j++){
                 z = j*divZ;
-                tX = (double) j/div;
-                tY = (double) i/div;
+                tX += (double) j/div;
+                tY += (double) i/div;
                 tZ = 0;
 
                 file << "" << dimX << " " << (y-dimY) << " " << (z-dimZ+divZ) << endl;
